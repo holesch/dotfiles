@@ -1,0 +1,40 @@
+set nocompatible " use Vim settings
+
+" --- Plugins ---
+" TODO use native Vim plugin manager
+" call plug#begin('~/.vim/plugged')
+" Plug 'tpope/vim-sensible' " Defaults everyone can agree on
+" Plug 'altercation/vim-colors-solarized' " Color scheme
+" Plug 'ConradIrwin/vim-bracketed-paste' " Pasting in terminal
+" Plug 'tpope/vim-surround' " Edit surroundings in pairs
+" Plug 'xolox/vim-session' " Extended session management
+" Plug 'xolox/vim-misc' " Dependency of vim-session
+" call plug#end()
+
+" --- Vim configuration ---
+set tabstop=4 " Set tab width to 4 spaces
+set shiftwidth=4 " When indenting with '>', use 4 spaces width
+set expandtab " On pressing tab, insert 4 spaces
+set ignorecase " Ignore case when searching
+set smartcase " Don't ignore case if there is an uppercase letter
+set relativenumber " Display relative line numbers
+set number " Display absolute line number on current line
+set showcmd " Display command while typing
+set lazyredraw " The screen will not be redrawn while executing macros
+set visualbell " Use visual bell instead of beeping
+set colorcolumn=50,72,80 " Highlight screen columns
+set wildmode=longest:full,full " Complete commands till longest common string
+set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
+set hlsearch " Highlight search matches
+set clipboard=unnamed " Use system clipboard
+set path+=** " Always search recursively
+set listchars=tab:▸\ ,eol:¬
+
+" --- GUI configuration ---
+set guifont=Menlo\ Regular:h14 " Set font
+set guioptions=egm " Hide scrollbar
+
+" --- Key mappings ---
+nmap <leader>l :set list!<CR>
+
+" --- Plugin configuraton ---
