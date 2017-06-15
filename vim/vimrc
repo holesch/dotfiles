@@ -1,19 +1,9 @@
 set nocompatible " use Vim settings
 
-" --- Plugins ---
-" TODO use native Vim plugin manager
-" call plug#begin('~/.vim/plugged')
-" Plug 'tpope/vim-sensible' " Defaults everyone can agree on
-" Plug 'altercation/vim-colors-solarized' " Color scheme
-" Plug 'ConradIrwin/vim-bracketed-paste' " Pasting in terminal
-" Plug 'tpope/vim-surround' " Edit surroundings in pairs
-" Plug 'xolox/vim-session' " Extended session management
-" Plug 'xolox/vim-misc' " Dependency of vim-session
-" call plug#end()
-
 " --- Vim configuration ---
 set tabstop=4 " Set tab width to 4 spaces
 set shiftwidth=4 " When indenting with '>', use 4 spaces width
+set softtabstop=4 " Delete 4 spaces with backspace
 set expandtab " On pressing tab, insert 4 spaces
 set ignorecase " Ignore case when searching
 set smartcase " Don't ignore case if there is an uppercase letter
@@ -28,13 +18,61 @@ set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
 set hlsearch " Highlight search matches
 set clipboard=unnamed " Use system clipboard
 set path+=** " Always search recursively
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
+set list " Show whitespace
+set linebreak " Wrap only at whitespace characters
+set spelllang=en_us " Set spell check region to American English
 
 " --- GUI configuration ---
-set guifont=Menlo\ Regular:h14 " Set font
-set guioptions=egm " Hide scrollbar
+set guifont=Menlo\ Regular:h12 " Set font
+set guioptions= " Hide scroll bar, menu, tabs, etc.
+
+" --- Functions ---
+function! Preserve(command)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Execute the command
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
 " --- Key mappings ---
-nmap <leader>l :set list!<CR>
+" Strip trailing whitespace
+nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
-" --- Plugin configuraton ---
+" Reindent file
+nnoremap <leader>= :call Preserve("normal gg=G")<CR>
+
+" Move between wrapped lines
+noremap <C-j> gj
+noremap <C-k> gk
+
+" Expand %% to directory of current file
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
+" Open vimrc in a new tab
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
+
+" Select the text that was last edited/pasted
+nnoremap gV `[v`]
+
+" Toggle the undo graph
+nnoremap <F5> :GundoToggle<CR>
+
+" --- Auto commands ---
+if has("autocmd")
+    augroup user
+        autocmd!
+        " Source the vimrc file after saving it
+        autocmd BufWritePost vimrc source $MYVIMRC
+    augroup END
+endif
+
+" --- Plugin configuration ---
+set background=dark
+colorscheme hybrid
+

@@ -1,2 +1,21 @@
 vim/.netrwhist
 vim/viminfo
+vim/spell/*.spl
+
+### https://raw.github.com/github/gitignore/2a2e34e6fcaccfafb6ae68511786987902f0e486/Global/vim.gitignore
+
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+

@@ -1,6 +1,24 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
-[submodule "vim/pack/user/sensible"]
+[submodule "vim/pack/user/start/sensible"]
 	path = vim/pack/user/start/sensible
 	url = https://github.com/tpope/vim-sensible.git
+[submodule "vim/pack/user/start/hybrid-color"]
+	path = vim/pack/user/start/hybrid-color
+	url = https://github.com/w0ng/vim-hybrid
+[submodule "vim/pack/user/start/unimpaired"]
+	path = vim/pack/user/start/unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/pack/user/start/repeat"]
+	path = vim/pack/user/start/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/pack/user/start/tabular"]
+	path = vim/pack/user/start/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "vim/pack/user/start/gundo"]
+	path = vim/pack/user/start/gundo
+	url = https://github.com/sjl/gundo.vim
+[submodule "vim/pack/user/start/fugitive"]
+	path = vim/pack/user/start/fugitive
+	url = https://github.com/tpope/vim-fugitive
