@@ -22,6 +22,7 @@ set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
 set list " Show whitespace
 set linebreak " Wrap only at whitespace characters
 set spelllang=en_us " Set spell check region to American English
+set noshowmode " Hide the current mode in the last line
 
 if has("cscope")
     set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
@@ -86,16 +87,32 @@ nnoremap gV `[v`]
 " Toggle the undo graph
 nnoremap <F5> :GundoToggle<CR>
 
+" Switch between windows
+nnoremap <leader>h <C-w><C-h>
+nnoremap <leader>j <C-w><C-j>
+nnoremap <leader>k <C-w><C-k>
+nnoremap <leader>l <C-w><C-l>
+
+" Save buffer
+nnoremap ZS :write<CR>
+
 " --- Auto commands ---
 if has("autocmd")
     augroup user
         autocmd!
         " Source the vimrc file after saving it
-        autocmd BufWritePost vimrc source $MYVIMRC
+        autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh
     augroup END
 endif
 
 " --- Plugin configuration ---
 set background=dark
 colorscheme hybrid
+
+" Airline
+let g:airline_theme = 'hybrid'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " Show tab number
+let g:airline#extensions#tabline#show_tab_type = 0 " Hide tab type
+let g:airline#extensions#tabline#show_close_button = 0 " Hide close button
 

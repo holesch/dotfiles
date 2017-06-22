@@ -22,3 +22,9 @@
 [submodule "vim/pack/user/start/fugitive"]
 	path = vim/pack/user/start/fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/user/start/airline"]
+	path = vim/pack/user/start/airline
+	url = https://github.com/bling/vim-airline
+[submodule "vim/pack/user/start/airline-themes"]
+	path = vim/pack/user/start/airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
