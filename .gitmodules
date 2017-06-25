@@ -28,3 +28,6 @@
 [submodule "vim/pack/user/start/airline-themes"]
 	path = vim/pack/user/start/airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/pack/user/start/neocomplete"]
+	path = vim/pack/user/start/neocomplete
+	url = https://github.com/shougo/neocomplete.vim

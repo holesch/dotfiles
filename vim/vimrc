@@ -1,6 +1,6 @@
 set nocompatible " use Vim settings
 
-" --- Vim configuration ---
+" === Vim configuration ===
 set tabstop=4 " Set tab width to 4 spaces
 set shiftwidth=4 " When indenting with '>', use 4 spaces width
 set softtabstop=4 " Delete 4 spaces with backspace
@@ -23,6 +23,10 @@ set list " Show whitespace
 set linebreak " Wrap only at whitespace characters
 set spelllang=en_us " Set spell check region to American English
 set noshowmode " Hide the current mode in the last line
+set background=dark " Use dark background
+colorscheme hybrid " Use the 'hybrid' colorscheme
+set completeopt-=preview " Hide the preview window
+set autowrite " Save the file when jumping away
 
 if has("cscope")
     set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
@@ -47,11 +51,11 @@ if has("cscope")
     nnoremap <C-_>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 endif
 
-" --- GUI configuration ---
+" === GUI configuration ===
 set guifont=Menlo\ Regular:h12 " Set font
 set guioptions= " Hide scroll bar, menu, tabs, etc.
 
-" --- Functions ---
+" === Functions ===
 function! Preserve(command)
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -64,7 +68,7 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 
-" --- Key mappings ---
+" === Key mappings ===
 " Strip trailing whitespace
 nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
@@ -96,7 +100,7 @@ nnoremap <leader>l <C-w><C-l>
 " Save buffer
 nnoremap ZS :write<CR>
 
-" --- Auto commands ---
+" === Auto commands ===
 if has("autocmd")
     augroup user
         autocmd!
@@ -105,14 +109,48 @@ if has("autocmd")
     augroup END
 endif
 
-" --- Plugin configuration ---
-set background=dark
-colorscheme hybrid
-
-" Airline
+" === Plugin configuration ===
+" --- Airline ---
 let g:airline_theme = 'hybrid'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " Show tab number
 let g:airline#extensions#tabline#show_tab_type = 0 " Hide tab type
 let g:airline#extensions#tabline#show_close_button = 0 " Hide close button
+
+" --- Neocomplete ---
+let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+inoremap <expr> <C-g> neocomplete#undo_completion()
+inoremap <expr> <C-l> neocomplete#complete_common_string()
+
+" close popup and add newline
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+
+" <TAB> completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>is_white_space_before_cursor() ? "\<TAB>" :
+      \ neocomplete#start_manual_complete()
+
+" close popup and delete char
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+endfunction
+
+function! s:is_white_space_before_cursor() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" Enable auto omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.c =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.cpp =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
