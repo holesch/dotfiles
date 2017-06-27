@@ -34,3 +34,6 @@
 [submodule "vim/pack/user/start/obsession"]
 	path = vim/pack/user/start/obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim/pack/user/start/vinegar"]
+	path = vim/pack/user/start/vinegar
+	url = https://github.com/tpope/vim-vinegar
