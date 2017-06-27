@@ -31,3 +31,6 @@
 [submodule "vim/pack/user/start/neocomplete"]
 	path = vim/pack/user/start/neocomplete
 	url = https://github.com/shougo/neocomplete.vim
+[submodule "vim/pack/user/start/obsession"]
+	path = vim/pack/user/start/obsession
+	url = https://github.com/tpope/vim-obsession.git
