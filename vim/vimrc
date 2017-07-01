@@ -23,8 +23,6 @@ set list " Show whitespace
 set linebreak " Wrap only at whitespace characters
 set spelllang=en_us " Set spell check region to American English
 set noshowmode " Hide the current mode in the last line
-set background=dark " Use dark background
-colorscheme hybrid " Use the 'hybrid' colorscheme
 set completeopt-=preview " Hide the preview window
 set autowrite " Save the file when jumping away
 
@@ -109,6 +107,16 @@ if has("autocmd")
     augroup END
 endif
 
+" === Colorscheme ===
+colorscheme hybrid " Use the 'hybrid' colorscheme
+set background=dark " Use dark background
+
+augroup vimrc_color
+    autocmd!
+    autocmd ColorScheme hybrid highlight! link QuickFixLine CursorLine
+    autocmd ColorScheme hybrid highlight! link WildMenu Search
+augroup END
+
 " === Plugin configuration ===
 " --- Airline ---
 let g:airline_theme = 'hybrid'
@@ -155,3 +163,16 @@ if has('lua')
     let g:neocomplete#sources#omni#input_patterns.cpp =
     \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 endif
+
+" --- Syntastic ---
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_style_error_symbol = "S✗"
+let g:syntastic_style_warning_symbol = "S⚠"
+let g:syntastic_enable_balloons = 0
+let g:syntastic_loc_list_height = 5
+

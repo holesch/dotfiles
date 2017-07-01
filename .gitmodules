@@ -37,3 +37,6 @@
 [submodule "vim/pack/user/start/vinegar"]
 	path = vim/pack/user/start/vinegar
 	url = https://github.com/tpope/vim-vinegar
+[submodule "vim/pack/user/start/syntastic"]
+	path = vim/pack/user/start/syntastic
+	url = https://github.com/scrooloose/syntastic
