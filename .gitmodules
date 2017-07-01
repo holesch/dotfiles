@@ -40,3 +40,6 @@
 [submodule "vim/pack/user/start/syntastic"]
 	path = vim/pack/user/start/syntastic
 	url = https://github.com/scrooloose/syntastic
+[submodule "vim/pack/user/start/surround"]
+	path = vim/pack/user/start/surround
+	url = https://github.com/tpope/vim-surround
