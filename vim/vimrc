@@ -107,8 +107,9 @@ if has("autocmd")
 endif
 
 " === Colorscheme ===
-colorscheme hybrid " Use the 'hybrid' colorscheme
-set background=dark " Use dark background
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
+set background=dark
 
 augroup vimrc_color
     autocmd!
