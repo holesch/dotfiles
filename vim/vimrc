@@ -15,7 +15,6 @@ set visualbell " Use visual bell instead of beeping
 set colorcolumn=50,72,80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
-set hlsearch " Highlight search matches
 set clipboard=unnamed " Use system clipboard
 set path+=** " Always search recursively
 set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
@@ -78,10 +77,10 @@ noremap <C-j> gj
 noremap <C-k> gk
 
 " Expand %% to directory of current file
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
 " Open vimrc in a new tab
-nnoremap <leader>v :tabedit $MYVIMRC<CR>
+nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/'<CR><CR>
 
 " Select the text that was last edited/pasted
 nnoremap gV `[v`]
@@ -121,9 +120,12 @@ augroup END
 " --- Airline ---
 let g:airline_theme = 'hybrid'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " Show tab number
-let g:airline#extensions#tabline#show_tab_type = 0 " Hide tab type
-let g:airline#extensions#tabline#show_close_button = 0 " Hide close button
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#formatter = 'cwd'
+let g:airline#extensions#tabline#show_buffers = 0
 
 " --- Neocomplete ---
 if has('lua')
