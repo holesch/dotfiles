@@ -11,7 +11,6 @@ set relativenumber " Display relative line numbers
 set number " Display absolute line number on current line
 set showcmd " Display command while typing
 set lazyredraw " The screen will not be redrawn while executing macros
-set visualbell " Use visual bell instead of beeping
 set colorcolumn=50,72,80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
@@ -24,6 +23,7 @@ set spelllang=en_us " Set spell check region to American English
 set noshowmode " Hide the current mode in the last line
 set completeopt-=preview " Hide the preview window
 set autowrite " Save the file when jumping away
+set cursorline " Highlight current line
 
 if has("cscope")
     set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
@@ -119,7 +119,11 @@ augroup END
 
 " === Plugin configuration ===
 " --- Airline ---
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 let g:airline_theme = 'hybrid'
+let g:airline_symbols.branch = '⎇'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_type = 0
@@ -178,6 +182,7 @@ let g:syntastic_style_error_symbol = "S✗"
 let g:syntastic_style_warning_symbol = "S⚠"
 let g:syntastic_enable_balloons = 0
 let g:syntastic_loc_list_height = 5
+let g:syntastic_xml_checkers = []
 
 " " --- ALE ---
 " let g:ale_list_window_size = 5
