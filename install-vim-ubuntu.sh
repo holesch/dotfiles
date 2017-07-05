@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-# Remove previous installations
-sudo apt-get remove -y \
-    vim \
-    vim-runtime \
-    vim-tiny \
-    vim-common \
-    gvim \
-    vim-gui-common \
-    vim-nox
-
 # Install dependencies
 sudo apt-get install -y \
     libncurses5-dev \
@@ -18,7 +8,12 @@ sudo apt-get install -y \
     python3-dev \
     libperl-dev \
     tcl-dev \
-    ruby-dev
+    ruby-dev \
+    libx11-dev \
+    libxtst-dev \
+    libxt-dev \
+    libsm-dev \
+    libxpm-dev
 
 # Fix libluajit paths
 sudo ln -s /usr/include/luajit-2.0/ /usr/include/lua
@@ -42,9 +37,9 @@ cd ~/src/vim
     --disable-netbeans \
     --with-features=huge \
     --with-luajit \
+    --with-x \
+    --prefix=$HOME/.local \
     --with-compiledby='Simon Holesch <simon@holesch.de>'
 
-make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
-
-sudo apt-get install checkinstall
-sudo checkinstall -y --pkgname=vim
+make VIMRUNTIMEDIR=$HOME/.local/share/vim/vim80
+make install
