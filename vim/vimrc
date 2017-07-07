@@ -24,6 +24,7 @@ set noshowmode " Hide the current mode in the last line
 set completeopt-=preview " Hide the preview window
 set autowrite " Save the file when jumping away
 set cursorline " Highlight current line
+set mouse=a " Enable mouse support
 
 if has("cscope")
     set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
@@ -107,22 +108,14 @@ if has("autocmd")
 endif
 
 " === Colorscheme ===
-let g:hybrid_custom_term_colors = 1
-colorscheme hybrid
-set background=dark
-
-augroup vimrc_color
-    autocmd!
-    autocmd ColorScheme hybrid highlight! link QuickFixLine CursorLine
-    autocmd ColorScheme hybrid highlight! link WildMenu Search
-augroup END
+colorscheme base16-materia
+let g:airline_theme = 'tomorrow'
 
 " === Plugin configuration ===
 " --- Airline ---
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_theme = 'hybrid'
 let g:airline_symbols.branch = '⎇'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
