@@ -108,6 +108,7 @@ if has("autocmd")
 endif
 
 " === Colorscheme ===
+let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme base16-materia
 let g:airline_theme = 'tomorrow'
 
@@ -116,7 +117,6 @@ let g:airline_theme = 'tomorrow'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.branch = '⎇'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_type = 0
