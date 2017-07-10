@@ -1,6 +1,6 @@
 set nocompatible " use Vim settings
 
-" === Vim configuration ===
+" === General Vim configuration ===
 set tabstop=4 " Set tab width to 4 spaces
 set shiftwidth=4 " When indenting with '>', use 4 spaces width
 set softtabstop=4 " Delete 4 spaces with backspace
@@ -25,35 +25,41 @@ set completeopt-=preview " Hide the preview window
 set autowrite " Save the file when jumping away
 set cursorline " Highlight current line
 set mouse=a " Enable mouse support
-
-if has("cscope")
-    set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
-    set cscopetag " Use cscope with :tag and CTRL-]
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-        " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-    set cscopeverbose " Print message when adding a database
-
-    nnoremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nnoremap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nnoremap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-_>a :cs find a <C-R>=expand("<cword>")<CR><CR>
-endif
-
-" === GUI configuration ===
 set guifont=Menlo\ Regular:h12 " Set font
 set guioptions= " Hide scroll bar, menu, tabs, etc.
 
-" === Functions ===
+" === vimrc ===
+augroup vimrc_vimrc
+    autocmd!
+    " Source the vimrc file after saving it
+    autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh
+augroup END
+
+" Open vimrc in a new tab
+nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/'<CR><CR>
+
+" === Aesthetics ===
+" --- Color scheme ---
+let base16colorspace=256  " Access colors present in 256 color space
+colorscheme base16-materia
+
+" --- Airline ---
+let g:airline_theme = 'tomorrow'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#formatter = 'cwd'
+let g:airline#extensions#tabline#show_buffers = 0
+
+" === General key mappings ===
+" Strip trailing whitespace
+nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Reindent file
+nnoremap <leader>= :call Preserve("normal gg=G")<CR>
+
 function! Preserve(command)
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -66,66 +72,16 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 
-" === Key mappings ===
-" Strip trailing whitespace
-nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
-
-" Reindent file
-nnoremap <leader>= :call Preserve("normal gg=G")<CR>
-
-" Move between wrapped lines
-noremap <C-j> gj
-noremap <C-k> gk
-
-" Expand %% to directory of current file
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
-
-" Open vimrc in a new tab
-nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/'<CR><CR>
-
 " Select the text that was last edited/pasted
 nnoremap gV `[v`]
 
 " Toggle the undo graph
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 nnoremap <F5> :GundoToggle<CR>
 
-" Switch between windows
-nnoremap <leader>h <C-w><C-h>
-nnoremap <leader>j <C-w><C-j>
-nnoremap <leader>k <C-w><C-k>
-nnoremap <leader>l <C-w><C-l>
-
-" Save buffer
-nnoremap ZS :write<CR>
-
-" === Auto commands ===
-if has("autocmd")
-    augroup user
-        autocmd!
-        " Source the vimrc file after saving it
-        autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh
-    augroup END
-endif
-
-" === Colorscheme ===
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-materia
-let g:airline_theme = 'tomorrow'
-
-" === Plugin configuration ===
-" --- Airline ---
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#formatter = 'cwd'
-let g:airline#extensions#tabline#show_buffers = 0
-
-" --- Neocomplete ---
+" === Auto completion ===
 if has('lua')
     let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
     let g:neocomplete#enable_smart_case = 1 " Use smartcase.
@@ -164,6 +120,7 @@ if has('lua')
     \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 endif
 
+" === Syntax checker ===
 " --- Syntastic ---
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -187,4 +144,29 @@ let g:syntastic_xml_checkers = []
 " let g:ale_sign_style_error = "S✗"
 " let g:ale_sign_style_warning = "S⚠"
 " let g:ale_sign_column_always = 1
+
+" === cscope ===
+if has("cscope")
+    set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
+    set cscopetag " Use cscope with :tag and CTRL-]
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set cscopeverbose " Print message when adding a database
+
+    nnoremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>? :help cscope-find<CR>
+endif
 
