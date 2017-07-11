@@ -3,6 +3,6 @@ set -e
 
 apt-get install -y \
     libncurses5-dev \
-    libncurses5-dev \
+    libevent-dev \
     autotools-dev \
     automake

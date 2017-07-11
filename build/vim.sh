@@ -1,29 +1,18 @@
 #!/usr/bin/env bash
 set -e
 
-# Install dependencies
-sudo apt-get install -y \
-    libncurses5-dev \
-    libluajit-5.1-dev \
-    python3-dev \
-    libperl-dev \
-    tcl-dev \
-    ruby-dev \
-    libx11-dev \
-    libxtst-dev \
-    libxt-dev \
-    libsm-dev \
-    libxpm-dev
+SOURCE_DIR="$HOME/.cache/siho-build/vim"
 
-# Fix libluajit paths
-sudo ln -s /usr/include/luajit-2.0/ /usr/include/lua
-sudo ln -s /usr/lib/x86_64-linux-gnu/libluajit-5.1.so /usr/lib/x86_64-linux-gnu/libluajit.so
 
-# Clone vim sources
-mkdir -p ~/src
-git clone https://github.com/vim/vim.git ~/src/vim
+if [ ! -d $SOURCE_DIR ]; then
+    git clone https://github.com/vim/vim.git $SOURCE_DIR
+    cd $SOURCE_DIR
+else
+    cd $SOURCE_DIR
+    git reset HEAD --hard
+    git pull
+fi
 
-cd ~/src/vim
 ./configure \
     --enable-fail-if-missing \
     --enable-luainterp=yes \
@@ -43,3 +32,4 @@ cd ~/src/vim
 
 make VIMRUNTIMEDIR=$HOME/.local/share/vim/vim80
 make install
+
