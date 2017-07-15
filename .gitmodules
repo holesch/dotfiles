@@ -4,9 +4,6 @@
 [submodule "vim/pack/user/start/sensible"]
 	path = vim/pack/user/start/sensible
 	url = https://github.com/tpope/vim-sensible.git
-[submodule "vim/pack/user/start/hybrid-color"]
-	path = vim/pack/user/start/hybrid-color
-	url = https://github.com/w0ng/vim-hybrid
 [submodule "vim/pack/user/start/unimpaired"]
 	path = vim/pack/user/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired
@@ -52,6 +49,3 @@
 [submodule "tmux/plugins/sensible"]
 	path = tmux/plugins/sensible
 	url = https://github.com/tmux-plugins/tmux-sensible
-[submodule "tmux/plugins/yank"]
-	path = tmux/plugins/yank
-	url = https://github.com/tmux-plugins/tmux-yank
