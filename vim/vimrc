@@ -85,6 +85,7 @@ endif
 nnoremap <F5> :GundoToggle<CR>
 
 " === Auto completion ===
+" --- Neocomplete ---
 if has('lua')
     let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
     let g:neocomplete#enable_smart_case = 1 " Use smartcase.
@@ -121,7 +122,16 @@ if has('lua')
     \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
     let g:neocomplete#sources#omni#input_patterns.cpp =
     \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+    if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.python =
+    \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 endif
+
+" --- Jedi ---
+let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
 
 " === Syntax checker ===
 " --- Syntastic ---

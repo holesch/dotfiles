@@ -49,3 +49,6 @@
 [submodule "tmux/plugins/sensible"]
 	path = tmux/plugins/sensible
 	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule "vim/pack/user/start/jedi"]
+	path = vim/pack/user/start/jedi
+	url = https://github.com/davidhalter/jedi-vim
