@@ -55,3 +55,6 @@
 [submodule "vim/pack/user/start/ctrlp"]
 	path = vim/pack/user/start/ctrlp
 	url = https://github.com/kien/ctrlp.vim
+[submodule "vim/pack/user/start/dispatch"]
+	path = vim/pack/user/start/dispatch
+	url = https://github.com/tpope/vim-dispatch
