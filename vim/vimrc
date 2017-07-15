@@ -133,6 +133,9 @@ endif
 let g:jedi#auto_initialization = 0
 let g:jedi#auto_vim_configuration = 0
 
+" === Fuzzy finder ===
+let g:ctrlp_extensions = ['tag']
+
 " === Syntax checker ===
 " --- Syntastic ---
 let g:syntastic_always_populate_loc_list = 1

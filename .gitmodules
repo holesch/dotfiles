@@ -52,3 +52,6 @@
 [submodule "vim/pack/user/start/jedi"]
 	path = vim/pack/user/start/jedi
 	url = https://github.com/davidhalter/jedi-vim
+[submodule "vim/pack/user/start/ctrlp"]
+	path = vim/pack/user/start/ctrlp
+	url = https://github.com/kien/ctrlp.vim
