@@ -8,6 +8,12 @@
 - link:
     ~/.vim: vim
     ~/.tmux.conf: tmux/tmux.conf
+    ~/.zprezto: zsh/zprezto
+    ~/.zshenv: zsh/zshenv
+    ~/.zprofile: zsh/zprofile
+    ~/.zshrc: zsh/zshrc
+    ~/.zpreztorc: zsh/zpreztorc
+    ~/.zlogin: zsh/zlogin
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

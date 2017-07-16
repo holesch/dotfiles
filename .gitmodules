@@ -58,3 +58,6 @@
 [submodule "vim/pack/user/start/dispatch"]
 	path = vim/pack/user/start/dispatch
 	url = https://github.com/tpope/vim-dispatch
+[submodule "zsh/zprezto"]
+	path = zsh/zprezto
+	url = https://github.com/sorin-ionescu/prezto
