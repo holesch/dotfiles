@@ -24,10 +24,10 @@ zstyle ':prezto:load' pmodule \
   'tmux' \
   'utility' \
   'completion' \
+  'syntax-highlighting' \
   'history-substring-search' \
   'autosuggestions' \
   'prompt'
-  # 'syntax-highlighting' \
 
 # === Autosuggestions ===
 # Set the query found color.
