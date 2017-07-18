@@ -4,9 +4,6 @@
 [submodule "vim/pack/user/start/sensible"]
 	path = vim/pack/user/start/sensible
 	url = https://github.com/tpope/vim-sensible.git
-[submodule "vim/pack/user/start/hybrid-color"]
-	path = vim/pack/user/start/hybrid-color
-	url = https://github.com/w0ng/vim-hybrid
 [submodule "vim/pack/user/start/unimpaired"]
 	path = vim/pack/user/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired
@@ -52,9 +49,18 @@
 [submodule "tmux/plugins/sensible"]
 	path = tmux/plugins/sensible
 	url = https://github.com/tmux-plugins/tmux-sensible
-[submodule "tmux/plugins/yank"]
-	path = tmux/plugins/yank
-	url = https://github.com/tmux-plugins/tmux-yank
+[submodule "vim/pack/user/start/jedi"]
+	path = vim/pack/user/start/jedi
+	url = https://github.com/davidhalter/jedi-vim
+[submodule "vim/pack/user/start/ctrlp"]
+	path = vim/pack/user/start/ctrlp
+	url = https://github.com/kien/ctrlp.vim
 [submodule "vim/pack/user/start/dispatch"]
 	path = vim/pack/user/start/dispatch
 	url = https://github.com/tpope/vim-dispatch
+[submodule "zsh/zprezto"]
+	path = zsh/zprezto
+	url = https://github.com/sorin-ionescu/prezto
+[submodule "base16-shell"]
+	path = base16-shell
+	url = https://github.com/chriskempson/base16-shell
