@@ -55,3 +55,6 @@
 [submodule "tmux/plugins/yank"]
 	path = tmux/plugins/yank
 	url = https://github.com/tmux-plugins/tmux-yank
+[submodule "vim/pack/user/start/dispatch"]
+	path = vim/pack/user/start/dispatch
+	url = https://github.com/tpope/vim-dispatch
