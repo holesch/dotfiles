@@ -78,6 +78,10 @@ nnoremap gV `[v`]
 " Search and replace word under cursor
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
+" Build or test
+nnoremap <leader>bb :Make<CR>
+nnoremap <leader>bt :Make test<CR>
+
 " Toggle the undo graph
 if has('python3')
     let g:gundo_prefer_python3 = 1
@@ -127,6 +131,11 @@ if has('lua')
     endif
     let g:neocomplete#force_omni_input_patterns.python =
     \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+endif
+
+" --- Ultisnips ---
+if has('python3')
+    let g:UltiSnipsUsePythonVersion = 3
 endif
 
 " --- Jedi ---
