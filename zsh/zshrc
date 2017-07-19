@@ -6,7 +6,12 @@ fi
 # === Color scheme ===
 BASE16_SCHEME="materia"
 if [[ -s "$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh" ]]; then
-    source "$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh" 
+    source "$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh"
 fi
 unset BASE16_SCHEME
+
+# === Local config ===
+if [[ -s "$HOME/.zshrc_local" ]]; then
+    source "$HOME/.zshrc_local"
+fi
 
