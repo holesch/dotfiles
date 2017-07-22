@@ -27,6 +27,7 @@ set cursorline " Highlight current line
 set mouse=a " Enable mouse support
 set guifont=Menlo\ Regular:h12 " Set font
 set guioptions= " Hide scroll bar, menu, tabs, etc.
+set foldmethod=syntax " Enable folding
 
 " === vimrc ===
 augroup vimrc_vimrc
@@ -141,6 +142,14 @@ endif
 " --- Jedi ---
 let g:jedi#auto_initialization = 0
 let g:jedi#auto_vim_configuration = 0
+
+" --- Python-mode ---
+let g:pymode_trim_whitespaces = 0
+let g:pymode_python = 'python3'
+let g:pymode_run = 0
+let g:pymode_breakpoint = 0 "Disable debugging
+let g:pymode_lint = 0 " Disable linting (done by Syntastic)
+let g:pymode_rope = 0 " Disable code completion (done by Neocomplete)
 
 " === Fuzzy finder ===
 let g:ctrlp_extensions = ['tag']
