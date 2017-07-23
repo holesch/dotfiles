@@ -33,7 +33,7 @@ set foldmethod=syntax " Enable folding
 augroup vimrc_vimrc
     autocmd!
     " Source the vimrc file after saving it
-    autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh
+    autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh | call OverrideColors()
 augroup END
 
 " Open vimrc in a new tab
@@ -43,6 +43,16 @@ nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/
 " --- Color scheme ---
 let base16colorspace=256  " Access colors present in 256 color space
 colorscheme base16-materia
+
+function! OverrideColors()
+    highlight! link Error Underlined
+    highlight! link WildMenu Search
+endfunction
+
+augroup vimrc_color
+    autocmd!
+    autocmd ColorScheme * call OverrideColors()
+augroup END
 
 " --- Airline ---
 let g:airline_theme = 'tomorrow'
