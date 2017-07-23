@@ -27,7 +27,8 @@ set cursorline " Highlight current line
 set mouse=a " Enable mouse support
 set guifont=Menlo\ Regular:h12 " Set font
 set guioptions= " Hide scroll bar, menu, tabs, etc.
-set foldmethod=syntax " Enable folding
+set splitright " Open new vertical splits to the right
+set splitbelow " Open new horizontal splits below
 
 " === vimrc ===
 augroup vimrc_vimrc
@@ -47,6 +48,8 @@ colorscheme base16-materia
 function! OverrideColors()
     highlight! link Error Underlined
     highlight! link WildMenu Search
+    highlight! MatchParen ctermfg=0
+    highlight! Search ctermfg=0
 endfunction
 
 augroup vimrc_color
@@ -160,6 +163,7 @@ let g:pymode_run = 0
 let g:pymode_breakpoint = 0 "Disable debugging
 let g:pymode_lint = 0 " Disable linting (done by Syntastic)
 let g:pymode_rope = 0 " Disable code completion (done by Neocomplete)
+let g:pymode_folding = 0 " Disable folding (too slow)
 
 " === Fuzzy finder ===
 let g:ctrlp_extensions = ['tag']
@@ -177,6 +181,7 @@ let g:syntastic_style_warning_symbol = "S⚠"
 let g:syntastic_enable_balloons = 0
 let g:syntastic_loc_list_height = 5
 let g:syntastic_xml_checkers = []
+let g:syntastic_python_checkers = ['python']
 
 " " --- ALE ---
 " let g:ale_list_window_size = 5
