@@ -67,3 +67,6 @@
 [submodule "vim/pack/user/start/python-mode"]
 	path = vim/pack/user/start/python-mode
 	url = https://github.com/python-mode/python-mode
+[submodule "vim/pack/user/start/tmux-navigator"]
+	path = vim/pack/user/start/tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
