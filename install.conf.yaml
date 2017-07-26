@@ -15,6 +15,7 @@
     ~/.zpreztorc: zsh/zpreztorc
     ~/.zlogin: zsh/zlogin
     ~/.config/base16-shell: base16-shell
+    ~/.Xresources: Xresources
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
