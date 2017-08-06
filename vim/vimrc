@@ -102,6 +102,9 @@ if has('python3')
 endif
 nnoremap <F5> :GundoToggle<CR>
 
+" disable ex mode
+nnoremap Q <nop>
+
 " === Auto completion ===
 " --- Neocomplete ---
 if has('lua')
