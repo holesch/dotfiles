@@ -16,6 +16,7 @@
     ~/.zlogin: zsh/zlogin
     ~/.config/base16-shell: base16-shell
     ~/.Xresources: Xresources
+    ~/.local/bin/siho-tags: bin/siho-tags
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
