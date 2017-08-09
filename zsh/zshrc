@@ -10,6 +10,9 @@ if [[ -s "$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh" ]]; then
 fi
 unset BASE16_SCHEME
 
+# === Environment ===
+export KEYTIMEOUT=1
+
 # === Local config ===
 if [[ -s "$HOME/.zshrc_local" ]]; then
     source "$HOME/.zshrc_local"
