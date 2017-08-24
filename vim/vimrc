@@ -170,6 +170,7 @@ let g:pymode_folding = 0 " Disable folding (too slow)
 
 " === Fuzzy finder ===
 let g:ctrlp_extensions = ['tag']
+let g:ctrlp_show_hidden = 1
 
 " === Syntax checker ===
 " --- Syntastic ---
