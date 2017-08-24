@@ -73,3 +73,6 @@
 [submodule "vim/pack/user/start/bitbake"]
 	path = vim/pack/user/start/bitbake
 	url = https://github.com/kergoth/vim-bitbake
+[submodule "tmux/plugins/resurrect"]
+	path = tmux/plugins/resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
