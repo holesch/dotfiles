@@ -12,6 +12,12 @@ unset BASE16_SCHEME
 
 # === Environment ===
 export KEYTIMEOUT=1
+export BB_NUMBER_THREADS="8"
+export PARALLEL_MAKE="-j8"
+
+# === Alias ===
+alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
+alias scpi='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
 
 # === Local config ===
 if [[ -s "$HOME/.zshrc_local" ]]; then
