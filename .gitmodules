@@ -76,3 +76,6 @@
 [submodule "tmux/plugins/resurrect"]
 	path = tmux/plugins/resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "vim/pack/user/start/cmake-syntax"]
+	path = vim/pack/user/start/cmake-syntax
+	url = https://github.com/nickhutchinson/vim-cmake-syntax
