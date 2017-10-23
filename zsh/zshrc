@@ -4,7 +4,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # === Color scheme ===
-BASE16_SCHEME="materia"
+BASE16_SCHEME="monokai"
 if [[ -s "$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh" ]]; then
     source "$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh"
 fi
