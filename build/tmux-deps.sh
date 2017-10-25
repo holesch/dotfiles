@@ -5,4 +5,5 @@ apt-get install -y \
     libncurses5-dev \
     libevent-dev \
     autotools-dev \
-    automake
+    automake \
+    pkg-config \

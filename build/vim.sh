@@ -2,6 +2,7 @@
 set -e
 
 SOURCE_DIR="$HOME/.cache/siho-build/vim"
+VERSION="8.0.1176"
 
 
 if [ ! -d $SOURCE_DIR ]; then
@@ -10,8 +11,11 @@ if [ ! -d $SOURCE_DIR ]; then
 else
     cd $SOURCE_DIR
     git reset HEAD --hard
+    git checkout master
     git pull
 fi
+
+git checkout -q tags/v$VERSION
 
 ./configure \
     --enable-fail-if-missing \
