@@ -30,6 +30,7 @@ set guioptions= " Hide scroll bar, menu, tabs, etc.
 set splitright " Open new vertical splits to the right
 set splitbelow " Open new horizontal splits below
 set scrolloff=5 " Keep 5 lines above and below the cursor
+set spell " Enable spell checking
 
 " === vimrc ===
 augroup vimrc_vimrc
