@@ -11,7 +11,9 @@ fi
 unset BASE16_SCHEME
 
 # === Capslock remap ===
-setxkbmap -layout us -option ctrl:nocaps
+if [[ `uname` == "Linux" ]]; then
+    setxkbmap -layout us -option ctrl:nocaps
+fi
 
 # === Environment ===
 export KEYTIMEOUT=1
