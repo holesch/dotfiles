@@ -24,6 +24,7 @@ zstyle ':prezto:load' pmodule \
   'tmux' \
   'utility' \
   'completion' \
+  'fasd' \
   'syntax-highlighting' \
   'history-substring-search' \
   'autosuggestions' \
