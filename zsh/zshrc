@@ -24,6 +24,9 @@ export PARALLEL_MAKE="-j8"
 alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
 alias scpi='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
 
+# === zsh key bindings ===
+bindkey '^_' undo
+
 # === Local config ===
 if [[ -s "$HOME/.zshrc_local" ]]; then
     source "$HOME/.zshrc_local"
