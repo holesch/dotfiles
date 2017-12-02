@@ -199,6 +199,8 @@ let g:syntastic_style_warning_symbol = "S⚠"
 let g:syntastic_enable_balloons = 0
 let g:syntastic_loc_list_height = 5
 let g:syntastic_xml_checkers = []
+let g:syntastic_c_checkers = []
+let g:syntastic_cpp_checkers = []
 let g:syntastic_python_checkers = ['python']
 
 " " --- ALE ---
