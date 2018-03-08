@@ -11,7 +11,7 @@ set relativenumber " Display relative line numbers
 set number " Display absolute line number on current line
 set showcmd " Display command while typing
 set lazyredraw " The screen will not be redrawn while executing macros
-set colorcolumn=50,72,80 " Highlight screen columns
+set colorcolumn=80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
 set clipboard=unnamed " Use system clipboard
