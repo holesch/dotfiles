@@ -23,6 +23,7 @@ export PARALLEL_MAKE="-j8"
 # === Alias ===
 alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
 alias scpi='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
+alias n='e ~/work/notes/scratchpad.txt'
 
 # === zsh key bindings ===
 bindkey '^_' undo
