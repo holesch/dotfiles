@@ -2,7 +2,7 @@
 set -e
 
 SOURCE_DIR="$HOME/.cache/siho-build/tmux"
-VERSION="2.5"
+VERSION="2.6"
 
 if [ ! -d $SOURCE_DIR ]; then
     git clone https://github.com/tmux/tmux $SOURCE_DIR
@@ -18,4 +18,3 @@ git checkout -q tags/$VERSION
 sh autogen.sh
 ./configure --prefix=$HOME/.local
 make install
-
