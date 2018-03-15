@@ -1,2 +1,1 @@
-nnoremap <buffer> <Space> /\v^
-
+nnoremap <buffer> <Space> /\v^(\\| )*
