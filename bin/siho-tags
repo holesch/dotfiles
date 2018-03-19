@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-find . -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.h" -o -name "*.hpp" > cscope.files
-cscope -b -q -R -i cscope.files &
-ctags -R . &
-wait
-

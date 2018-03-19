@@ -91,18 +91,12 @@ endfunction
 " Select the text that was last edited/pasted
 nnoremap gV `[v`]
 
-" Search and replace word under cursor
+" Search and replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
 
 " Make
-nnoremap <leader>mm :Make<CR>
-nnoremap <leader>mt :Start! siho-tags<CR>
-
-" Toggle the undo graph
-if has('python3')
-    let g:gundo_prefer_python3 = 1
-endif
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <leader>m :Make<CR>
 
 " disable ex mode
 nnoremap Q <nop>
@@ -116,7 +110,7 @@ if has('lua')
     inoremap <expr> <C-l> neocomplete#complete_common_string()
 
     " close popup and add newline
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    inoremap <silent> <CR> <C-r>=<SID>close_popup()<CR><CR>
 
     " <TAB> completion
     inoremap <silent><expr> <TAB>
@@ -124,12 +118,8 @@ if has('lua')
           \ <SID>is_white_space_before_cursor() ? "\<TAB>" :
           \ neocomplete#start_manual_complete()
 
-    " close popup and delete char
-    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-    function! s:my_cr_function()
-      return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+    function! s:close_popup()
+      return pumvisible() ? "\<C-y>" : ""
     endfunction
 
     function! s:is_white_space_before_cursor() abort
@@ -157,19 +147,6 @@ if has('python3')
     let g:UltiSnipsUsePythonVersion = 3
 endif
 
-" --- Jedi ---
-let g:jedi#auto_initialization = 0
-let g:jedi#auto_vim_configuration = 0
-
-" --- Python-mode ---
-let g:pymode_trim_whitespaces = 0
-let g:pymode_python = 'python3'
-let g:pymode_run = 0
-let g:pymode_breakpoint = 0 "Disable debugging
-let g:pymode_lint = 0 " Disable linting (done by Syntastic)
-let g:pymode_rope = 0 " Disable code completion (done by Neocomplete)
-let g:pymode_folding = 0 " Disable folding (too slow)
-
 " === Fuzzy finder ===
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_show_hidden = 1
@@ -185,34 +162,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" === Syntax checker ===
-" --- Syntastic ---
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_style_error_symbol = "S✗"
-let g:syntastic_style_warning_symbol = "S⚠"
-let g:syntastic_enable_balloons = 0
-let g:syntastic_loc_list_height = 5
-let g:syntastic_xml_checkers = []
-let g:syntastic_c_checkers = []
-let g:syntastic_cpp_checkers = []
-let g:syntastic_python_checkers = ['python']
-
-" " --- ALE ---
-" let g:ale_list_window_size = 5
-" let g:ale_open_list = 1
-" let g:ale_set_balloons = 0
-" let g:ale_sign_error = "✗"
-" let g:ale_sign_warning = "⚠"
-" let g:ale_sign_info = "ℹ"
-" let g:ale_sign_style_error = "S✗"
-" let g:ale_sign_style_warning = "S⚠"
-" let g:ale_sign_column_always = 1
 
 " === cscope ===
 if has("cscope")
