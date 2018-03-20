@@ -186,3 +186,6 @@ if has("cscope")
     nnoremap <C-_>a :cs find a <C-R>=expand("<cword>")<CR><CR>
     nnoremap <C-_>? :help cscope-find<CR>
 endif
+
+" === bitbake ===
+let g:bb_create_on_empty = 0
