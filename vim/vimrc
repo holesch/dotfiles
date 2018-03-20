@@ -7,8 +7,7 @@ set softtabstop=4 " Delete 4 spaces with backspace
 set expandtab " On pressing tab, insert 4 spaces
 set ignorecase " Ignore case when searching
 set smartcase " Don't ignore case if there is an uppercase letter
-set relativenumber " Display relative line numbers
-set number " Display absolute line number on current line
+set number " Display absolute line number
 set showcmd " Display command while typing
 set lazyredraw " The screen will not be redrawn while executing macros
 set colorcolumn=80 " Highlight screen columns
