@@ -22,7 +22,6 @@ set spelllang=en_us " Set spell check region to American English
 set noshowmode " Hide the current mode in the last line
 set completeopt-=preview " Hide the preview window
 set autowrite " Save the file when jumping away
-set mouse=a " Enable mouse support
 set guifont=Menlo\ Regular:h12 " Set font
 set guioptions= " Hide scroll bar, menu, tabs, etc.
 set splitright " Open new vertical splits to the right
@@ -30,61 +29,77 @@ set splitbelow " Open new horizontal splits below
 set scrolloff=5 " Keep 5 lines above and below the cursor
 set spell " Enable spell checking
 
+if has('mouse')
+    set mouse=a " Enable mouse support
+endif
+
 " === vimrc ===
-augroup vimrc_vimrc
-    autocmd!
-    " Source the vimrc file after saving it
-    autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh | call OverrideColors()
-augroup END
+if has('autocmd')
+    augroup vimrc_vimrc
+        autocmd!
+        " Source the vimrc file after saving it
+        autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh | call OverrideColors()
+    augroup END
+endif
 
 " Open vimrc in a new tab
 nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/'<CR><CR>
 
 " === Aesthetics ===
 " --- Color scheme ---
-let base16colorspace=256  " Access colors present in 256 color space
+ if has('eval')
+     let base16colorspace=256  " Access colors present in 256 color space
+endif
 silent! colorscheme base16-materia
 
-function! OverrideColors()
-    highlight! link Error Underlined
-    highlight! link WildMenu Search
-    highlight! MatchParen ctermfg=0
-    highlight! Search ctermfg=0
-endfunction
+if has('eval')
+    function! OverrideColors()
+        highlight! link Error Underlined
+        highlight! link WildMenu Search
+        highlight! MatchParen ctermfg=0
+        highlight! Search ctermfg=0
+    endfunction
+endif
 
-augroup vimrc_color
-    autocmd!
-    autocmd ColorScheme * call OverrideColors()
-augroup END
+if has('autocmd')
+    augroup vimrc_color
+        autocmd!
+        autocmd ColorScheme * call OverrideColors()
+    augroup END
+endif
 
 " --- Airline ---
-let g:airline_theme = 'tomorrow'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#formatter = 'cwd'
-let g:airline#extensions#tabline#show_buffers = 0
+if has('eval')
+    let g:airline_theme = 'tomorrow'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#tab_nr_type = 1
+    let g:airline#extensions#tabline#show_tab_type = 0
+    let g:airline#extensions#tabline#show_close_button = 0
+    let g:airline#extensions#tabline#show_splits = 0
+    let g:airline#extensions#tabline#formatter = 'cwd'
+    let g:airline#extensions#tabline#show_buffers = 0
+endif
 
 " === General key mappings ===
-" Strip trailing whitespace
-nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+if has('eval')
+    " Strip trailing whitespace
+    nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
-" Reindent file
-nnoremap <leader>= :call Preserve("normal gg=G")<CR>
+    " Reindent file
+    nnoremap <leader>= :call Preserve("normal gg=G")<CR>
 
-function! Preserve(command)
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Execute the command
-    execute a:command
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
+    function! Preserve(command)
+        " Preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " Execute the command
+        execute a:command
+        " Clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+endif
 
 " Select the text that was last edited/pasted
 nnoremap gV `[v`]
@@ -146,8 +161,10 @@ if has('python3')
 endif
 
 " === Fuzzy finder ===
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_show_hidden = 1
+if has('eval')
+    let g:ctrlp_extensions = ['tag']
+    let g:ctrlp_show_hidden = 1
+endif
 
 " Use The Silver Searcher if installed
 if executable('ag')
@@ -163,7 +180,12 @@ endif
 
 " === cscope ===
 if has("cscope")
-    set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
+    if has('patch-7.4.2033')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
+    else
+        set cscopequickfix=s-,c-,d-,i-,t-,e- " Use quickfix window with cscope
+    endif
+
     set cscopetag " Use cscope with :tag and CTRL-]
     " add any database in current directory
     if filereadable("cscope.out")
@@ -187,4 +209,6 @@ if has("cscope")
 endif
 
 " === bitbake ===
-let g:bb_create_on_empty = 0
+if has('eval')
+    let g:bb_create_on_empty = 0
+endif
