@@ -13,7 +13,7 @@ set lazyredraw " The screen will not be redrawn while executing macros
 set colorcolumn=80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
-set clipboard=unnamed " Use system clipboard
+set clipboard=unnamedplus " Use system clipboard
 set path+=** " Always search recursively
 set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
 set list " Show whitespace
