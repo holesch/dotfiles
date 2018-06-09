@@ -31,12 +31,10 @@ command! -bar -bang Unlink
       \ endif
 
 command! -bar -bang Remove
-      \ let s:file = fnamemodify(bufname(<q-args>),':p') |
-      \ execute 'bdelete<bang>' |
-      \ if !bufloaded(s:file) && delete(s:file) |
-      \   echoerr 'Failed to delete "'.s:file.'"' |
-      \ endif |
-      \ unlet s:file
+      \ silent Unlink<bang> |
+      \ echohl WarningMsg |
+      \ echo "File deleted. Use :Delete instead of :Remove to delete the buffer too." |
+      \ echohl NONE
 
 command! -bar -bang Delete
       \ let s:file = fnamemodify(bufname(<q-args>),':p') |
@@ -129,6 +127,7 @@ function! s:SilentSudoCmd(editor) abort
     return ['silent', cmd . ' -A']
   else
     return [local_nvim ? 'silent' : '', cmd]
+  endif
 endfunction
 
 function! s:SudoSetup(file) abort
@@ -243,7 +242,7 @@ augroup eunuch
   autocmd BufWritePost * unlet! b:brand_new_file
   autocmd BufWritePre *
         \ if exists('b:brand_new_file') |
-        \   if getline(1) =~ '^#!' |
+        \   if getline(1) =~ '^#!/' |
         \     let b:chmod_post = '+x' |
         \   endif |
         \ endif
