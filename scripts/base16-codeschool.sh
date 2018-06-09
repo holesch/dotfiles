@@ -1,7 +1,7 @@
 #!/bin/sh
 # base16-shell (https://github.com/chriskempson/base16-shell)
 # Base16 Shell template by Chris Kempson (http://chriskempson.com)
-# Codeschool scheme by brettof86
+# Codeschool scheme by blockloop
 
 color00="23/2c/31" # Base 00 - Black
 color01="2a/54/91" # Base 08 - Red
@@ -34,11 +34,11 @@ if [ -n "$TMUX" ]; then
   put_template() { printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $@; }
   put_template_var() { printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' $@; }
   put_template_custom() { printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' $@; }
-elif [ "${TERM%%-*}" = "screen" ]; then
+elif [ "${TERM%%[-.]*}" = "screen" ]; then
   # GNU screen (screen, screen-256color, screen-256color-bce)
-  put_template() { printf '\033P\033]4;%d;rgb:%s\033\\' $@; }
-  put_template_var() { printf '\033P\033]%d;rgb:%s\033\\' $@; }
-  put_template_custom() { printf '\033P\033]%s%s\033\\' $@; }
+  put_template() { printf '\033P\033]4;%d;rgb:%s\007\033\\' $@; }
+  put_template_var() { printf '\033P\033]%d;rgb:%s\007\033\\' $@; }
+  put_template_custom() { printf '\033P\033]%s%s\007\033\\' $@; }
 elif [ "${TERM%%-*}" = "linux" ]; then
   put_template() { [ $1 -lt 16 ] && printf "\e]P%x%s" $1 $(echo $2 | sed 's/\///g'); }
   put_template_var() { true; }
