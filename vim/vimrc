@@ -13,7 +13,10 @@ set lazyredraw " The screen will not be redrawn while executing macros
 set colorcolumn=80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
-set clipboard=unnamedplus " Use system clipboard
+set clipboard=unnamed " Use system clipboard
+if has('unnamedplus')
+    set clipboard+=unnamedplus " Use X11 CLIPBOARD register
+endif
 set path+=** " Always search recursively
 set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
 set list " Show whitespace
@@ -186,10 +189,9 @@ endif
 
 " === cscope ===
 if has("cscope")
+    set cscopequickfix=s-,c-,d-,i-,t-,e- " Use quickfix window with cscope
     if has('patch-7.4.2033')
-        set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Use quickfix window with cscope
-    else
-        set cscopequickfix=s-,c-,d-,i-,t-,e- " Use quickfix window with cscope
+        set cscopequickfix+=a-
     endif
 
     set cscopetag " Use cscope with :tag and CTRL-]
