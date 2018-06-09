@@ -1,32 +1,32 @@
 #!/bin/sh
 # base16-shell (https://github.com/chriskempson/base16-shell)
 # Base16 Shell template by Chris Kempson (http://chriskempson.com)
-# Default Dark Gnome scheme by Chris Kempson (http://chriskempson.com)
+# Black Metal (Dark Funeral) scheme by metalelf0 (https://github.com/metalelf0)
 
-color00="1b/1d/1e" # Base 00 - Black
-color01="ab/46/42" # Base 08 - Red
-color02="a1/b5/6c" # Base 0B - Green
-color03="f7/ca/88" # Base 0A - Yellow
-color04="7c/af/c2" # Base 0D - Blue
-color05="ba/8b/af" # Base 0E - Magenta
-color06="86/c1/b9" # Base 0C - Cyan
-color07="d2/d5/d7" # Base 05 - White
-color08="51/58/5c" # Base 03 - Bright Black
+color00="00/00/00" # Base 00 - Black
+color01="5f/87/87" # Base 08 - Red
+color02="d0/df/ee" # Base 0B - Green
+color03="5f/81/a5" # Base 0A - Yellow
+color04="88/88/88" # Base 0D - Blue
+color05="99/99/99" # Base 0E - Magenta
+color06="aa/aa/aa" # Base 0C - Cyan
+color07="c1/c1/c1" # Base 05 - White
+color08="33/33/33" # Base 03 - Bright Black
 color09=$color01 # Base 08 - Bright Red
 color10=$color02 # Base 0B - Bright Green
 color11=$color03 # Base 0A - Bright Yellow
 color12=$color04 # Base 0D - Bright Blue
 color13=$color05 # Base 0E - Bright Magenta
 color14=$color06 # Base 0C - Bright Cyan
-color15="f5/f6/f6" # Base 07 - Bright White
-color16="dc/96/56" # Base 09
-color17="a1/69/46" # Base 0F
-color18="28/2b/2d" # Base 01
-color19="36/3b/3d" # Base 02
-color20="b0/b6/b9" # Base 04
-color21="e4/e6/e7" # Base 06
-color_foreground="d2/d5/d7" # Base 05
-color_background="1b/1d/1e" # Base 00
+color15="c1/c1/c1" # Base 07 - Bright White
+color16="aa/aa/aa" # Base 09
+color17="44/44/44" # Base 0F
+color18="12/12/12" # Base 01
+color19="22/22/22" # Base 02
+color20="99/99/99" # Base 04
+color21="99/99/99" # Base 06
+color_foreground="c1/c1/c1" # Base 05
+color_background="00/00/00" # Base 00
 
 if [ -n "$TMUX" ]; then
   # Tell tmux to pass the escape sequences through
@@ -34,11 +34,11 @@ if [ -n "$TMUX" ]; then
   put_template() { printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $@; }
   put_template_var() { printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' $@; }
   put_template_custom() { printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' $@; }
-elif [ "${TERM%%-*}" = "screen" ]; then
+elif [ "${TERM%%[-.]*}" = "screen" ]; then
   # GNU screen (screen, screen-256color, screen-256color-bce)
-  put_template() { printf '\033P\033]4;%d;rgb:%s\033\\' $@; }
-  put_template_var() { printf '\033P\033]%d;rgb:%s\033\\' $@; }
-  put_template_custom() { printf '\033P\033]%s%s\033\\' $@; }
+  put_template() { printf '\033P\033]4;%d;rgb:%s\007\033\\' $@; }
+  put_template_var() { printf '\033P\033]%d;rgb:%s\007\033\\' $@; }
+  put_template_custom() { printf '\033P\033]%s%s\007\033\\' $@; }
 elif [ "${TERM%%-*}" = "linux" ]; then
   put_template() { [ $1 -lt 16 ] && printf "\e]P%x%s" $1 $(echo $2 | sed 's/\///g'); }
   put_template_var() { true; }
@@ -78,13 +78,13 @@ put_template 21 $color21
 # foreground / background / cursor color
 if [ -n "$ITERM_SESSION_ID" ]; then
   # iTerm2 proprietary escape codes
-  put_template_custom Pg d2d5d7 # foreground
-  put_template_custom Ph 1b1d1e # background
-  put_template_custom Pi d2d5d7 # bold color
-  put_template_custom Pj 363b3d # selection color
-  put_template_custom Pk d2d5d7 # selected text color
-  put_template_custom Pl d2d5d7 # cursor
-  put_template_custom Pm 1b1d1e # cursor text
+  put_template_custom Pg c1c1c1 # foreground
+  put_template_custom Ph 000000 # background
+  put_template_custom Pi c1c1c1 # bold color
+  put_template_custom Pj 222222 # selection color
+  put_template_custom Pk c1c1c1 # selected text color
+  put_template_custom Pl c1c1c1 # cursor
+  put_template_custom Pm 000000 # cursor text
 else
   put_template_var 10 $color_foreground
   if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]; then
