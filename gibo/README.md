@@ -18,6 +18,15 @@ For additional usage instructions, run `gibo` without arguments.
 
     brew upgrade gibo
 
+### Installation on Fedora Linux
+
+`gibo` is avaiable as a [COPR repository](https://copr.fedorainfracloud.org/).
+It provides packages for main script and bash / zsh completions:
+
+
+    dnf copr enable saschpe/gibo
+    dnf install gibo gibo-bash-completion gibo-zsh-completion
+
 ### Installation on other (*nix) platforms
 
 Just download `gibo` and put it somewhere on your $PATH. Then:
@@ -101,7 +110,7 @@ by following [these instructions](https://github.com/simonwhitaker/gitignore-boi
 
 ### fish instructions
 
-Copy `gibo-completion.fish` to ~/.config/fish/completions/ 
+Copy `gibo.fish` to ~/.config/fish/completions/ 
 
 ## Use gibo to generate .hgignore files
 
