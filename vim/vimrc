@@ -56,7 +56,7 @@ nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/
 
 " === Aesthetics ===
 " --- Color scheme ---
- if has('eval')
+if has('eval')
      let base16colorspace=256  " Access colors present in 256 color space
 endif
 silent! colorscheme base16-materia
