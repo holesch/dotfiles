@@ -205,7 +205,6 @@ if has("cscope")
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     endif
-    set cscopeverbose " Print message when adding a database
 
     nnoremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
     nnoremap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
