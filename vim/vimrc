@@ -219,6 +219,16 @@ if has("cscope")
     nnoremap <C-_>? :help cscope-find<CR>
 endif
 
+" --- Gutentags ---
+if has('eval')
+    let g:gutentags_file_list_command = {
+        \ 'markers': {
+            \ '.git': 'git ls-files',
+        \ },
+    \ }
+    let g:gutentags_modules = ['ctags', 'cscope']
+endif
+
 " === bitbake ===
 if has('eval')
     let g:bb_create_on_empty = 0
