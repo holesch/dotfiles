@@ -66,7 +66,10 @@ if has('eval')
         highlight! link Error Underlined
         highlight! link WildMenu Search
         highlight! MatchParen ctermfg=0
-        highlight! Search ctermfg=0
+        highlight! SpellBad ctermbg=0
+        highlight! SpellLocal ctermbg=0
+        highlight! SpellCap ctermbg=0
+        highlight! SpellRare ctermbg=0
     endfunction
 endif
 
