@@ -14,9 +14,6 @@ set colorcolumn=80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
 set clipboard=unnamed " Use system clipboard
-if has('unnamedplus')
-    set clipboard+=unnamedplus " Use X11 CLIPBOARD register
-endif
 set path+=** " Always search recursively
 set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
 set list " Show whitespace
@@ -225,7 +222,12 @@ if has('eval')
             \ '.git': 'git ls-files',
         \ },
     \ }
-    let g:gutentags_modules = ['ctags', 'cscope']
+    let g:gutentags_modules = []
+    for prg in ['ctags', 'cscope']
+        if executable(prg)
+            let g:gutentags_modules += [prg]
+        endif
+    endfor
 endif
 
 " === bitbake ===
