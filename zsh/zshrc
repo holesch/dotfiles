@@ -28,6 +28,27 @@ alias n='e ~/work/notes/scratchpad.txt'
 # === zsh key bindings ===
 bindkey '^_' undo
 
+# === tmux autostart ===
+if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" && \
+    -z "$INSIDE_EMACS" && -z "$VSCODE_PID" && -z "$SSH_TTY" ]]
+then
+    tmux start-server
+    tmux_session='zshrc'
+
+    if ! tmux has-session -t "$tmux_session" 2> /dev/null; then
+        tmux \
+            new-session -d -s "$tmux_session" \; \
+            set-option -t "$tmux_session" destroy-unattached off &> /dev/null
+        # Restore saved session
+        $HOME/dotfiles/tmux/plugins/resurrect/scripts/restore.sh 2> /dev/null
+        # Attach to the new session
+        exec tmux attach-session -d -t "$tmux_session"
+    elif [[ -z `tmux list-clients -t $tmux_session` ]]; then
+        # Attach to the existing session
+        exec tmux attach-session -d -t "$tmux_session"
+    fi
+fi
+
 # === Local config ===
 if [[ -s "$HOME/.zshrc_local" ]]; then
     source "$HOME/.zshrc_local"
