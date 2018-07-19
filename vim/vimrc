@@ -76,6 +76,11 @@ if has('eval')
         highlight! SpellCap ctermbg=0
         highlight! SpellRare ctermbg=0
         highlight! User1 ctermfg=0 ctermbg=4
+        highlight! link doxygenComment Comment
+        highlight! link doxygenBrief Comment
+        highlight! link doxygenSpecialOnelineDesc Comment
+        highlight! link doxygenParam doxygenSpecial
+        highlight! link doxygenParamName doxygenSpecial
     endfunction
 endif
 
