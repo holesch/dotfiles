@@ -67,6 +67,7 @@ if has('eval')
         highlight! SpellLocal ctermbg=0
         highlight! SpellCap ctermbg=0
         highlight! SpellRare ctermbg=0
+        highlight! link Sneak Search
     endfunction
 endif
 
@@ -230,7 +231,10 @@ if has('eval')
     endfor
 endif
 
-" === bitbake ===
+" --- bitbake ---
 if has('eval')
     let g:bb_create_on_empty = 0
 endif
+
+" --- Sneak ---
+let g:sneak#label = 1
