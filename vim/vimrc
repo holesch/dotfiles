@@ -19,7 +19,6 @@ set listchars=tab:▸\ ,eol:¬ " Set whitespace characters
 set list " Show whitespace
 set linebreak " Wrap only at whitespace characters
 set spelllang=en_us " Set spell check region to American English
-set noshowmode " Hide the current mode in the last line
 set completeopt-=preview " Hide the preview window
 set autowrite " Save the file when jumping away
 set guifont=Menlo\ Regular:h12 " Set font
@@ -28,6 +27,15 @@ set splitright " Open new vertical splits to the right
 set splitbelow " Open new horizontal splits below
 set scrolloff=5 " Keep 5 lines above and below the cursor
 set spell " Enable spell checking
+
+set statusline=
+set statusline+=%1*\ %-2.n\ %*\  " Buffer number
+set statusline+=%<%.99f\  " File name
+set statusline+=%h%w%m%r\  " [help][Preview][+][RO]
+set statusline+=%= " Switch to right side
+set statusline+=%-14.y " File type
+set statusline+=%-14.(%l:%c%V%)\  " Line:Column
+set statusline+=%1*\ %P\ %* " Percentage through file
 
 if has('mouse')
     set mouse=a " Enable mouse support
@@ -44,7 +52,7 @@ if has('autocmd')
     augroup vimrc_vimrc
         autocmd!
         " Source the vimrc file after saving it
-        autocmd BufWritePost vimrc source $MYVIMRC | AirlineRefresh | call OverrideColors()
+        autocmd BufWritePost vimrc source $MYVIMRC | call OverrideColors()
     augroup END
 endif
 
@@ -68,6 +76,12 @@ if has('eval')
         highlight! SpellCap ctermbg=0
         highlight! SpellRare ctermbg=0
         highlight! link Sneak Search
+        highlight! User1 ctermfg=0 ctermbg=4
+        highlight! link doxygenComment Comment
+        highlight! link doxygenBrief Comment
+        highlight! link doxygenSpecialOnelineDesc Comment
+        highlight! link doxygenParam doxygenSpecial
+        highlight! link doxygenParamName doxygenSpecial
     endfunction
 endif
 
@@ -123,6 +137,11 @@ nnoremap <leader>m :Make<CR>
 
 " disable ex mode
 nnoremap Q <nop>
+
+" Show syntax highlighting group under cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " === Auto completion ===
 " --- Neocomplete ---
