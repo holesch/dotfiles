@@ -64,19 +64,19 @@ nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/
 if has('eval')
      let base16colorspace=256  " Access colors present in 256 color space
 endif
-silent! colorscheme base16-materia
+silent! colorscheme base16-monokai
 
 if has('eval')
     function! OverrideColors()
         highlight! link Error Underlined
         highlight! link WildMenu Search
-        highlight! MatchParen ctermfg=0
-        highlight! SpellBad ctermbg=0
-        highlight! SpellLocal ctermbg=0
-        highlight! SpellCap ctermbg=0
-        highlight! SpellRare ctermbg=0
+        call g:Base16hi("MatchParen", "", "", g:base16_cterm00, "", "", "")
+        call g:Base16hi("SpellBad", "", "", "", g:base16_cterm00, "", "")
+        call g:Base16hi("SpellLocal", "", "", "", g:base16_cterm00, "", "")
+        call g:Base16hi("SpellCap", "", "", "", g:base16_cterm00, "", "")
+        call g:Base16hi("SpellRare", "", "", "", g:base16_cterm00, "", "")
         highlight! link Sneak Search
-        highlight! User1 ctermfg=0 ctermbg=4
+        call g:Base16hi("User1", "", "", g:base16_cterm00, g:base16_cterm0D, "", "")
         highlight! link doxygenComment Comment
         highlight! link doxygenBrief Comment
         highlight! link doxygenSpecialOnelineDesc Comment
