@@ -14,7 +14,6 @@
     ~/.zshrc: zsh/zshrc
     ~/.zpreztorc: zsh/zpreztorc
     ~/.zlogin: zsh/zlogin
-    ~/.config/base16-shell: base16-shell
     ~/.Xresources: Xresources
     ~/.local/bin/gibo: gibo/gibo
 
