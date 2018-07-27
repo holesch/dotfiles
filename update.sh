@@ -17,6 +17,7 @@ git subtree pull --prefix vim/pack/user/start/dispatch https://github.com/tpope/
 git subtree pull --prefix vim/pack/user/start/eunuch https://github.com/tpope/vim-eunuch master --squash
 git subtree pull --prefix vim/pack/user/start/fugitive https://github.com/tpope/vim-fugitive master --squash
 git subtree pull --prefix vim/pack/user/start/gutentags https://github.com/ludovicchabant/vim-gutentags master --squash
+git subtree pull --prefix vim/pack/user/start/jq https://github.com/vito-c/jq.vim master --squash
 git subtree pull --prefix vim/pack/user/start/lion https://github.com/tommcdo/vim-lion master --squash
 git subtree pull --prefix vim/pack/user/start/neocomplete https://github.com/Shougo/neocomplete.vim master --squash
 git subtree pull --prefix vim/pack/user/start/repeat https://github.com/tpope/vim-repeat master --squash
