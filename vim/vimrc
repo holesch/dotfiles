@@ -143,6 +143,9 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" === Syntax settings ===
+let g:is_posix = 1 " use POSIX syntax for .sh
+
 " === Auto completion ===
 " --- Neocomplete ---
 if has('lua')
