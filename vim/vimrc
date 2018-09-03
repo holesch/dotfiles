@@ -129,8 +129,8 @@ endif
 nnoremap gV `[v`]
 
 " Search and replace
-nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
-xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
+nnoremap <leader>r :%s/\<\(<C-r><C-w>\)\>//gc<Left><Left><Left>
+xnoremap <leader>r "vy:%s/\V\(<C-r>=escape('<C-r>v', '/\')<CR>\)//gc<Left><Left><Left>
 
 " Make
 nnoremap <leader>m :Make<CR>
