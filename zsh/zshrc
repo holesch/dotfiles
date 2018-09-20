@@ -11,7 +11,7 @@ fi
 unset BASE16_SCHEME
 
 # === Capslock remap ===
-if [[ `uname` == "Linux" ]]; then
+if [[ `uname` == "Linux" ]] && type setxkbmap > /dev/null; then
     setxkbmap -layout us -option ctrl:nocaps
 fi
 
