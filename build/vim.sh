@@ -35,4 +35,4 @@ git checkout -q tags/v$VERSION
     --with-compiledby='Simon Holesch <simon@holesch.de>'
 
 make VIMRUNTIMEDIR=$HOME/.local/share/vim/vim81
-make install
+make -j1 install
