@@ -2,7 +2,7 @@
 set -e
 
 SOURCE_DIR="$HOME/.cache/siho-build/vim"
-VERSION="8.0.1542"
+VERSION="8.1.0374"
 
 
 if [ ! -d $SOURCE_DIR ]; then
@@ -34,5 +34,5 @@ git checkout -q tags/v$VERSION
     --prefix=$HOME/.local \
     --with-compiledby='Simon Holesch <simon@holesch.de>'
 
-make VIMRUNTIMEDIR=$HOME/.local/share/vim/vim80
-make install
+make VIMRUNTIMEDIR=$HOME/.local/share/vim/vim81
+make -j1 install
