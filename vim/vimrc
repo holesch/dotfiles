@@ -33,6 +33,7 @@ set statusline+=%1*\ %-2.n\ %*\  " Buffer number
 set statusline+=%<%.99f\  " File name
 set statusline+=%h%w%m%r\  " [help][Preview][+][RO]
 set statusline+=%= " Switch to right side
+set statusline+=%-14.{gutentags#statusline('[',']')}
 set statusline+=%-14.y " File type
 set statusline+=%-14.(%l:%c%V%)\  " Line:Column
 set statusline+=%1*\ %P\ %* " Percentage through file
