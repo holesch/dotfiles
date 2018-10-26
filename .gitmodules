@@ -6,4 +6,4 @@
 	url = https://github.com/sorin-ionescu/prezto
 [submodule "tmux/plugins/resurrect"]
 	path = tmux/plugins/resurrect
-	url = https://github.com/siho22/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
