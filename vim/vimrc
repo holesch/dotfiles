@@ -255,6 +255,8 @@ if has('eval')
             let g:gutentags_modules += [prg]
         endif
     endfor
+
+    let g:gutentags_define_advanced_commands = 1
 endif
 
 " --- bitbake ---
