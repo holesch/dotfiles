@@ -63,6 +63,13 @@ nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/
 
 " === Aesthetics ===
 " --- Color scheme ---
+if has('autocmd')
+    augroup vimrc_color
+        autocmd!
+        autocmd ColorScheme * call OverrideColors()
+    augroup END
+endif
+
 if has('eval')
      let base16colorspace=256  " Access colors present in 256 color space
 endif
@@ -85,13 +92,6 @@ if has('eval')
         highlight! link doxygenParam doxygenSpecial
         highlight! link doxygenParamName doxygenSpecial
     endfunction
-endif
-
-if has('autocmd')
-    augroup vimrc_color
-        autocmd!
-        autocmd ColorScheme * call OverrideColors()
-    augroup END
 endif
 
 " --- Airline ---
