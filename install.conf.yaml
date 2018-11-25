@@ -19,4 +19,7 @@
     ~/.local/bin/gibo: gibo/gibo
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+    - description: Installing submodules
+      command: git submodule update --init --recursive
+      stdout: true
+      stderr: true
