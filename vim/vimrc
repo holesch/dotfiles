@@ -61,7 +61,7 @@ endif
 " Open vimrc in a new tab
 nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/'<CR><CR>
 
-" === Aesthetics ===
+" === Appearance ===
 " --- Color scheme ---
 if has('autocmd')
     augroup vimrc_color
@@ -69,11 +69,6 @@ if has('autocmd')
         autocmd ColorScheme * call OverrideColors()
     augroup END
 endif
-
-if has('eval')
-     let base16colorspace=256  " Access colors present in 256 color space
-endif
-silent! colorscheme base16-monokai
 
 if has('eval')
     function! OverrideColors()
@@ -94,27 +89,20 @@ if has('eval')
     endfunction
 endif
 
-" --- Airline ---
 if has('eval')
-    let g:airline_theme = 'tomorrow'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#tab_nr_type = 1
-    let g:airline#extensions#tabline#show_tab_type = 0
-    let g:airline#extensions#tabline#show_close_button = 0
-    let g:airline#extensions#tabline#show_splits = 0
-    let g:airline#extensions#tabline#formatter = 'cwd'
-    let g:airline#extensions#tabline#show_buffers = 0
+     let base16colorspace=256  " Access colors present in 256 color space
 endif
+silent! colorscheme base16-monokai
 
 " === General key mappings ===
 if has('eval')
     " Strip trailing whitespace
-    nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+    nnoremap <leader>$ :call <SID>Preserve("%s/\\s\\+$//e")<CR>
 
     " Reindent file
-    nnoremap <leader>= :call Preserve("normal gg=G")<CR>
+    nnoremap <leader>= :call <SID>Preserve("normal gg=G")<CR>
 
-    function! Preserve(command)
+    function! s:Preserve(command)
         " Preparation: save last search, and cursor position.
         let _s=@/
         let l = line(".")
@@ -131,17 +119,14 @@ endif
 nnoremap gV `[v`]
 
 " Search and replace
-nnoremap <leader>r :%s/\<\(<C-r><C-w>\)\>//gc<Left><Left><Left>
-xnoremap <leader>r "vy:%s/\V\(<C-r>=escape('<C-r>v', '/\')<CR>\)//gc<Left><Left><Left>
-
-" Make
-nnoremap <leader>m :Make<CR>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
 
 " disable ex mode
 nnoremap Q <nop>
 
 " Show syntax highlighting group under cursor
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
