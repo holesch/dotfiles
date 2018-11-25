@@ -15,6 +15,9 @@ if [[ `uname` == "Linux" ]] && type setxkbmap > /dev/null; then
     setxkbmap -layout us -option ctrl:nocaps
 fi
 
+# === Terminal ===
+stty -ixon # disable flow control (CTRL-S, CTRL-Q)
+
 # === Environment ===
 export KEYTIMEOUT=1
 export BB_NUMBER_THREADS="8"
