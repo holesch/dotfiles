@@ -122,6 +122,9 @@ nnoremap gV `[v`]
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
 
+" Save a file with sudo
+cnoremap w!! w !sudo tee > /dev/null %
+
 " disable ex mode
 nnoremap Q <nop>
 
