@@ -61,6 +61,12 @@ if has('autocmd')
     augroup END
 endif
 
+" Fix typos
+cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev Wq wq
+cnoreabbrev W w
+
 " === vimrc ===
 if has('autocmd')
     augroup vimrc_vimrc
@@ -133,9 +139,6 @@ nnoremap gV `[v`]
 " Search and replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
-
-" Save a file with sudo
-cnoremap w!! w !sudo tee > /dev/null %
 
 " disable ex mode
 nnoremap Q <nop>
