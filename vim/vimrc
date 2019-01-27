@@ -5,6 +5,7 @@ set tabstop=4 " Set tab width to 4 spaces
 set shiftwidth=4 " When indenting with '>', use 4 spaces width
 set softtabstop=4 " Delete 4 spaces with backspace
 set expandtab " On pressing tab, insert 4 spaces
+set shiftround " Indent to a multiple of 4 spaces
 set ignorecase " Ignore case when searching
 set smartcase " Don't ignore case if there is an uppercase letter
 set number " Display absolute line number
