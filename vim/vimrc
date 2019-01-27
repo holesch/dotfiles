@@ -207,41 +207,17 @@ if has("cscope")
     endif
 
     set cscopetag " Use cscope with :tag and CTRL-]
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-        " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
 
-    nnoremap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nnoremap <leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nnoremap <leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cs :cscope find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cg :cscope find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cc :cscope find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>ct :cscope find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>ce :cscope find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cf :cscope find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <leader>ci :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <leader>cd :cscope find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>ca :cscope find a <C-R>=expand("<cword>")<CR><CR>
     nnoremap <leader>c? :help cscope-find<CR>
-endif
-
-" --- Gutentags ---
-if has('eval')
-    let g:gutentags_file_list_command = {
-        \ 'markers': {
-            \ '.git': 'git ls-files',
-        \ },
-    \ }
-    let g:gutentags_modules = []
-    for prg in ['ctags', 'cscope']
-        if executable(prg)
-            let g:gutentags_modules += [prg]
-        endif
-    endfor
-
-    let g:gutentags_define_advanced_commands = 1
 endif
 
 " --- bitbake ---
