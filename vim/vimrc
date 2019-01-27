@@ -14,7 +14,6 @@ set lazyredraw " The screen will not be redrawn while executing macros
 set colorcolumn=80 " Highlight screen columns
 set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
-set clipboard=unnamed " Use system clipboard
 set path+=** " Always search recursively
 set listchars=tab:▸\ ,trail:·,nbsp:· " Set whitespace characters
 set list " Show whitespace
@@ -139,6 +138,19 @@ nnoremap gV `[v`]
 " Search and replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
+
+" Copy to end of line
+nnoremap Y y$
+
+" System clipboard mappings
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
+xnoremap <leader>y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+xnoremap <leader>p "+p
+nnoremap <leader>gp "+gp
+nnoremap <leader>gP "+gP
 
 " disable ex mode
 nnoremap Q <nop>
