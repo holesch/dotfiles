@@ -50,6 +50,17 @@ if has('persistent_undo')
     set undofile " Keep undo history across sessions
 endif
 
+if has('autocmd')
+    augroup vimrc_last_pos
+        autocmd!
+        " Jump to last known cursor position, when opening a file
+        autocmd BufReadPost *
+            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+            \ |   execute "normal! g`\""
+            \ | endif
+    augroup END
+endif
+
 " === vimrc ===
 if has('autocmd')
     augroup vimrc_vimrc
