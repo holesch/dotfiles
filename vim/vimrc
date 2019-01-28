@@ -155,6 +155,20 @@ nnoremap <leader>gP "+gP
 " disable ex mode
 nnoremap Q <nop>
 
+if has('eval')
+    " l for "last" collides with l for "line", use N for "last" instead
+    let g:targets_nl = 'nN'
+endif
+
+" inner line and a line
+xnoremap <silent> il :<c-u>normal! g_v^<cr>
+onoremap <silent> il :<c-u>normal! g_v^<cr>
+xnoremap <silent> al :<C-u>normal! $v0<CR>
+onoremap <silent> al :<c-u>normal! $v0<cr>
+" a document
+xnoremap <silent> ad :<c-u>normal! G$Vgg0<cr>
+onoremap <silent> ad :<c-u>normal! GVgg<cr>
+
 " Show syntax highlighting group under cursor
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
