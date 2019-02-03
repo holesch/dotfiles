@@ -161,13 +161,16 @@ if has('eval')
 endif
 
 " inner line and a line
-xnoremap <silent> il :<c-u>normal! g_v^<cr>
-onoremap <silent> il :<c-u>normal! g_v^<cr>
-xnoremap <silent> al :<C-u>normal! $v0<CR>
-onoremap <silent> al :<c-u>normal! $v0<cr>
+xnoremap <silent> il :<C-U>normal! g_v^<CR>
+onoremap <silent> il :<C-U>normal! g_v^<CR>
+xnoremap <silent> al :<C-U>normal! $v0<CR>
+onoremap <silent> al :<C-U>normal! $v0<CR>
 " a document
-xnoremap <silent> ad :<c-u>normal! G$Vgg0<cr>
-onoremap <silent> ad :<c-u>normal! GVgg<cr>
+xnoremap <silent> ad :<C-U>normal! gg0VG$<CR>
+onoremap <silent> ad :<C-U>normal! GVgg<CR>
+" a view
+xnoremap <silent> av :<C-U>normal! H0VL$<CR>
+onoremap <silent> av :<C-U>normal! LVH<CR>
 " inner function and a function
 xmap af <Plug>TextobjCFunctionA
 omap af <Plug>TextobjCFunctionA
