@@ -168,6 +168,11 @@ onoremap <silent> al :<c-u>normal! $v0<cr>
 " a document
 xnoremap <silent> ad :<c-u>normal! G$Vgg0<cr>
 onoremap <silent> ad :<c-u>normal! GVgg<cr>
+" inner function and a function
+xmap af <Plug>TextobjCFunctionA
+omap af <Plug>TextobjCFunctionA
+xmap if <Plug>TextobjCFunctionI
+omap if <Plug>TextobjCFunctionI
 
 " Show syntax highlighting group under cursor
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
