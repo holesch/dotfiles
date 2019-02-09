@@ -28,6 +28,8 @@ set splitbelow " Open new horizontal splits below
 set scrolloff=5 " Keep 5 lines above and below the cursor
 set spell " Enable spell checking
 set cursorline " Highlight current line
+set formatoptions+=tcqln formatoptions-=o " Set how to format text
+set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+ " Define list format
 
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number
