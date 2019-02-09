@@ -135,7 +135,9 @@ if has('eval')
 endif
 
 " Select the text that was last edited/pasted
-nnoremap gV `[v`]
+nnoremap gV `[vg`]
+xnoremap gV `[og`]
+onoremap <silent> gV :<C-U>normal! `]vg`[<CR>
 
 " Search and replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
