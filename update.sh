@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+PS4='>>> '
 set -ex
 
 git submodule foreach git pull origin master
@@ -28,3 +30,4 @@ git subtree pull --prefix vim/pack/user/start/targets https://github.com/wellle/
 git subtree pull --prefix vim/pack/user/start/tmux-navigator https://github.com/christoomey/vim-tmux-navigator master --squash
 git subtree pull --prefix vim/pack/user/start/unimpaired https://github.com/tpope/vim-unimpaired master --squash
 git subtree pull --prefix vim/pack/user/start/vinegar https://github.com/tpope/vim-vinegar master --squash
+git subtree pull --prefix vim/pack/user/start/plantuml https://github.com/aklt/plantuml-syntax master --squash                                                                         master
