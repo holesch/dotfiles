@@ -31,6 +31,7 @@ set spell " Enable spell checking
 set cursorline " Highlight current line
 set formatoptions+=tcqln formatoptions-=o " Set how to format text
 set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+ " Define list format
+set nojoinspaces " Don't insert two spaces after punctuation
 
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number
