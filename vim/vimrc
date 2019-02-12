@@ -44,7 +44,7 @@ set statusline+=%-14.(%l:%c%V%)\  " Line:Column
 set statusline+=%1*\ %P\ %* " Percentage through file
 
 if has('mouse')
-    set mouse=a " Enable mouse support
+    set mouse=n " Enable mouse in normal mode
 endif
 
 if has('persistent_undo')
