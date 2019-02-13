@@ -10,9 +10,13 @@ if [[ -s "$HOME/dotfiles/base16-monokai.sh" ]]; then
 fi
 unset BASE16_SCHEME
 
-# === Capslock remap ===
+# === Key remaps ===
 if [[ `uname` == "Linux" ]] && type setxkbmap > /dev/null; then
+    # remap capslock to CTRL
     setxkbmap -layout us -option ctrl:nocaps
+elif [[ `uname` == "Darwin" ]] && type hidutil > /dev/null; then
+    # remap section to backtick
+    hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035}]}' > /dev/null
 fi
 
 # === Terminal ===
