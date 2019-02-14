@@ -158,8 +158,8 @@ xnoremap <leader>p "+p
 nnoremap <leader>gp "+gp
 nnoremap <leader>gP "+gP
 
-" disable ex mode
-nnoremap Q <nop>
+" Open quickfix list
+nnoremap <silent> Q :copen<CR>
 
 if has('eval')
     " l for "last" collides with l for "line", use N for "last" instead
