@@ -102,6 +102,7 @@ if has('eval')
         call g:Base16hi("SpellRare", "", "", "", g:base16_cterm00, "", "")
         highlight! link Sneak Search
         call g:Base16hi("User1", "", "", g:base16_cterm00, g:base16_cterm0D, "", "")
+        highlight! link vimCommentString Comment
         highlight! link doxygenComment Comment
         highlight! link doxygenBrief Comment
         highlight! link doxygenSpecialOnelineDesc Comment
