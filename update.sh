@@ -3,7 +3,7 @@
 PS4='>>> '
 set -ex
 
-git submodule foreach git pull origin master
+git submodule foreach git pull
 git submodule update --init --recursive
 
 git subtree pull --prefix gibo https://github.com/simonwhitaker/gibo master --squash
