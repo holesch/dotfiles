@@ -291,3 +291,8 @@ endif
 if has('eval')
     let g:sneak#label = 1
 endif
+
+" --- TMUX navigator ---
+if has('eval')
+    let g:tmux_navigator_disable_when_zoomed = 1
+endif
