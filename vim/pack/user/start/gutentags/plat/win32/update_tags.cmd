@@ -106,9 +106,8 @@ if exist "%TAGS_FILE%" (
     )
 )
 if ["%INDEX_WHOLE_PROJECT%"]==["1"] (
-    set CTAGS_ARGS=%CTAGS_ARGS% "%PROJECT_ROOT%"
     if not ["%FILE_LIST_CMD%"]==[""] (
-        echo Running custom file lister >> %LOG_FILE%
+        echo Running file list command >> %LOG_FILE%
         set use_raw_list=0
         if ["%PROJECT_ROOT%"]==["."] set use_raw_list=1
         if ["%FILE_LIST_CMD_IS_ABSOLUTE%"]==["1"] set use_raw_list=1
@@ -124,6 +123,8 @@ if ["%INDEX_WHOLE_PROJECT%"]==["1"] (
             for /F "usebackq delims=" %%F in (`%FILE_LIST_CMD%`) do @echo %PROJECT_ROOT%\%%F >> %TAGS_FILE%.files
         )
         set CTAGS_ARGS=%CTAGS_ARGS% -L %TAGS_FILE%.files
+    ) else (
+        set CTAGS_ARGS=%CTAGS_ARGS% "%PROJECT_ROOT%"
     )
 )
 
