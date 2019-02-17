@@ -3,9 +3,6 @@
 PS4='>>> '
 set -ex
 
-git submodule foreach git pull
-git submodule update --init --recursive
-
 git subtree pull --prefix gibo https://github.com/simonwhitaker/gibo master --squash
 git subtree pull --prefix tmux/plugins/sensible https://github.com/tmux-plugins/tmux-sensible master --squash
 git subtree pull --prefix vim/pack/user/start/bitbake https://github.com/siho22/vim-bitbake master --squash
