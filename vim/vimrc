@@ -53,15 +53,27 @@ if has('persistent_undo')
     set undofile " Keep undo history across sessions
 endif
 
-if has('autocmd')
-    augroup vimrc_last_pos
-        autocmd!
-        " Jump to last known cursor position, when opening a file
-        autocmd BufReadPost *
-            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-            \ |   execute "normal! g`\""
-            \ | endif
-    augroup END
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
+endif
+
+if has("cscope")
+    set cscopetag " Use cscope with :tag and CTRL-]
+    set cscopequickfix=s-,c-,d-,i-,t-,e- " Use quickfix window with cscope
+    nnoremap <leader>cs :cscope find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cg :cscope find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cc :cscope find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>ct :cscope find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>ce :cscope find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>cf :cscope find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <leader>ci :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <leader>cd :cscope find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>c? :help cscope-find<CR>
+
+    if has('patch-7.4.2033')
+        set cscopequickfix+=a-
+        nnoremap <leader>ca :cscope find a <C-R>=expand("<cword>")<CR><CR>
+    endif
 endif
 
 " Fix typos
@@ -70,83 +82,20 @@ cnoreabbrev Qa qa
 cnoreabbrev Wq wq
 cnoreabbrev W w
 
-" === vimrc ===
-if has('autocmd')
-    augroup vimrc_vimrc
-        autocmd!
-        " Source the vimrc file after saving it
-        autocmd BufWritePost vimrc source $MYVIMRC | call OverrideColors()
-    augroup END
-endif
-
 " Open vimrc in a new tab
-nnoremap <leader>v :tabedit $MYVIMRC<CR>:lcd <C-R>=fnameescape(expand('%:h')).'/'<CR><CR>
+nnoremap <silent> <leader>v :tabedit $MYVIMRC<CR>
 
-" === Appearance ===
-" --- Color scheme ---
-if has('autocmd')
-    augroup vimrc_color
-        autocmd!
-        autocmd ColorScheme * call OverrideColors()
-    augroup END
-endif
+" Strip trailing whitespace
+nnoremap <silent> <leader>$ :call maputils#preserve('%s/\s\+$//e')<CR>
 
-if has('eval')
-    function! OverrideColors()
-        highlight! link Error Underlined
-        highlight! link WildMenu Search
-        call g:Base16hi("MatchParen", "", "", g:base16_cterm00, "", "", "")
-        call g:Base16hi("SpellBad", "", "", "", g:base16_cterm00, "", "")
-        call g:Base16hi("SpellLocal", "", "", "", g:base16_cterm00, "", "")
-        call g:Base16hi("SpellCap", "", "", "", g:base16_cterm00, "", "")
-        call g:Base16hi("SpellRare", "", "", "", g:base16_cterm00, "", "")
-        highlight! link Sneak Search
-        call g:Base16hi("User1", "", "", g:base16_cterm00, g:base16_cterm0D, "", "")
-        highlight! link vimCommentString Comment
-        highlight! link doxygenComment Comment
-        highlight! link doxygenBrief Comment
-        highlight! link doxygenSpecialOnelineDesc Comment
-        highlight! link doxygenParam doxygenSpecial
-        highlight! link doxygenParamName doxygenSpecial
-    endfunction
-endif
-
-if has('eval')
-     let base16colorspace=256  " Access colors present in 256 color space
-endif
-silent! colorscheme base16-monokai
-
-" === General key mappings ===
-if has('eval')
-    " Strip trailing whitespace
-    nnoremap <leader>$ :call <SID>Preserve("%s/\\s\\+$//e")<CR>
-
-    " Reindent file
-    nnoremap <leader>= :call <SID>Preserve("normal gg=G")<CR>
-
-    function! s:Preserve(command)
-        " Preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " Execute the command
-        execute a:command
-        " Clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction
-endif
-
-" Select the text that was last edited/pasted
-nnoremap gV `[vg`]
-xnoremap gV `[og`]
-onoremap <silent> gV :<C-U>normal! `]vg`[<CR>
+" Reindent file
+nnoremap <silent> <leader>= :call maputils#preserve('normal gg=G')<CR>
 
 " Search and replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
 
-" Copy to end of line
+" Make Y more logical, but break Vi-compatibility: Copy to end of line
 nnoremap Y y$
 
 " System clipboard mappings
@@ -159,14 +108,21 @@ xnoremap <leader>p "+p
 nnoremap <leader>gp "+gp
 nnoremap <leader>gP "+gP
 
-" Open quickfix list
+" Replace Ex mode mapping with open quickfix list
 nnoremap <silent> Q :copen<CR>
 
-if has('eval')
-    " l for "last" collides with l for "line", use N for "last" instead
-    let g:targets_nl = 'nN'
-endif
+" Show syntax highlighting group under cursor
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" === Text objects ===
+" last edited/pasted text
+nnoremap gV `[vg`]
+xnoremap gV `[og`]
+onoremap <silent> gV :<C-U>normal! `]vg`[<CR>
+" last selection
+onoremap <silent> gv :<C-U>normal! gv<CR>
 " inner line and a line
 xnoremap <silent> il :<C-U>normal! g_v^<CR>
 onoremap <silent> il :<C-U>normal! g_v^<CR>
@@ -184,75 +140,24 @@ omap af <Plug>TextobjCFunctionA
 xmap if <Plug>TextobjCFunctionI
 omap if <Plug>TextobjCFunctionI
 
-" Show syntax highlighting group under cursor
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+if has('autocmd')
+    augroup vimrc
+        autocmd!
+        " Source the vimrc file after saving it
+        autocmd BufWritePost vimrc nested source $MYVIMRC
+        " Jump to last known cursor position, when opening a file
+        autocmd BufReadPost * call <SID>restore_position()
+    augroup END
 
-" === Syntax settings ===
-if has('eval')
-    let g:is_posix = 1 " use POSIX syntax for .sh
+    function! s:restore_position() abort
+        let last_pos = line("'\"")
+        if last_pos >= 1 && last_pos <= line("$") && &ft !~# 'commit'
+            execute "normal! g`\""
+        endif
+    endfunction
 endif
 
-" === Auto completion ===
-" --- Ultisnips ---
-if has('python3')
-    let g:UltiSnipsUsePythonVersion = 3
-endif
-
-" === Fuzzy finder ===
-if has('eval')
-    let g:ctrlp_extensions = ['tag']
-    let g:ctrlp_show_hidden = 1
-endif
-
-" Use The Silver Searcher if installed
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files.
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" --- netrw ---
-let g:netrw_altfile = 1 " CTRL-^ jumps to last edited file
-
-" === cscope ===
-if has("cscope")
-    set cscopequickfix=s-,c-,d-,i-,t-,e- " Use quickfix window with cscope
-    if has('patch-7.4.2033')
-        set cscopequickfix+=a-
-    endif
-
-    set cscopetag " Use cscope with :tag and CTRL-]
-
-    nnoremap <leader>cs :cscope find s <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>cg :cscope find g <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>cc :cscope find c <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>ct :cscope find t <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>ce :cscope find e <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>cf :cscope find f <C-R>=expand("<cfile>")<CR><CR>
-    nnoremap <leader>ci :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nnoremap <leader>cd :cscope find d <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>ca :cscope find a <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>c? :help cscope-find<CR>
-endif
-
-" --- bitbake ---
-if has('eval')
-    let g:bb_create_on_empty = 0
-endif
-
-" --- Sneak ---
-if has('eval')
-    let g:sneak#label = 1
-endif
-
-" --- TMUX navigator ---
-if has('eval')
-    let g:tmux_navigator_disable_when_zoomed = 1
+if has('syntax') && !exists('g:syntax_on')
+    let g:colors_name = "base16-monokai-custom"
+    syntax enable
 endif
