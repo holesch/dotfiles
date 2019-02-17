@@ -4,9 +4,9 @@
 
 ## Typical usage
 
-    $ gibo Python TextMate >> .gitignore
+    $ gibo dump Swift Xcode >> .gitignore
 
-For additional usage instructions, run `gibo` without arguments.
+For additional usage instructions, run `gibo help`.
 
 ## Installation
 
@@ -14,15 +14,9 @@ For additional usage instructions, run `gibo` without arguments.
 
     brew install gibo
 
-#### Upgrade on OS X using [Homebrew](http://mxcl.github.com/homebrew/)
-
-    brew upgrade gibo
-
 ### Installation on Fedora Linux
 
-`gibo` is avaiable as a [COPR repository](https://copr.fedorainfracloud.org/).
-It provides packages for main script and bash / zsh completions:
-
+`gibo` is avaiable as a [COPR repository](https://copr.fedorainfracloud.org/). It provides packages for main script and bash / zsh completions:
 
     dnf copr enable saschpe/gibo
     dnf install gibo gibo-bash-completion gibo-zsh-completion
@@ -32,16 +26,16 @@ It provides packages for main script and bash / zsh completions:
 Just download `gibo` and put it somewhere on your $PATH. Then:
 
     chmod +x /path/to/gibo   # Make gibo executable
-    gibo -u                  # Initialise gibo
+    gibo update              # Initialise gibo
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
     curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
-        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
+        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo update
 
 ### Installation on Windows
 
-**using scoop**
+#### Using scoop
 
 The easiest way to install `gibo` on Windows is to use [scoop](https://github.com/lukesampson/scoop), a PowerShell-based package-manager of sorts for Windows:
 
@@ -53,7 +47,7 @@ A great benefit to using scoop, is that it provides an easy way to update its pa
     scoop update
     scoop update gibo
 
-**git installation**
+#### git installation
 
 You can download the whole `gibo` repo directly from GitHub:
 
@@ -63,7 +57,7 @@ You can download the whole `gibo` repo directly from GitHub:
 
 Then add the full gibo directory (`C:\Users\<Your User>\bin\gibo`) to your system's PATH environment variable.
 
-**manual installation**
+#### Manual installation
 
 To manually install only the `gibo.bat` file, download it to your computer and save it to any directory that is in your PATH.
 
@@ -79,8 +73,7 @@ Just type the following command.
 
 ## Tab completion in bash, zsh and fish
 
-bash, zsh and fish users can enjoy the deluxe gibo experience by enabling tab
-completion of available boilerplate names.
+bash, zsh and fish users can enjoy the deluxe gibo experience by enabling tab completion of available boilerplate names.
 
 Sorry, there is no tab completion support in Windows.
 
@@ -92,40 +85,31 @@ Copy `gibo-completion.bash` into a `bash_completion.d` folder:
 * `/usr/local/etc/bash_completion.d`
 * `~/bash_completion.d`
 
-or copy it somewhere (e.g. ~/.gibo-completion.bash) and put the
-following in your .bashrc:
+or copy it somewhere (e.g. ~/.gibo-completion.bash) and put the following in your .bashrc:
 
     source ~/.gibo-completion.bash
 
 ### zsh instructions
 
-Copy `gibo-completion.zsh` somewhere (e.g. ~/.zsh/_gibo)
-and put the following in your .zshrc:
+Copy `gibo-completion.zsh` somewhere in your `$fpath`. The convention for autoloaded functions used in completion is that they start with an underscore, so I suggest you rename it to `_gibo`.
 
-    fpath=(~/.zsh $fpath)
-
-Alternatively, you can use `gibo-completion.zsh` as an
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin
-by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
+Alternatively, you can use `gibo-completion.zsh` as an [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
 
 ### fish instructions
 
-Copy `gibo.fish` to ~/.config/fish/completions/ 
+Copy `gibo.fish` to somewhere in your `$fish_complete_path`.
 
 ## Use gibo to generate .hgignore files
 
-The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax.
-This means that you can use gibo to generate .hgignore files, as long as the
-.hgignore files use the `glob` syntax:
+The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax. This means that you can use gibo to generate .hgignore files, as long as the .hgignore files use the `glob` syntax:
 
     echo 'syntax: glob' > .hgignore
-    $ gibo Python TextMate >> .hgignore
+    $ gibo dump Python TextMate >> .hgignore
 
 ## Credits
 
 gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
 
-Thanks to [yevgenko](https://github.com/yevgenko) for adding the curl-based
-installation instructions.
+Thanks to [yevgenko](https://github.com/yevgenko) for adding the curl-based installation instructions.
 
 Thanks to [kodybrown](https://github.com/kodybrown) for adding the gibo.bat batch file for Windows.
