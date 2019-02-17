@@ -195,46 +195,6 @@ if has('eval')
 endif
 
 " === Auto completion ===
-" --- Neocomplete ---
-if has('lua')
-    let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
-    let g:neocomplete#enable_smart_case = 1 " Use smartcase.
-    inoremap <expr> <C-g> neocomplete#undo_completion()
-    inoremap <expr> <C-l> neocomplete#complete_common_string()
-
-    " close popup and add newline
-    inoremap <silent> <CR> <C-r>=<SID>close_popup()<CR><CR>
-
-    " <TAB> completion
-    inoremap <silent><expr> <TAB>
-          \ pumvisible() ? "\<C-n>" :
-          \ <SID>is_white_space_before_cursor() ? "\<TAB>" :
-          \ neocomplete#start_manual_complete()
-
-    function! s:close_popup()
-      return pumvisible() ? "\<C-y>" : ""
-    endfunction
-
-    function! s:is_white_space_before_cursor() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
-
-    " Enable auto omni completion.
-    if !exists('g:neocomplete#sources#omni#input_patterns')
-      let g:neocomplete#sources#omni#input_patterns = {}
-    endif
-    let g:neocomplete#sources#omni#input_patterns.c =
-    \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-    let g:neocomplete#sources#omni#input_patterns.cpp =
-    \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-    if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.python =
-    \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-endif
-
 " --- Ultisnips ---
 if has('python3')
     let g:UltiSnipsUsePythonVersion = 3
