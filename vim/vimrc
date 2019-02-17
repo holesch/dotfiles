@@ -2,8 +2,7 @@ set nocompatible " use Vim settings
 
 " === General Vim configuration ===
 set tabstop=4 " Set tab width to 4 spaces
-set shiftwidth=4 " When indenting with '>', use 4 spaces width
-set softtabstop=4 " Delete 4 spaces with backspace
+set shiftwidth=0 " When indenting with '>', use the tabstop value as width
 set expandtab " On pressing tab, insert 4 spaces
 set shiftround " Indent to a multiple of 4 spaces
 set ignorecase " Ignore case when searching
@@ -110,6 +109,9 @@ nnoremap <leader>gP "+gP
 
 " Replace Ex mode mapping with open quickfix list
 nnoremap <silent> Q :copen<CR>
+
+" Toggle between Tabs and Spaces for indentation, use count to set width
+nnoremap <silent> <Tab> :<C-U>call tabset#set(v:count)<CR>
 
 " Show syntax highlighting group under cursor
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
