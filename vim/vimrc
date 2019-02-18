@@ -114,7 +114,14 @@ nnoremap <silent> Q :copen<CR>
 nnoremap <silent> <Tab> :<C-U>call tabset#set(v:count)<CR>
 
 " Open / Close folds recursively
-nnoremap <CR> zA
+nnoremap <Space> zA
+
+" Fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gp :Gpush<CR>
 
 " Show syntax highlighting group under cursor
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
