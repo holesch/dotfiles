@@ -63,6 +63,10 @@ if has('persistent_undo')
     set undofile " Keep undo history across sessions
 endif
 
+if has('patch-8.1.0360')
+    set diffopt+=indent-heuristic,algorithm:patience " Produce better diffs
+endif
+
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
 endif
