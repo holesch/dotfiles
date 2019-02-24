@@ -43,6 +43,16 @@ set statusline+=%-14.y " File type
 set statusline+=%-14.(%l:%c%V%)\  " Line:Column
 set statusline+=%1*\ %P\ %* " Percentage through file
 
+if has('clipboard')
+    " Prepend options to clipboard, as the exclude pattern must be the last
+    " entry (see clipboard-exclude)
+    set clipboard^=unnamed " Use system clipboard
+    if has('unnamedplus')
+        " Use CLIPBOARD selection in addition to PRIMARY selection on X11
+        set clipboard^=unnamedplus
+    endif
+endif
+
 if has('mouse')
     set mouse=n " Enable mouse in normal mode
 endif
@@ -97,16 +107,6 @@ xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Lef
 
 " Make Y more logical, but break Vi-compatibility: Copy to end of line
 nnoremap Y y$
-
-" System clipboard mappings
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+y$
-xnoremap <leader>y "+y
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-xnoremap <leader>p "+p
-nnoremap <leader>gp "+gp
-nnoremap <leader>gP "+gP
 
 " Replace Ex mode mapping with open quickfix list
 nnoremap <silent> Q :copen<CR>
