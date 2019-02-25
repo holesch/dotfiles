@@ -121,6 +121,9 @@ nnoremap <silent> g<Tab> :<C-U>call tabset#set(v:count)<CR>
 " Open / Close folds recursively
 nnoremap <Space> zA
 
+" Jump to buffer
+nnoremap <Leader>j :<C-U>buffers<CR>:buffer<Space>
+
 " Fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gb :Gblame<CR>
