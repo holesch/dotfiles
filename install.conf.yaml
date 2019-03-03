@@ -17,6 +17,7 @@
     ~/.zlogin: zsh/zlogin
     ~/.Xresources: Xresources
     ~/.local/bin/gibo: gibo/gibo
+    ~/.inputrc: inputrc
 
 - shell:
     - description: Installing submodules

@@ -1,0 +1,48 @@
+$include /etc/inputrc
+
+set input-meta On
+set convert-meta Off
+set output-meta On
+
+set bell-style none
+set colored-completion-prefix On
+set colored-stats On
+set completion-display-width 0
+set completion-ignore-case On
+set completion-prefix-display-length 32
+set completion-query-items 40
+set echo-control-characters off
+set keyseq-timeout 100
+set mark-symlinked-directories On
+set match-hidden-files Off
+set menu-complete-display-prefix On
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set skip-completed-text On
+set visible-stats On
+
+set editing-mode vi
+set show-mode-in-prompt On
+set vi-ins-mode-string "\1\e[01;30m\2>\1\e[00m\2 "
+set vi-cmd-mode-string "\1\e[01;31m\2N\1\e[00m\2 "
+
+# === Key bindings ===
+# Use `sed -n l` to get terminal key codes
+$if mode=vi
+    set keymap vi-command
+        "\e[A": history-substring-search-backward
+        "\e[B": history-substring-search-forward
+        k: history-substring-search-backward
+        j: history-substring-search-forward
+    set keymap vi-insert
+        "\e[A": history-substring-search-backward
+        "\e[B": history-substring-search-forward
+        "C-w": unix-filename-rubout
+        TAB: menu-complete
+        # S-TAB
+        "\e[Z": menu-complete-backward
+        # S-Left
+        "\e[1;2D": backward-word
+        # S-Right
+        "\e[1;2C": forward-word
+$endif
