@@ -125,11 +125,11 @@ nnoremap <Space> zA
 nnoremap <Leader>j :<C-U>buffers<CR>:buffer<Space>
 
 " Fugitive
-nnoremap <leader>gs :15Gstatus<CR>
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>ge :Gedit<CR>
-nnoremap <leader>gp :Gpush<CR>
+nnoremap <silent> <leader>gs :15Gstatus<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gd :Gvdiff<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+nnoremap <silent> <leader>gp :Gpush<CR>
 
 " Subversive
 nmap cr <plug>(SubversiveSubstituteRange)
