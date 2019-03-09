@@ -18,6 +18,7 @@
     ~/.Xresources: Xresources
     ~/.local/bin/gibo: gibo/gibo
     ~/.inputrc: inputrc
+    ~/.gnupg/gpg.conf: gnupg/gpg.conf
 
 - shell:
     - description: Installing submodules
