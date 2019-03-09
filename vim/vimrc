@@ -131,6 +131,11 @@ nnoremap <leader>gd :Gvdiff<CR>
 nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gp :Gpush<CR>
 
+" Subversive
+nmap cr <plug>(SubversiveSubstituteRange)
+xmap <C-R> <plug>(SubversiveSubstituteRange)
+nmap c. <plug>(SubversiveSubstituteWordRange)
+
 " Show syntax highlighting group under cursor
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
