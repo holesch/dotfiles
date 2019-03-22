@@ -2,6 +2,7 @@
 let g:subversivePromptWithCurrent = get(g:, 'subversivePromptWithCurrent', 0)
 let g:subversiveCurrentTextRegister = get(g:, 'subversiveCurrentTextRegister', '')
 let g:subversivePromptWithActualCommand = get(g:, 'subversivePromptWithActualCommand', 0)
+let g:subversivePreserveCursorPosition = get(g:, 'subversivePreserveCursorPosition', 0)
 
 let s:searchText = ''
 let s:startCursorPos = []
@@ -119,10 +120,7 @@ endfunction
 
 function! subversive#doubleMotion#selectRangeMotion(type)
 
-    let startLine = line("'[")
-    let endLine = line("']")
-
-    let commandPrefix = startLine . ',' . endLine
+    let commandPrefix = '''[,'']'
 
     if s:useAbolish
         let commandPrefix .= 'S/'
@@ -161,7 +159,7 @@ function! subversive#doubleMotion#selectRangeMotion(type)
     endif
 
     if s:activeRegister == s:getDefaultReg() && s:promptForReplaceText
-        call s:UpdateHighlight(s:searchText, startLine, endLine, -1, -1, !s:useAbolish, s:completeWord)
+        call s:UpdateHighlight(s:searchText, line("'["), line("']"), -1, -1, !s:useAbolish, s:completeWord)
 
         " Need to do this here in addition to after the substitution because the second motion
         " can be large (ie the whole file)
@@ -186,7 +184,7 @@ function! subversive#doubleMotion#selectRangeMotion(type)
                 let fullCommand .= escape(s:searchText, '/\')
             endif
 
-            call feedkeys(fullCommand, "t")
+            call feedkeys(fullCommand, "tn")
         else
             let replaceText = input('Substitute With: ', (g:subversivePromptWithCurrent ? s:searchText : ''))
 
@@ -195,7 +193,7 @@ function! subversive#doubleMotion#selectRangeMotion(type)
                 return ''
             endif
 
-            exec commandPrefix . escape(replaceText, '/\') . commandSuffix
+            call s:execRepeatableCommand(commandPrefix . escape(replaceText, '/\') . commandSuffix)
         endif
     else
         let replaceText = getreg(s:activeRegister)
@@ -205,12 +203,21 @@ function! subversive#doubleMotion#selectRangeMotion(type)
             return
         endif
 
-        exec commandPrefix . escape(replaceText, '/\') . commandSuffix
+        call s:execRepeatableCommand(commandPrefix . escape(replaceText, '/\') . commandSuffix)
     endif
 
     " Leave cursor wherever it finished if confirming each replace
-    if !didConfirm
+    if !didConfirm && g:subversivePreserveCursorPosition
         call s:RestoreStartCursorPosition()
     endif
 endfunction
 
+function! s:execRepeatableCommand(command)
+    let s:substituteCommand = a:command
+    exec s:substituteCommand
+    let &operatorfunc = 'subversive#doubleMotion#repeatMotion'
+endfunction
+
+function! subversive#doubleMotion#repeatMotion(type)
+    exec s:substituteCommand
+endfunction

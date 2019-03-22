@@ -47,7 +47,9 @@ After that we switch to visual mode and select the `foo` part `_foos` then execu
 
 After that we move to the `Foo` part of `AddFoo` and execute `<leader>seie` and once again enter `Bar`.  Then finally do the same for the fully capitalized `FOOS`.
 
-Note that if you are using neovim you can enable the `inccommand` option to get a real time preview of the replacement as you're typing it.
+Note that if you are using neovim you can enable the `inccommand` option to get a real time preview of the replacement as you're typing it (equivalent to setting `g:subversivePromptWithActualCommand` to `1`)
+
+Note also that this motion is repeatable.  If you run `<leader>siwip` in one paragraph, then go to a different paragraph, then hit `.` then the same substitution will apply to the new paragraph under the cursor.
 
 ### Custom Text Objects
 
@@ -98,13 +100,14 @@ These work the same as the `<leader>r` maps above except will step through each 
 
     You can do this by passing the black hole register to one of the substitute over range commands. For example: `"_<leader>siwip` or `"_<leader>csiwip` if you want to confirm each delete.
 
-    Unfortunately you cannot just input an empty value into the prompt because there isn't a way to distinguish this input from cancelling via escape
+    Unfortunately you cannot just input an empty value into the prompt because there isn't a way to distinguish this input from cancelling via escape (unless you set `g:subversivePromptWithActualCommand` to `1` in which case that will work fine)
 
 ## Settings
 
 * `g:subversivePromptWithCurrent` - When set to `1`, the prompt will include the text that is being replaced.  This can be useful if you want to just make an edit to it.  Default: `0`
 * `g:subversiveCurrentTextRegister` - When set, the given register will be populated with the text that is being replaced.  This can be useful as an alternative to `g:subversivePromptWithCurrent`, so that you can hit `<c-r>r` in the prompt (assuming you set it to `'r'`) when you want to edit it and otherwise just directly type when you want to do a full replace.
 * `g:subversivePromptWithActualCommand` - When set to `1`, instead of only prompting for the replacement text, it will prompt with the native vim substitute command.  Veteran vim users might prefer this so that they can adjust the various substitution flags themselves.  Default: `0`
+* `g:subversivePreserveCursorPosition` - When set to `1`, the cursor will not move when substitutions are applied.  Default is `0` to match normal vim behaviour.
 
 ## Integration with abolish.vim
 
