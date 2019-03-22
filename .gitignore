@@ -1,6 +1,7 @@
-vim/.netrwhist
-vim/viminfo
-vim/spell/*.spl
+/vim/.netrwhist
+/vim/viminfo
+/vim/spell/*.spl
+/vim/pack/local/
 
 ### https://raw.github.com/github/gitignore/2a2e34e6fcaccfafb6ae68511786987902f0e486/Global/vim.gitignore
 
