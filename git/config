@@ -1,0 +1,38 @@
+[user]
+    name = Simon Holesch
+    email = simon@holesch.de
+[credential]
+    helper = store
+[push]
+    default = simple
+[core]
+    editor = vim
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    decorate = auto
+[diff]
+    mnemonicprefix = true
+    algorithm = patience
+    wordRegex = [^[:space:][:punct:]]+|[^[:space:]]
+    renames = copy
+[rerere]
+    enabled = true
+[versionsort]
+    prereleaseSuffix = -pre
+    prereleaseSuffix = .pre
+    prereleaseSuffix = -beta
+    prereleaseSuffix = .beta
+    prereleaseSuffix = -rc
+    prereleaseSuffix = .rc
+[tag]
+    sort = v:refname
+[log]
+    abbrevCommit = true
+[url "https://"]
+    insteadOf = git://
+[include]
+    path = local.inc
+
+# vim: ft=gitconfig
