@@ -21,7 +21,7 @@ fi
 
 # === Terminal ===
 stty -ixon # disable flow control (CTRL-S, CTRL-Q)
-stty dsusp undef # disable delayed suspend (CTRL-Y)
+stty dsusp undef 2>/dev/null # disable delayed suspend (CTRL-Y)
 
 # === Environment ===
 export KEYTIMEOUT=1
