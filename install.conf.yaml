@@ -19,8 +19,9 @@
     ~/.local/bin/gibo: gibo/gibo
     ~/.inputrc: inputrc
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
-    ~/.config/git/config : git/config
-    ~/.config/git/ignore : git/ignore
+    ~/.config/git/config: git/config
+    ~/.config/git/ignore: git/ignore
+    ~/.config/user-dirs.dirs: xdg/user-dirs.dirs
 
 - shell:
     - description: Installing submodules
