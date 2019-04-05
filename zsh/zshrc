@@ -11,7 +11,7 @@ fi
 unset BASE16_SCHEME
 
 # === Key remaps ===
-if [[ `uname` == "Linux" ]] && type setxkbmap > /dev/null; then
+if [[ `uname` == "Linux" && -n "$DISPLAY" ]] && type setxkbmap > /dev/null; then
     # remap capslock to CTRL
     setxkbmap -layout us -option ctrl:nocaps
 elif [[ `uname` == "Darwin" ]] && type hidutil > /dev/null; then
