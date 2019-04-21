@@ -131,6 +131,10 @@ nnoremap <Space> zA
 " Jump to buffer
 nnoremap <Leader>j :<C-U>buffers<CR>:buffer<Space>
 
+" Auto close brackets
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 " Fugitive
 nnoremap <silent> <leader>gs :15Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
