@@ -36,6 +36,9 @@ alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o L
 alias scpi='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
 alias n='e ~/work/notes/scratchpad.txt'
 alias qr='qrencode --margin 2 --type UTF8'
+if type ninja > /dev/null; then
+    alias cmake='cmake -GNinja'
+fi
 
 # === zsh key bindings ===
 bindkey '^_' undo

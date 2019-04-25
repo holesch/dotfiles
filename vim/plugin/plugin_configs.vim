@@ -55,3 +55,6 @@ let g:tmux_navigator_disable_when_zoomed = 1
 
 " === VimCompletesMe ===
 let g:vcm_direction = 'p' " Search backwards when Tab completing
+
+" === Subversive ===
+let g:subversiveCurrentTextRegister = 'r'
