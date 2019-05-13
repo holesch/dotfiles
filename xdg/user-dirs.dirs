@@ -1,0 +1,10 @@
+# This file is written by xdg-user-dirs-update
+#
+XDG_DESKTOP_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Desktop/"
+XDG_DOWNLOAD_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Downloads/"
+XDG_TEMPLATES_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Templates/"
+XDG_PUBLICSHARE_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Public/"
+XDG_DOCUMENTS_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Documents/"
+XDG_MUSIC_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Music/"
+XDG_PICTURES_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Pictures/"
+XDG_VIDEOS_DIR="/home/EU.BSHG.COM/holeschs/.local/share/Videos/"

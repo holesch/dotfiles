@@ -11,7 +11,7 @@ fi
 unset BASE16_SCHEME
 
 # === Key remaps ===
-if [[ `uname` == "Linux" ]] && type setxkbmap > /dev/null; then
+if [[ `uname` == "Linux" && -n "$DISPLAY" ]] && type setxkbmap > /dev/null; then
     # remap capslock to CTRL
     setxkbmap -layout us -option ctrl:nocaps
 elif [[ `uname` == "Darwin" ]] && type hidutil > /dev/null; then
@@ -29,6 +29,7 @@ export BB_NUMBER_THREADS="8"
 export PARALLEL_MAKE="-j8"
 export MAKEFLAGS="-j8"
 export GPG_TTY="$(tty)"
+export DOCKER_CONFIG="$HOME"/.config/docker
 
 # === Alias ===
 alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'

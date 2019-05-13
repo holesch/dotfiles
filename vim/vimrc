@@ -40,8 +40,15 @@ set statusline+=%h%w%m%r\  " [help][Preview][+][RO]
 set statusline+=%= " Switch to right side
 set statusline+=%-14.{gutentags#statusline('[',']')}
 set statusline+=%-14.y " File type
-set statusline+=%-14.(%l:%c%V%)\  " Line:Column
+set statusline+=%-14.(%l:%c%V%) " Line:Column
+set statusline+=%2*%{WrongEOL()}%*\  " Show EOL if not Unix
 set statusline+=%1*\ %P\ %* " Percentage through file
+
+if has('eval')
+    function! g:WrongEOL() abort
+        return &fileformat !=# "unix" ? " ".&fileformat." " : ""
+    endfunction
+endif
 
 if has('clipboard')
     " Prepend options to clipboard, as the exclude pattern must be the last
@@ -123,6 +130,10 @@ nnoremap <Space> zA
 
 " Jump to buffer
 nnoremap <Leader>j :<C-U>buffers<CR>:buffer<Space>
+
+" Auto close brackets
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " Fugitive
 nnoremap <silent> <leader>gs :15Gstatus<CR>

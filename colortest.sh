@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 for i in $(seq 1 255) ; do
     printf "\x1b[48;5;%sm%8d\e[0m " "$i" "$i"

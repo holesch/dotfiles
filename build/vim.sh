@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 set -e
 
 SOURCE_DIR="$HOME/.cache/siho-build/vim"

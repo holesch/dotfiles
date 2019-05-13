@@ -16,6 +16,6 @@ apt-get install -y \
     libxpm-dev
 
 # Fix libluajit paths
-ln -s /usr/include/luajit-2.0/ /usr/include/lua
+ln -s /usr/include/luajit-2.1/ /usr/include/lua
 ln -s /usr/lib/x86_64-linux-gnu/libluajit-5.1.so /usr/lib/x86_64-linux-gnu/libluajit.so
 
