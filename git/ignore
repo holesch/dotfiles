@@ -1,4 +1,7 @@
 # vim-gutentags
+/tags.files
+/tags.lock
+/tags.temp
 /cscope.out.*
 /ncscope.out.temp
 .vim-git-root
