@@ -1,0 +1,19 @@
+# vim: ft=config
+
+defaults
+
+account holesch
+host smtp.1und1.de
+port 587
+tls on
+user simon@holesch.de
+from simon@holesch.de
+auth on
+
+# Store password in gnome-keyring:
+# $ secret-tool store --label=msmtp host smtp.1und1.de service smtp user simon@holesch.de
+
+# Store password in macOS keychain
+# $ security add-internet-password -s smtp.1und1.de -r smtp -a simon@holesch.de -w
+
+account default : holesch

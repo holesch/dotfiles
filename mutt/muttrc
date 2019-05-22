@@ -1,0 +1,126 @@
+set folder = ~/.mail/
+source ~/.config/mutt/account
+source ~/.config/mutt/colors-base16-monokai
+
+set alias_file = ~/.config/mutt/aliases
+set mailcap_path = ~/.config/mutt/mailcap
+set signature = ~/.config/mutt/signature
+set header_cache = ~/.cache/mutt/headers/
+set history_file = ~/.cache/mutt/history
+
+set auto_tag # Always operate on tagged messages
+set history = 10000 # Number of lines of history to remember
+set save_history = 10000 # Number of lines of history to save
+set nomark_old # Disable marking messages as old
+set mail_check = 120 # How often to poll for new mail
+set mbox_type = Maildir # Mailbox type to use for new folders
+set menu_scroll # Scroll by one line instead of a page
+set pager_context = 5 # Keep 5 lines above and below the cursor
+set pager_stop # Don't move to the next message on next-page
+set pager_index_lines = 6 # How many index lines to show in the pager
+set print_command = /bin/false # Disable printing
+set reply_to = yes # Always use Reply-To if present
+set sendmail = "msmtp" # How to deliver mail
+set use_envelope_from # Pass the From: address to sendmail with -f
+set shell = `echo \$SHELL` # Program to use for shell escapes
+set sort = threads # Primary sorting method
+set sort_aux = reverse-last-date-received # How to sort threads
+set sidebar_visible
+set sidebar_next_new_wrap
+set sidebar_width = 26
+set sleep_time = 0
+set mail_check_stats # periodically check all mailboxes for new mail
+set wait_key = no # Don't wait for a key press after runnning an external command
+
+set autoedit # Skip prompt for subject and recipients
+set noconfirmappend # Don't ask when appending to mailboxes
+set delete = yes # Purge deleted messages without asking
+
+set edit_headers # Include headers when composing
+set include = yes # Always include messages when replying
+
+set date_format = "!%a, %b %d, %Y at %H:%M" # Mon, Jan 01, 1900 at 15:00
+set forward_format = "Fwd: %s" # Subject to use when forwarding messages
+
+index-format-hook date "~d<1d" "%[%H:%M]"
+index-format-hook date "~d<1w" "%[%a %d]"
+index-format-hook date "~A" "%[%d.%m.%y]"
+index-format-hook flag1 "~N|~O|~(~N|~O)" "●" # unread
+index-format-hook flag1 "~>(~P)" "￩" # replied
+index-format-hook flag1 "~A" " " # other
+index-format-hook flag2 "~T" "✶" # tagged (selected)
+index-format-hook flag2 "~F" "\!" # flagged
+index-format-hook flag2 "~A" " " # other
+# TODO collapsed threads (~v)
+set index_format = "%2C %@flag1@%@flag2@ %s%*  %?X?A& ? %-32.32n %-8@date@"
+set status_chars = " +%A" # %r chars: unchanged, changed, read only, attach mode
+set status_format = " %f %r%?p? %p drafts?%>  %?M?%M/?%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t selected)?%7P "
+set pager_format = " %a%*  %P " # format of the pager status bar
+set attach_format = "%2n %u%D%t%I %T%.15m/%.15M%?d?: %d?%*  %?C?%.20C ?%-6.6e %8s "
+set compose_format = " Message size: %l"
+set folder_format = "%2C %t%N %f%*  %s"
+set sidebar_divider_char = " │ "
+set sidebar_format = "%B%*  %?N?(%N)?"
+# TODO
+# set alias_format = "%4n %2f %t %-10a   %r"
+# set query_format = "%4c %t %-25.25a %-25.25n %?e?(%e)?"
+set tilde # Pad blank lines to the bottom of the screen with a tilde
+set nouse_domain # Don't qualify local addresses with hostname
+set implicit_autoview = yes # Pager shows parts having a mailcap viewer
+set rfc2047_parameters = yes # Decode non-stnadard MIME parameters
+
+set read_inc = 100 # Show progress while reading mailboxes
+set write_inc = 100 # Show progress while writing mailboxes
+set time_inc = 500 # Reduce the frequency of status updates (in ms)
+
+# Only display selected header fields
+ignore *
+unignore from: subject to cc mail-followup-to date x-mailer x-url
+unhdr_order *
+hdr_order date from subject to cc
+
+
+bind generic z noop
+bind index,pager,attach g noop
+bind index,pager d noop
+bind index,pager s noop
+bind index,pager c noop
+bind generic,pager t noop
+
+bind generic gg first-entry
+bind pager gg top
+bind generic,index G last-entry
+bind pager G bottom
+bind generic,pager \Cy previous-line
+bind generic,index,pager \Ce next-line
+bind generic,index,pager \Cd half-down
+bind generic,index,pager \Cu half-up
+bind generic zt current-top
+bind generic zz current-middle
+bind generic zb current-bottom
+bind index za collapse-thread
+bind index zA collapse-all
+bind index,pager N search-opposite
+# bind index,pager a group-reply
+macro index,pager dd "<delete-message><sync-mailbox>" "move message to trash"
+macro index,pager dat "<delete-thread><sync-mailbox>" "move thread to trash"
+bind generic tt tag-entry
+bind index tat tag-thread
+bind pager tt tag-message
+macro index,pager gx "<pipe-message>urlview<Enter>" "call urlview to extract URLs out of a message"
+macro attach,compose gx "<pipe-entry>urlview<Enter>" "call urlview to extract URLs out of a message"
+bind editor \Cp history-up
+bind editor \Cn history-down
+bind index,pager { sidebar-toggle-visible
+bind index,pager [ sidebar-prev
+bind index,pager ] sidebar-next
+bind index,pager } sidebar-open
+macro index,pager S "<save-message>$my_spam<Enter>"
+
+# go to top when opening mutt
+folder-hook . "exec first-entry"
+
+# source ~/.muttrc-local
+
+# TODO setup LDAP
+# https://github.com/simonjbeaumont/.dotfiles/blob/master/mutt/muttrc

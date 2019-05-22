@@ -1,0 +1,18 @@
+# vim: ft=muttrc
+
+set from = "simon@holesch.de"
+set realname = "Simon Holesch"
+set spoolfile = +Inbox
+set postponed = +Drafts
+set record = "+Sent Messages"
+set trash = "+Deleted Messages"
+set my_spam = "+Spam"
+mailboxes \
+    $spoolfile \
+    $postponed \
+    $record \
+    $my_spam \
+    $trash \
+    +1822direkt \
+    +congstar \
+    "+Fu&Awg-r Uns Shop"

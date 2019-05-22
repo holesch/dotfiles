@@ -1,0 +1,27 @@
+# Global channel configuration
+Expunge Both
+Create Both
+CopyArrivalDate yes
+
+IMAPAccount holesch
+Host imap.1und1.de
+User simon@holesch.de
+PassCmd "/usr/bin/security find-internet-password -ws imap.1und1.de"
+SSLType IMAPS
+
+IMAPStore holesch-remote
+Account holesch
+
+MaildirStore holesch-local
+SubFolders Verbatim
+Path ~/.mail/
+Inbox ~/.mail/Inbox
+Trash Trash
+
+Channel holesch
+Master :holesch-remote:
+Slave :holesch-local:
+# Synchronize all mailboxes
+Patterns *
+# Save synchronization state in .mbsyncstate in slave mailbox
+SyncState *

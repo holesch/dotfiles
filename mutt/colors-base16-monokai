@@ -1,0 +1,42 @@
+# vim: ft=muttrc
+
+set my_color_bg = color235 # dark grey, cursor fg
+set my_color_comment = color242 # grey, line number fg
+set my_color_text = color254 # white, cursor bg
+set my_color_red = color197
+set my_color_yellow = color179 # search bg
+set my_color_green = color112 # string fg
+set my_color_aqua = color159
+set my_color_blue = color45
+set my_color_purple = color141
+set my_color_cursorline = color237 # line number bg, search fg
+set my_color_selection = color238 # status line bg
+set my_color_statusline = color144 # cursor line number fg
+set my_color_orange = color208 # number
+set my_color_brown = color166 # brackets
+
+color attachment $my_color_yellow $my_color_bg
+color bold bright$my_color_text $my_color_bg # highlighting bold patterns in the body of messages
+color error $my_color_red $my_color_bg # error messages printed by Mutt
+color hdrdefault $my_color_comment $my_color_bg # default color of the message header in the pager
+color indicator bright$my_color_bg $my_color_text # arrow or bar used to indicate the current item in a menu
+color markers $my_color_comment $my_color_bg # the "+" markers at the beginning of wrapped lines in the pager
+color message $my_color_text $my_color_bg # informational messages
+color normal $my_color_text $my_color_bg
+color prompt $my_color_text $my_color_bg
+color quoted $my_color_yellow $my_color_bg # text matching $quote_regexp in the body of a message
+color quoted1 $my_color_green $my_color_bg
+color quoted2 $my_color_purple $my_color_bg
+color quoted3 $my_color_aqua $my_color_bg
+color quoted4 $my_color_blue $my_color_bg
+color search $my_color_cursorline $my_color_yellow # highlighting of words in the pager
+color signature $my_color_aqua $my_color_bg
+color status $my_color_statusline $my_color_selection # mode lines used to display info about the mailbox or message
+color tilde $my_color_comment $my_color_bg # the “~” used to pad blank lines in the pager
+color tree $my_color_comment $my_color_bg # thread tree drawn in the message index and attachment menu
+color underline bright$my_color_text $my_color_bg # highlighting underlined patterns in the body of messages
+color index $my_color_blue $my_color_bg "~N|~O" # new messages
+color index bright$my_color_red $my_color_bg "~F" # messages with important flag
+color sidebar_highlight $my_color_text $my_color_cursorline # Color of the highlighted, but not open, mailbox.
+color sidebar_divider $my_color_red $my_color_bg # Color of the divider separating the Sidebar from Mutt panels
+color sidebar_flagged bright$my_color_red $my_color_bg # Color to give mailboxes containing flagged mail

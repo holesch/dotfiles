@@ -22,9 +22,12 @@
     ~/.config/git/config: git/config
     ~/.config/git/ignore: git/ignore
     ~/.config/user-dirs.dirs: xdg/user-dirs.dirs
+    ~/.config/mutt/muttrc: mutt/muttrc
+    ~/.config/mutt/colors-base16-monokai: mutt/colors-base16-monokai
 
 - shell:
     - description: Installing submodules
       command: git submodule update --init --recursive
       stdout: true
       stderr: true
+    - mkdir -p ~/.cache/mutt/headers/
