@@ -15,7 +15,7 @@ set wildmode=longest:full,full " Complete commands till longest common string
 set viminfo='1000,<500,s100,h,% " Set what to restore upon startup
 set history=10000 " Set size of command and search history
 set path+=** " Always search recursively
-set listchars=tab:▸\ ,trail:·,nbsp:· " Set whitespace characters
+set listchars=tab:▸\ ,trail:·,nbsp:⌴ " Set whitespace characters
 set list " Show whitespace
 set linebreak " Wrap only at whitespace characters
 set spelllang=en_us " Set spell check region to American English
