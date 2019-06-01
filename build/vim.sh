@@ -2,7 +2,7 @@
 set -e
 
 SOURCE_DIR="$HOME/.cache/siho-build/vim"
-VERSION="8.1.0374"
+VERSION="8.1.1186"
 
 
 if [ ! -d $SOURCE_DIR ]; then
