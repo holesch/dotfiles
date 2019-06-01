@@ -178,10 +178,10 @@ onoremap <silent> ad :<C-U>normal! GVgg<CR>
 xnoremap <silent> av :<C-U>normal! H0VL$<CR>
 onoremap <silent> av :<C-U>normal! LVH<CR>
 " inner function and a function
-xmap af <Plug>TextobjCFunctionA
-omap af <Plug>TextobjCFunctionA
-xmap if <Plug>TextobjCFunctionI
-omap if <Plug>TextobjCFunctionI
+xmap af <Plug>(CFunctionTextObjA)
+omap af <Plug>(CFunctionTextObjA)
+xmap if <Plug>(CFunctionTextObjI)
+omap if <Plug>(CFunctionTextObjI)
 
 if has('autocmd')
     augroup vimrc

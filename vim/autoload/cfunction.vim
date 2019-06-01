@@ -48,6 +48,7 @@ function! s:a_cfunction() abort
     let cursor_lnum = line('.')
     let [func_begin, func_end] = s:i_cfunction()
 
+    " match behavior of builtin text objects
     if cursor_lnum < func_begin
         let end = func_end
         let begin = s:include_white_space_above(func_begin)
@@ -83,14 +84,20 @@ function! s:jump_to_func_end() abort
 endfunction
 
 function! s:jump_to_func_begin() abort
+    call s:jump_to_matching_opening_bracket()
+
+    " line below previous } or line below previous blank line or top of file
+    " this includes e.g. doxygen comments above functions
+    return search('\m\C^\%(}.*\|\s*\)\n\zs\|^\%1l', 'bW')
+endfunction
+
+function! s:jump_to_matching_opening_bracket() abort
     let opening = searchpair('{', '', '}', 'bW',
         \ {-> synIDattr(synID(line('.'), col('.'), 1), 'name') =~?
         \ 'comment\|string'})
     if opening == 0
         throw "cfunction: no opening bracket found"
     endif
-
-    return search('\m\C^\%(}.*\|\s*\)\n\zs\|^\%1l', 'bW')
 endfunction
 
 function! s:include_white_space_above(lnum) abort
