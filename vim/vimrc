@@ -32,6 +32,7 @@ set formatoptions+=tcqln formatoptions-=o " Set how to format text
 set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+ " Define list format
 set nojoinspaces " Don't insert two spaces after punctuation
 set virtualedit+=block " Allow moving through empty space in visual block mode
+set showbreak=›\  " Show soft breaks
 
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number
