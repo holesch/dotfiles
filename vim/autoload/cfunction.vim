@@ -113,3 +113,30 @@ endfunction
 function! s:go_to_line(lnum) abort
     return setpos('.', [0, a:lnum, 1, 1, 1])
 endfunction
+
+let s:next_pattern = '\v\C^%(\S.*)?\{|%$'
+function! cfunction#nmap_next() abort
+    call s:jump("m'", v:count1, s:next_pattern, 'esW')
+endfunction
+
+function! cfunction#xmap_next() abort
+    call s:jump("m'gv", v:count1, s:next_pattern, 'esW')
+endfunction
+
+let s:prev_pattern = '\v\C^%(\S.*)?\{|^%1l'
+function! cfunction#nmap_prev() abort
+    call s:jump("m'", v:count1, s:prev_pattern, 'besW')
+endfunction
+
+function! cfunction#xmap_prev() abort
+    call s:jump("m'gv", v:count1, s:prev_pattern, 'besW')
+endfunction
+
+function! s:jump(pre_cmd, count, pattern, flags) abort
+    let cnt = a:count
+    execute "normal! " . a:pre_cmd
+    while cnt > 0
+        call search(a:pattern, a:flags)
+        let cnt -= 1
+    endwhile
+endfunction

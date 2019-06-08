@@ -150,6 +150,13 @@ nmap cr <plug>(SubversiveSubstituteRange)
 xmap <C-R> <plug>(SubversiveSubstituteRange)
 nmap c. <plug>(SubversiveSubstituteWordRange)
 
+nmap ]] <Plug>(CFunctionNext)
+xmap ]] <Plug>(CFunctionNext)
+omap ]] <Plug>(CFunctionNext)
+nmap [[ <Plug>(CFunctionPrev)
+xmap [[ <Plug>(CFunctionPrev)
+omap [[ <Plug>(CFunctionPrev)
+
 " Show syntax highlighting group under cursor
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
