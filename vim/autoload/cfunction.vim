@@ -1,47 +1,28 @@
 function! cfunction#xmap_a() abort
-    call s:try(function("s:xmap_a"))
+    call s:try(function("s:a_cfunction"), function("s:select_range"))
 endfunction
 
 function! cfunction#omap_a() abort
-    call s:try(function("s:omap_a"))
+    call s:try(function("s:a_cfunction"), function("s:select_range_reverse"))
 endfunction
 
 function! cfunction#xmap_i() abort
-    call s:try(function("s:xmap_i"))
+    call s:try(function("s:i_cfunction"), function("s:select_range"))
 endfunction
 
 function! cfunction#omap_i() abort
-    call s:try(function("s:omap_i"))
+    call s:try(function("s:i_cfunction"), function("s:select_range_reverse"))
 endfunction
 
-function! s:try(func) abort
+function! s:try(ai_func, select_func) abort
     let view = winsaveview()
 
     try
-        call a:func()
+        let [begin, end] = a:ai_func()
+        call a:select_func(begin, end)
     catch /^cfunction:/
         call winrestview(view)
     endtry
-endfunction
-
-function! s:xmap_a() abort
-    let [begin, end] = s:a_cfunction()
-    call s:select_range(begin, end)
-endfunction
-
-function! s:omap_a() abort
-    let [begin, end] = s:a_cfunction()
-    call s:select_range(end, begin)
-endfunction
-
-function! s:xmap_i() abort
-    let [begin, end] = s:i_cfunction()
-    call s:select_range(begin, end)
-endfunction
-
-function! s:omap_i() abort
-    let [begin, end] = s:i_cfunction()
-    call s:select_range(end, begin)
 endfunction
 
 function! s:a_cfunction() abort
@@ -72,6 +53,10 @@ function! s:select_range(from, to) abort
     call s:go_to_line(a:from)
     normal! V
     call s:go_to_line(a:to)
+endfunction
+
+function! s:select_range_reverse(to, from) abort
+    call s:select_range(a:from, a:to)
 endfunction
 
 function! s:jump_to_func_end() abort
