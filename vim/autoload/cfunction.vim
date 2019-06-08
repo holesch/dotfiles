@@ -44,8 +44,14 @@ function! s:a_cfunction() abort
 endfunction
 
 function! s:i_cfunction() abort
-    let func_end = s:jump_to_func_end()
+    let cnt = v:count1 - 1
+    let func_end = s:jump_to_func_end('cW')
     let func_begin = s:jump_to_func_begin()
+    call s:go_to_line(func_end)
+    while cnt > 0
+        let func_end = s:jump_to_func_end('W')
+        let cnt -= 1
+    endwhile
     return [func_begin, func_end]
 endfunction
 
@@ -59,8 +65,8 @@ function! s:select_range_reverse(to, from) abort
     call s:select_range(a:from, a:to)
 endfunction
 
-function! s:jump_to_func_end() abort
-    let func_end = search('\m\C^}', 'cW')
+function! s:jump_to_func_end(flags) abort
+    let func_end = search('\m\C^}', a:flags)
     if func_end == 0
         throw "cfunction: no closing bracket found"
     endif
