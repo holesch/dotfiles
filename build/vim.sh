@@ -1,21 +1,20 @@
 #!/bin/sh
 set -e
 
-SOURCE_DIR="$HOME/.cache/siho-build/vim"
-VERSION="8.1.1186"
+src="$HOME/.cache/siho-build/vim"
+version="8.1.1776"
 
 
-if [ ! -d $SOURCE_DIR ]; then
-    git clone https://github.com/vim/vim.git $SOURCE_DIR
-    cd $SOURCE_DIR
+if [ ! -d $src ]; then
+    git clone https://github.com/vim/vim.git $src
+    cd $src
 else
-    cd $SOURCE_DIR
+    cd $src
     git reset HEAD --hard
-    git checkout master
-    git pull
+    git fetch
 fi
 
-git checkout -q tags/v$VERSION
+git checkout -q tags/v$version
 
 ./configure \
     --enable-fail-if-missing \
