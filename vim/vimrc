@@ -35,6 +35,7 @@ set virtualedit+=block " Allow moving through empty space in visual block mode
 set paragraphs= " Don't use nroff macros as paragraph boundaries
 set sections= " Don't use nroff macros as section boundaries
 set showbreak=›\  " Show soft breaks
+set notimeout " Disable one second timeout for key mappings
 
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number
