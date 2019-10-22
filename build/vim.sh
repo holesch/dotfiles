@@ -2,7 +2,7 @@
 set -e
 
 src="$HOME/.cache/siho-build/vim"
-version="8.1.1776"
+version="8.1.1906"
 
 
 if [ ! -d $src ]; then

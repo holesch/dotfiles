@@ -139,7 +139,7 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " Fugitive
-nnoremap <silent> <leader>gs :15Gstatus<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gd :Gvdiff<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
