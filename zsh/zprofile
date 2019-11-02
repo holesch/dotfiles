@@ -14,7 +14,7 @@ if [[ -z "$LANG" ]]; then
 fi
 
 if [[ -z "$LC_ALL" ]]; then
-    export LC_ALL='en_US.UTF-8'
+  export LC_ALL='en_US.UTF-8'
 fi
 
 # === Paths ===
@@ -57,4 +57,8 @@ if [[ ! -d "${TMPDIR}" ]]; then
 fi
 
 # === SSH ===
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+if (( $+commands[gpgconf] )); then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+# vim: ft=zsh
