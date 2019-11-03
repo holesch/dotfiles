@@ -46,7 +46,7 @@ set sections= " Don't use nroff macros as section boundaries
 set showbreak=›\  " Show soft breaks
 set notimeout " Disable one second timeout for key mappings
 set ttimeout " Enable keyboard code timeout
-set ttimeoutlen=100 " Set keyboard code timeout in ms
+set ttimeoutlen=30 " Set keyboard code timeout in ms
 set laststatus=2 " Always show status line
 set display=lastline " Show as much a possible of the last line
 set display+=uhex " Show hexadecimal value of unprintable characters (<xx>)
