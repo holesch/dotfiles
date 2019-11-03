@@ -6,10 +6,11 @@ let g:colors_name = "base16-monokai-custom"
 call g:Base16hi("User1", "", "", g:base16_cterm00, g:base16_cterm0D, "", "")
 call g:Base16hi("User2", "", "", g:base16_cterm00, g:base16_cterm09, "", "")
 call g:Base16hi("MatchParen", "", "", g:base16_cterm00, "", "", "")
-call g:Base16hi("SpellBad", "", "", "", g:base16_cterm00, "", "")
-call g:Base16hi("SpellLocal", "", "", "", g:base16_cterm00, "", "")
-call g:Base16hi("SpellCap", "", "", "", g:base16_cterm00, "", "")
-call g:Base16hi("SpellRare", "", "", "", g:base16_cterm00, "", "")
+highlight SpellBad ctermbg=NONE
+highlight SpellLocal ctermbg=NONE
+highlight SpellCap ctermbg=NONE
+highlight SpellRare ctermbg=NONE
+highlight CursorLineNr cterm=NONE
 
 highlight! link Error Underlined
 highlight! link WildMenu Search
