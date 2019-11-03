@@ -84,6 +84,9 @@ endif
 
 if has('mouse')
     set mouse=n " Enable mouse in normal mode
+    if &term ==# "screen-256color" " used by tmux
+        set ttymouse=sgr " The default ("xterm") only works up to 223 columns
+    endif
 endif
 
 if has('persistent_undo')
