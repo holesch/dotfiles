@@ -134,13 +134,6 @@ nnoremap <silent> <leader>v :tabedit $MYVIMRC<CR>
 " Strip trailing whitespace
 nnoremap <silent> <leader>$ :call maputils#preserve('%s/\s\+$//e')<CR>
 
-" Reindent file
-nnoremap <silent> <leader>= :call maputils#preserve('normal gg=G')<CR>
-
-" Search and replace
-nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
-xnoremap <leader>r "vy:%s/\V<C-r>=escape('<C-r>v', '/\')<CR>//gc<Left><Left><Left>
-
 " Make Y more logical, but break Vi-compatibility: Copy to end of line
 nnoremap Y y$
 
@@ -184,7 +177,7 @@ xmap [[ <Plug>(CFunctionPrev)
 omap [[ <Plug>(CFunctionPrev)
 
 " Show syntax highlighting group under cursor
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+nnoremap zS :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
