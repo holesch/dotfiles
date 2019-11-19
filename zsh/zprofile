@@ -64,5 +64,7 @@ fi
 # === ZSH completion ===
 # Disable compinit in Ubuntu /etc/zsh/zshrc
 skip_global_compinit=1
+# Disable default ls colors in Void /etc/profile.d/colorls.sh
+USER_LS_COLORS=1
 
 # vim: ft=zsh
