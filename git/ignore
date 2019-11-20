@@ -1,3 +1,5 @@
+# macOS debug symbols
+*.dSYM/
 # vim-gutentags
 /tags.files
 /tags.lock
