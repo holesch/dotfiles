@@ -7,7 +7,6 @@ git subtree pull --prefix gibo https://github.com/simonwhitaker/gibo master --sq
 git subtree pull --prefix tmux/plugins/sensible https://github.com/tmux-plugins/tmux-sensible master --squash
 git subtree pull --prefix vim/pack/user/start/bitbake https://github.com/siho22/vim-bitbake master --squash
 git subtree pull --prefix vim/pack/user/start/commentary https://github.com/tpope/vim-commentary master --squash
-git subtree pull --prefix vim/pack/user/start/ctrlp https://github.com/ctrlpvim/ctrlp.vim master --squash
 git subtree pull --prefix vim/pack/user/start/dispatch https://github.com/tpope/vim-dispatch master --squash
 git subtree pull --prefix vim/pack/user/start/eunuch https://github.com/tpope/vim-eunuch master --squash
 git subtree pull --prefix vim/pack/user/start/fugitive https://github.com/tpope/vim-fugitive master --squash

@@ -208,6 +208,10 @@ omap af <Plug>(CFunctionTextObjA)
 xmap if <Plug>(CFunctionTextObjI)
 omap if <Plug>(CFunctionTextObjI)
 
+if executable('fzy') && executable('ag')
+    nnoremap <C-P> :call maputils#fzy("ag . --silent -l -g ''", ":e")<cr>
+endif
+
 if has('autocmd')
     " Enable file type detection, file type specific plugins and indentation
     filetype plugin indent on
