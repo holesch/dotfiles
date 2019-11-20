@@ -176,9 +176,10 @@ xmap [[ <Plug>(CFunctionPrev)
 omap [[ <Plug>(CFunctionPrev)
 
 " Show syntax highlighting group under cursor
-nnoremap zS :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap zS :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
+    \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name")
+    \ . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name")
+    \ . ">"<CR>
 
 " Double click to go to tag, right click to go back
 nnoremap <2-LeftMouse> <C-]>
