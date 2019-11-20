@@ -91,7 +91,6 @@ endif
 
 if has('persistent_undo')
     set undodir=~/.cache/vim/undodir " Save undofiles to a central directory
-    silent call system('mkdir -p ' . &undodir)
     set undofile " Keep undo history across sessions
 endif
 

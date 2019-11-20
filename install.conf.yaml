@@ -31,3 +31,4 @@
       stdout: true
       stderr: true
     - mkdir -p ~/.cache/mutt/headers/
+    - mkdir -p ~/.cache/vim/undodir/
