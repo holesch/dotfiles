@@ -48,7 +48,7 @@ set notimeout " Disable one second timeout for key mappings
 set ttimeout " Enable keyboard code timeout
 set ttimeoutlen=30 " Set keyboard code timeout in ms
 set laststatus=2 " Always show status line
-set display=lastline " Show as much a possible of the last line
+set display=lastline " Show as much as possible of the last line
 set display+=uhex " Show hexadecimal value of unprintable characters (<xx>)
 set sessionoptions-=options " Don't save options and mappings with :mksession
 set viewoptions-=options " Don't save options and mappings with :mkview
@@ -163,9 +163,9 @@ nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
 
 " Subversive
-nmap cr <plug>(SubversiveSubstituteRange)
-xmap <C-R> <plug>(SubversiveSubstituteRange)
-nmap c. <plug>(SubversiveSubstituteWordRange)
+nmap cr <Plug>(SubversiveSubstituteRange)
+xmap <C-R> <Plug>(SubversiveSubstituteRange)
+nmap c. <Plug>(SubversiveSubstituteWordRange)
 
 " Jump to '{' or '}' of a function, even if not in first column
 nmap ]] <Plug>(CFunctionNext)
@@ -207,7 +207,8 @@ xmap if <Plug>(CFunctionTextObjI)
 omap if <Plug>(CFunctionTextObjI)
 
 if executable('fzy') && executable('ag')
-    nnoremap <C-P> :call maputils#fzy("ag . --silent -l -g ''", ":e")<cr>
+    " Fuzzy finder
+    nnoremap <C-P> :call maputils#fzy("ag . --silent -l -g ''", ":e")<CR>
 endif
 
 if has('autocmd')
