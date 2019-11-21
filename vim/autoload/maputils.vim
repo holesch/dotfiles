@@ -22,3 +22,9 @@ function! maputils#fzy(choice_command, vim_command) abort
         exec a:vim_command . ' ' . output
     endif
 endfunction
+
+function! maputils#show_highlight_groups() abort
+    echo synstack(line('.'), col('.'))
+            \ ->map({_, val -> synIDattr(val, "name")})
+            \ ->join()
+endfunction
