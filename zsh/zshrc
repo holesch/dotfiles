@@ -36,6 +36,11 @@ alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o L
 alias scpi='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
 alias n='e ~/work/notes/scratchpad.txt'
 alias qr='qrencode --margin 2 --type UTF8'
+unalias man
+man() {
+    local cols=$(tput cols)
+    MANWIDTH=$((cols > 120 ? 120 : cols)) command man "$@"
+}
 gpg-agent-setup() {
     gpg-connect-agent updatestartuptty "scd serialno" "learn --sendinfo" /bye \
         | awk '/^S KEYPAIRINFO/{system("gpg-connect-agent \"delete_key --force --stub-only " $3 "\" >/dev/null")}'
