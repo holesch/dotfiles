@@ -16,7 +16,6 @@
     ~/.zpreztorc: zsh/zpreztorc
     ~/.zlogin: zsh/zlogin
     ~/.Xresources: Xresources
-    ~/.local/bin/gibo: gibo/gibo
     ~/.inputrc: inputrc
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
     ~/.config/git/config: git/config
