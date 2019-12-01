@@ -45,6 +45,9 @@ gpg-agent-setup() {
     gpg-connect-agent updatestartuptty "scd serialno" "learn --sendinfo" /bye \
         | awk '/^S KEYPAIRINFO/{system("gpg-connect-agent \"delete_key --force --stub-only " $3 "\" >/dev/null")}'
 }
+cpr() {
+    time rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
+}
 
 # === zsh key bindings ===
 bindkey '^_' undo
