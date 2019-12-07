@@ -121,6 +121,15 @@ if has("cscope")
     endif
 endif
 
+if has('eval')
+    " Set v:shell_error to the exit status of makeprg, instead of the exit
+    " status of tee
+    let &shellpipe = #{
+        \ zsh: "|& tee %s && exit ${pipestatus[1]}",
+        \ bash: "2>&1 | tee %s && exit ${PIPESTATUS[0]}",
+    \ }->get(fnamemodify(&shell, ":t"), &shellpipe)
+endif
+
 " Fix typos
 cnoreabbrev Q q
 cnoreabbrev Qa qa
@@ -138,6 +147,13 @@ nnoremap Y y$
 
 " Break undo sequence, i.e. start a new change before deleting the whole line
 inoremap <C-U> <C-G>u<C-U>
+
+" Make without prompts
+nnoremap m<CR> :Make<CR>
+nnoremap m<Space> :Make<Space>
+nnoremap m? :set makeprg?<CR>
+command -nargs=* -bang -bar Make
+            \ execute "silent make" . <q-bang> . " " . <q-args> <bar> redraw!
 
 " Replace Ex mode mapping with open quickfix list
 nnoremap <silent> Q :botright copen<CR>
@@ -221,6 +237,9 @@ if has('autocmd')
         autocmd BufWritePost vimrc nested source $MYVIMRC
         " Jump to last known cursor position, when opening a file
         autocmd BufReadPost * call <SID>restore_position()
+        " Open quickfix window, if the build failed
+        autocmd QuickFixCmdPost make if v:shell_error | botright copen
+                    \ | else | botright cwindow | endif
     augroup END
 
     function! s:restore_position() abort
