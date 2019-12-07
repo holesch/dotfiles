@@ -140,7 +140,7 @@ nnoremap Y y$
 inoremap <C-U> <C-G>u<C-U>
 
 " Replace Ex mode mapping with open quickfix list
-nnoremap <silent> Q :copen<CR>
+nnoremap <silent> Q :botright copen<CR>
 
 " Toggle between Tabs and Spaces for indentation, use count to set width
 nnoremap <silent> g<Tab> :<C-U>call tabset#set(v:count)<CR>
