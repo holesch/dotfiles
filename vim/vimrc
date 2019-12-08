@@ -227,6 +227,10 @@ if executable('fzy') && executable('ag')
     nnoremap <C-P> :call maputils#fzy("ag . --silent -l -g ''", ":e")<CR>
 endif
 
+command -bar SudoWrite redraw! | execute 'silent write'
+            \ '!SUDO_EDITOR="tee" VISUAL="tee" sudo -e "%" >/dev/null'
+            \ | let &modified = v:shell_error
+
 if has('autocmd')
     " Enable file type detection, file type specific plugins and indentation
     filetype plugin indent on
