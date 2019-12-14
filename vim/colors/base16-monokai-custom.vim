@@ -21,3 +21,5 @@ highlight! link doxygenBrief Comment
 highlight! link doxygenSpecialOnelineDesc Comment
 highlight! link doxygenParam doxygenSpecial
 highlight! link doxygenParamName doxygenSpecial
+highlight! link StatusLineTerm StatusLine
+highlight! link StatusLineTermNC StatusLineNC

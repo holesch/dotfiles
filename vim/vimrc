@@ -198,6 +198,14 @@ nnoremap zS :call maputils#show_highlight_groups()<CR>
 nnoremap <2-LeftMouse> <C-]>
 nnoremap <RightMouse> <C-T>
 
+if has("terminal")
+    " Support window switching mappings in :terminal
+    tnoremap <silent> <C-H> <C-W>:TmuxNavigateLeft<CR>
+    tnoremap <silent> <C-J> <C-W>:TmuxNavigateDown<CR>
+    tnoremap <silent> <C-K> <C-W>:TmuxNavigateUp<CR>
+    tnoremap <silent> <C-L> <C-W>:TmuxNavigateRight<CR>
+endif
+
 " === Text objects ===
 " last edited/pasted text
 nnoremap gV `[vg`]
