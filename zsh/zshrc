@@ -5,7 +5,7 @@ fi
 
 # === Color scheme ===
 BASE16_SCHEME="monokai"
-if [[ -s "$HOME/dotfiles/base16-monokai.sh" ]]; then
+if [[ -s "$HOME/dotfiles/base16-monokai.sh" && -z "$VIM_TERMINAL" ]]; then
     source "$HOME/dotfiles/base16-monokai.sh"
 fi
 unset BASE16_SCHEME

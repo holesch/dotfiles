@@ -58,3 +58,6 @@ let g:vcm_direction = 'p' " Search backwards when Tab completing
 
 " === Subversive ===
 let g:subversiveCurrentTextRegister = 'r'
+
+" === TermDebug ===
+let g:termdebug_wide = 1
