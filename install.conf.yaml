@@ -23,6 +23,8 @@
     ~/.config/user-dirs.dirs: xdg/user-dirs.dirs
     ~/.config/mutt/muttrc: mutt/muttrc
     ~/.config/mutt/colors-base16-monokai: mutt/colors-base16-monokai
+    ~/.gdbinit: gdb/init
+    ~/.config/gdb/init.py: gdb/init.py
 
 - shell:
     - description: Installing submodules
@@ -31,3 +33,4 @@
       stderr: true
     - mkdir -p ~/.cache/mutt/headers/
     - mkdir -p ~/.cache/vim/undodir/
+    - mkdir -p ~/.local/share/gdb

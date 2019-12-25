@@ -1,0 +1,58 @@
+# Save history, removing duplicates in the last 50 entries
+set history save on
+set history size 10000
+set history remove-duplicates 50
+set history filename ~/.local/share/gdb/history
+# Print the symbol corresponding to an address
+set print symbol on
+# Pretty print structures
+set print pretty on
+# Don't show memory addresses if content is printed
+set print address off
+# Don't prompt to continue printing
+set pagination off
+# Use Intel disassembly style over AT&T
+set disassembly-flavor intel
+# Output numbers in hexadecimal
+set output-radix 16
+# Output complete traceback on error
+set python print-stack full
+
+# Aliases (-a for abbreviation)
+# Show local variables
+alias -a v = info locals
+# Print expression when program stops
+alias -a e = display
+
+define b
+    dont-repeat
+    if $argc == 0
+        info breakpoints
+    else
+        break $arg0
+    end
+end
+document b
+Set breakpoint. Print all breakpoints without arguments.
+Usage: b [function|location]
+end
+
+define hd
+    dont-repeat
+    if $argc < 2
+        set $size = sizeof(*$arg0)
+    else
+        set $size = $arg1
+    end
+    dump binary memory /tmp/gdb-dump.bin $arg0 ((void *)$arg0)+$size
+    shell hexdump -C /tmp/gdb-dump.bin; rm /tmp/gdb-dump.bin
+end
+document hd
+Dump memory as hex + ASCII
+Usage: hd addr [size]
+    addr -- expression resolvable as an address
+    size -- size (in byte) of memory to dump
+            sizeof(*addr) is used by default
+end
+
+source ~/.config/gdb/init.py
