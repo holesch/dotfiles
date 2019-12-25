@@ -19,7 +19,7 @@ function! maputils#fzy(choice_command, vim_command) abort
     endtry
     redraw!
     if v:shell_error == 0 && !empty(output)
-        exec a:vim_command . ' ' . output
+        exec a:vim_command . ' ' . fnameescape(output[:-2])
     endif
 endfunction
 

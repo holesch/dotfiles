@@ -54,6 +54,7 @@ set sessionoptions-=options " Don't save options and mappings with :mksession
 set viewoptions-=options " Don't save options and mappings with :mkview
 set confirm " Raise dialog when there are unsaved changes (e.g. with ":q")
 set foldlevel=99 " Open all folds by default
+set cpoptions-=C " Allow line concatenation with backslash
 
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number
@@ -149,11 +150,13 @@ nnoremap Y y$
 inoremap <C-U> <C-G>u<C-U>
 
 " Make without prompts
-nnoremap m<CR> :Make<CR>
-nnoremap m<Space> :Make<Space>
-nnoremap m? :set makeprg?<CR>
-command -nargs=* -bang -bar Make
+if has('user_commands')
+    nnoremap m<CR> :Make<CR>
+    nnoremap m<Space> :Make<Space>
+    nnoremap m? :set makeprg?<CR>
+    command -nargs=* -bang -bar Make
             \ execute "silent make" . <q-bang> . " " . <q-args> <bar> redraw!
+endif
 
 " Replace Ex mode mapping with open quickfix list
 nnoremap <silent> Q :botright copen<CR>
@@ -198,6 +201,14 @@ nnoremap zS :call maputils#show_highlight_groups()<CR>
 nnoremap <2-LeftMouse> <C-]>
 nnoremap <RightMouse> <C-T>
 
+if has("terminal")
+    " Support window switching mappings in :terminal
+    tnoremap <silent> <C-H> <C-W>:TmuxNavigateLeft<CR>
+    tnoremap <silent> <C-J> <C-W>:TmuxNavigateDown<CR>
+    tnoremap <silent> <C-K> <C-W>:TmuxNavigateUp<CR>
+    tnoremap <silent> <C-L> <C-W>:TmuxNavigateRight<CR>
+endif
+
 " === Text objects ===
 " last edited/pasted text
 nnoremap gV `[vg`]
@@ -227,9 +238,11 @@ if executable('fzy') && executable('ag')
     nnoremap <C-P> :call maputils#fzy("ag . --silent -l -g ''", ":e")<CR>
 endif
 
-command -bar SudoWrite redraw! | execute 'silent write'
-            \ '!SUDO_EDITOR="tee" VISUAL="tee" sudo -e "%" >/dev/null'
-            \ | let &modified = v:shell_error
+if has('user_commands')
+    command -bar SudoWrite redraw! | execute 'silent write'
+                \ '!SUDO_EDITOR="tee" VISUAL="tee" sudo -e "%" >/dev/null'
+                \ | let &modified = v:shell_error
+endif
 
 if has('autocmd')
     " Enable file type detection, file type specific plugins and indentation

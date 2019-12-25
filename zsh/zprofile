@@ -61,4 +61,10 @@ if (( $+commands[gpgconf] )); then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
+# === ZSH completion ===
+# Disable compinit in Ubuntu /etc/zsh/zshrc
+skip_global_compinit=1
+# Disable default ls colors in Void /etc/profile.d/colorls.sh
+export USER_LS_COLORS=1
+
 # vim: ft=zsh
