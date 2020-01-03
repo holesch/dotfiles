@@ -30,6 +30,8 @@ export PARALLEL_MAKE="-j8"
 export MAKEFLAGS="-j8"
 export GPG_TTY="$(tty)"
 export DOCKER_CONFIG="$HOME"/.config/docker
+export CARGO_HOME="$HOME"/.local/share/cargo
+export RUSTUP_HOME="$HOME"/.local/share/rustup
 
 # === Alias ===
 alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
