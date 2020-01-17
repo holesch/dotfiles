@@ -1,4 +1,3 @@
 setlocal commentstring=//%s " Use // for commenting
-setlocal comments-=://
-setlocal comments+=f:// " Don't continue comments after //
-let b:undo_ftplugin .= '|setl cms< com<'
+set formatoptions-=o " Don't continue comment with 'o' or 'O'
+let b:undo_ftplugin .= '|setl cms<'
