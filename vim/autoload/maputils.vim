@@ -28,3 +28,34 @@ function! maputils#show_highlight_groups() abort
             \ ->map({_, val -> synIDattr(val, "name")})
             \ ->join()
 endfunction
+
+function! maputils#get_selection() abort
+    let [pos_start, pos_end] = mode() ==? "v" ? ["v", "."] : ["'<", "'>"]
+    let [line_start, column_start] = getpos(pos_start)[1:2]
+    let [line_end, column_end] = getpos(pos_end)[1:2]
+
+    " reverse positions if selection is in reverse
+    if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
+        let [line_start, column_start, line_end, column_end] =
+        \   [line_end, column_end, line_start, column_start]
+    endif
+
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+
+    if mode() ==# "v"
+        let lines[-1] = lines[-1][:column_end-(&selection == 'inclusive' ? 1 : 2)]
+        let lines[0] = lines[0][column_start-1:]
+    endif
+    return join(lines, "\n")
+endfunction
+
+function! maputils#grep_literal(string) abort
+    return ":\<C-U>Grep --fixed-strings " . a:string
+                \ ->shellescape(1)
+                \ ->escape('|')
+                \ ->substitute('\\!', '!', 'g')
+                \ . "\<CR>"
+endfunction
