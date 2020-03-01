@@ -149,13 +149,18 @@ nnoremap Y y$
 " Break undo sequence, i.e. start a new change before deleting the whole line
 inoremap <C-U> <C-G>u<C-U>
 
-" Make without prompts
 if has('user_commands')
+    " Make without prompts
     nnoremap m<CR> :Make<CR>
     nnoremap m<Space> :Make<Space>
     nnoremap m? :set makeprg?<CR>
     command -nargs=* -bang -bar Make
             \ execute "silent make" . <q-bang> . " " . <q-args> <bar> redraw!
+
+    " Grep without prompts
+    nnoremap <expr> + ":Grep " . shellescape(expand("<cword>")) . "<CR>"
+    command -nargs=* -bang -bar Grep
+            \ execute "silent grep" . <q-bang> . " " . <q-args> <bar> redraw!
 endif
 
 " Replace Ex mode mapping with open quickfix list
@@ -255,7 +260,7 @@ if has('autocmd')
         " Jump to last known cursor position, when opening a file
         autocmd BufReadPost * call <SID>restore_position()
         " Open quickfix window, if the build failed
-        autocmd QuickFixCmdPost make if v:shell_error | botright copen
+        autocmd QuickFixCmdPost make,grep if v:shell_error | botright copen
                     \ | else | botright cwindow | endif
     augroup END
 
