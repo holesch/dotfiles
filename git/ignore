@@ -11,6 +11,7 @@
 # Python
 __pycache__/
 *.py[cod]
+/.tox/
 
 ### https://raw.github.com/github/gitignore/3269ab13d0cb122bd09be854316334941c3beddc/Global/Vim.gitignore
 
