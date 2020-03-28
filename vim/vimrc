@@ -174,7 +174,7 @@ nnoremap <silent> g<Tab> :<C-U>call tabset#set(v:count)<CR>
 nnoremap <Space> zA
 
 " Jump to buffer
-nnoremap <Leader>j :<C-U>buffers<CR>:buffer<Space>
+nnoremap <leader>j :<C-U>buffers<CR>:buffer<Space>
 
 " Auto close brackets
 inoremap {<CR> {<CR>}<ESC>O
@@ -183,6 +183,9 @@ inoremap {;<CR> {<CR>};<ESC>O
 " Tab completion
 inoremap <expr> <Tab> maputils#tab()
 inoremap <expr> <S-Tab> maputils#shift_tab()
+
+" Redraw
+nnoremap <silent> <leader>l :redraw!<CR>
 
 " Fugitive
 nnoremap <silent> <leader>gs :Gstatus<CR>
