@@ -59,3 +59,30 @@ function! maputils#grep_literal(string) abort
                 \ ->substitute('\\!', '!', 'g')
                 \ . "\<CR>"
 endfunction
+
+function! maputils#tab() abort
+    if pumvisible()
+        return "\<C-p>"
+    elseif s:is_start_of_line(line('.'))
+        return "\<Tab>"
+    endif
+
+    return "\<C-p>"
+endfunction
+
+function! maputils#shift_tab() abort
+    if pumvisible()
+        return "\<C-n>"
+    endif
+
+    let [_, line, col, _] = getpos('.')
+    if s:is_start_of_line(line)
+        return col > 1 ? "\<C-h>" : ""
+    endif
+
+    return "\<C-n>"
+endfunction
+
+function! s:is_start_of_line(line) abort
+    return search('[^ \t]', 'bn', a:line) == 0
+endfunction
