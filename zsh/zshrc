@@ -4,11 +4,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # === Color scheme ===
-BASE16_SCHEME="monokai"
-if [[ -s "$HOME/dotfiles/base16-monokai.sh" && -z "$VIM_TERMINAL" ]]; then
-    source "$HOME/dotfiles/base16-monokai.sh"
+export BASE16_SCHEME="google-light"
+if [[ -s "$HOME/dotfiles/base16-$BASE16_SCHEME.sh" && -z "$VIM_TERMINAL" ]]; then
+    source "$HOME/dotfiles/base16-$BASE16_SCHEME.sh"
 fi
-unset BASE16_SCHEME
 
 # === Key remaps ===
 if [[ `uname` == "Linux" && -n "$DISPLAY" ]] && type setxkbmap > /dev/null; then
