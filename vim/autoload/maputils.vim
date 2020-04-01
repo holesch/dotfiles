@@ -59,3 +59,8 @@ function! maputils#grep_literal(string) abort
                 \ ->substitute('\\!', '!', 'g')
                 \ . "\<CR>"
 endfunction
+
+function! maputils#tmux_xrestore() abort
+    let $DISPLAY = split(system("tmux show-environment DISPLAY"), "=")[1][:-2]
+    execute "xrestore" $DISPLAY
+endfunction
