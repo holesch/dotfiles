@@ -38,7 +38,7 @@ set formatoptions-=o " Don't continue comment with 'o' or 'O'
 set formatoptions+=l " Don't break lines which are already too long
 set formatoptions+=j " Correctly reformat comments
 set formatoptions+=n " Recognize lists when formatting text
-set formatlistpat=\\v^\\s*%(%(\\d+\|[a-zA-Z])[.)]\|[-*+])\\s+ " Define list format
+set formatlistpat=\\v^\\s*%(%(\\d+\|\\a)[.)]\|[-*+])\\s+ " Define list format
 set nojoinspaces " Don't insert two spaces after punctuation
 set virtualedit+=block " Allow moving through empty space in visual block mode
 set paragraphs= " Don't use nroff macros as paragraph boundaries
