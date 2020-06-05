@@ -38,6 +38,7 @@ alias scpi='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o L
 alias n='e ~/work/notes/scratchpad.txt'
 alias qr='qrencode --margin 2 --type UTF8'
 alias gdb='gdb -q'
+alias tshark='tshark --color'
 unalias man
 man() {
     local cols=$(tput cols)
