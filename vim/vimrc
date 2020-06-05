@@ -74,8 +74,8 @@ if has('eval')
 endif
 
 if has('clipboard')
-    " Prepend options to clipboard, as the exclude pattern must be the last
-    " entry (see clipboard-exclude)
+    " Prepend options to clipboard (^=), as the exclude pattern must be the
+    " last entry (see clipboard-exclude)
     set clipboard^=unnamed " Use system clipboard
     if has('unnamedplus')
         " Use CLIPBOARD selection in addition to PRIMARY selection on X11
