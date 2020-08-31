@@ -1,6 +1,6 @@
 let g:base16colorspace = 256  " Access colors present in 256 color space
 
-execute "runtime colors/base16-" . $BASE16_SCHEME . ".vim"
+execute "runtime colors/base16-google-light.vim"
 let g:colors_name = "base16"
 
 call g:Base16hi("User1", "", "", g:base16_cterm00, g:base16_cterm0D, "", "")

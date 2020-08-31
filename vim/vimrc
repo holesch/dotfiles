@@ -286,7 +286,7 @@ if has('autocmd')
     endfunction
 endif
 
-if has('syntax') && !exists('g:syntax_on')
+if has('syntax') && !exists('g:colors_name')
     let g:colors_name = "base16"
     syntax enable
 endif
