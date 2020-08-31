@@ -1,6 +1,6 @@
 set folder = ~/.mail/
 source ~/.config/mutt/account
-source ~/.config/mutt/colors-base16-monokai
+source ~/.config/mutt/colors-base16-google-light
 
 set alias_file = ~/.config/mutt/aliases
 set mailcap_path = ~/.config/mutt/mailcap
@@ -17,18 +17,18 @@ set mbox_type = Maildir # Mailbox type to use for new folders
 set menu_scroll # Scroll by one line instead of a page
 set pager_context = 5 # Keep 5 lines above and below the cursor
 set pager_stop # Don't move to the next message on next-page
-set pager_index_lines = 6 # How many index lines to show in the pager
+set pager_index_lines = 20 # How many index lines to show in the pager
 set print_command = /bin/false # Disable printing
 set reply_to = yes # Always use Reply-To if present
-set sendmail = "msmtp" # How to deliver mail
+set sendmail = "msmtp" # Program to use for sending mail
 set use_envelope_from # Pass the From: address to sendmail with -f
-set shell = `echo \$SHELL` # Program to use for shell escapes
+set shell = "/bin/sh" # Program to use for shell escapes
 set sort = threads # Primary sorting method
 set sort_aux = reverse-last-date-received # How to sort threads
-set sidebar_visible
-set sidebar_next_new_wrap
-set sidebar_width = 26
-set sleep_time = 0
+set sidebar_visible # Show sidebar by default
+set sidebar_next_new_wrap = yes # Wrap around to beginning of list
+set sidebar_width = 26 # Width of sidebar
+set sleep_time = 0 # Don't pause when displaying informational messages
 set mail_check_stats # periodically check all mailboxes for new mail
 set wait_key = no # Don't wait for a key press after runnning an external command
 
@@ -75,38 +75,31 @@ set time_inc = 500 # Reduce the frequency of status updates (in ms)
 
 # Only display selected header fields
 ignore *
-unignore from: subject to cc mail-followup-to date x-mailer x-url
+unignore from: subject to cc mail-followup-to date
 unhdr_order *
 hdr_order date from subject to cc
 
+# Prefer viewing the plain text mail over the HTML version
+alternative_order text/plain text/html
 
-bind generic z noop
-bind index,pager,attach g noop
-bind index,pager d noop
-bind index,pager s noop
-bind index,pager c noop
-bind generic,pager t noop
+# unbind default to use key for vim-like multi key bindings
+bind generic,pager g noop # default: group-reply
+bind index,pager d noop # default: delete message
+bind generic,pager t noop # default: tag message
 
 bind generic gg first-entry
 bind pager gg top
-bind generic,index G last-entry
+bind generic G last-entry
 bind pager G bottom
-bind generic,pager \Cy previous-line
-bind generic,index,pager \Ce next-line
-bind generic,index,pager \Cd half-down
-bind generic,index,pager \Cu half-up
-bind generic zt current-top
-bind generic zz current-middle
-bind generic zb current-bottom
-bind index za collapse-thread
-bind index zA collapse-all
-bind index,pager N search-opposite
-# bind index,pager a group-reply
+bind generic,pager \Cd half-down
+bind generic,pager \Cu half-up
+bind generic,pager N search-opposite
+bind index,pager gr group-reply
 macro index,pager dd "<delete-message><sync-mailbox>" "move message to trash"
 macro index,pager dat "<delete-thread><sync-mailbox>" "move thread to trash"
 bind generic tt tag-entry
-bind index tat tag-thread
 bind pager tt tag-message
+bind index tat tag-thread
 macro index,pager gx "<pipe-message>urlview<Enter>" "call urlview to extract URLs out of a message"
 macro attach,compose gx "<pipe-entry>urlview<Enter>" "call urlview to extract URLs out of a message"
 bind editor \Cp history-up
@@ -115,12 +108,13 @@ bind index,pager { sidebar-toggle-visible
 bind index,pager [ sidebar-prev
 bind index,pager ] sidebar-next
 bind index,pager } sidebar-open
-macro index,pager S "<save-message>$my_spam<Enter>"
+macro index,pager S "<save-message>$my_spam<Enter>" "move message to spam"
 
 # go to top when opening mutt
 folder-hook . "exec first-entry"
 
-# source ~/.muttrc-local
+# source local muttrc if it exists
+source `file=~/.muttrc_local; [ -e "$file" ] || file=/dev/null; echo "$file"`
 
 # TODO setup LDAP
 # https://github.com/simonjbeaumont/.dotfiles/blob/master/mutt/muttrc
