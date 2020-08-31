@@ -154,13 +154,13 @@ if has('user_commands')
     nnoremap m<CR> :Make<CR>
     nnoremap m<Space> :Make<Space>
     nnoremap m? :set makeprg?<CR>
-    command -nargs=* -bang -bar Make
+    command! -nargs=* -bang -bar Make
             \ execute "silent make" . <q-bang> <q-args> <bar> redraw!
 
     " Grep without prompts
     nnoremap <expr> + maputils#grep_literal(expand("<cword>"))
     xnoremap <expr> + maputils#grep_literal(maputils#get_selection())
-    command -nargs=* -bang Grep
+    command! -nargs=* -bang Grep
             \ execute "silent grep" . <q-bang> <q-args> <bar> redraw!
 endif
 
@@ -258,7 +258,7 @@ if executable('fzy') && executable('ag')
 endif
 
 if has('user_commands')
-    command -bar SudoWrite redraw! | execute 'silent write'
+    command! -bar SudoWrite redraw! | execute 'silent write'
                 \ '!SUDO_EDITOR="tee" VISUAL="tee" sudo -e "%" >/dev/null'
                 \ | let &modified = v:shell_error
 endif
