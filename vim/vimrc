@@ -125,10 +125,10 @@ endif
 if has('eval')
     " Set v:shell_error to the exit status of makeprg, instead of the exit
     " status of tee
-    let &shellpipe = #{
-        \ zsh: "|& tee %s && exit ${pipestatus[1]}",
-        \ bash: "2>&1 | tee %s && exit ${PIPESTATUS[0]}",
-    \ }->get(fnamemodify(&shell, ":t"), &shellpipe)
+    let &shellpipe = get({
+        \ 'zsh': "|& tee %s && exit ${pipestatus[1]}",
+        \ 'bash': "2>&1 | tee %s && exit ${PIPESTATUS[0]}",
+    \ }, fnamemodify(&shell, ":t"), &shellpipe)
 endif
 
 " Fix typos
