@@ -8,40 +8,45 @@ set signature = ~/.config/mutt/signature
 set header_cache = ~/.cache/mutt/headers/
 set history_file = ~/.cache/mutt/history
 
-set auto_tag # Always operate on tagged messages
+set auto_tag = yes # Always operate on tagged messages
 set history = 10000 # Number of lines of history to remember
 set save_history = 10000 # Number of lines of history to save
-set nomark_old # Disable marking messages as old
+set mark_old = no # Disable marking messages as old
 set mail_check = 120 # How often to poll for new mail
 set mbox_type = Maildir # Mailbox type to use for new folders
-set menu_scroll # Scroll by one line instead of a page
+set menu_scroll = yes # Scroll by one line instead of a page
 set pager_context = 5 # Keep 5 lines above and below the cursor
-set pager_stop # Don't move to the next message on next-page
+set pager_stop = yes # Don't move to the next message on next-page
 set pager_index_lines = 20 # How many index lines to show in the pager
 set print_command = /bin/false # Disable printing
 set reply_to = yes # Always use Reply-To if present
 set sendmail = "msmtp" # Program to use for sending mail
-set use_envelope_from # Pass the From: address to sendmail with -f
+set use_envelope_from = yes # Pass the From: address to sendmail with -f
 set shell = "/bin/sh" # Program to use for shell escapes
 set sort = threads # Primary sorting method
 set sort_aux = reverse-last-date-received # How to sort threads
-set sidebar_visible # Show sidebar by default
+set sidebar_visible = yes # Show sidebar by default
 set sidebar_next_new_wrap = yes # Wrap around to beginning of list
 set sidebar_width = 26 # Width of sidebar
 set sleep_time = 0 # Don't pause when displaying informational messages
-set mail_check_stats # periodically check all mailboxes for new mail
+set mail_check_stats = yes # periodically check all mailboxes for new mail
 set wait_key = no # Don't wait for a key press after runnning an external command
-
-set autoedit # Skip prompt for subject and recipients
-set noconfirmappend # Don't ask when appending to mailboxes
+set autoedit = yes # Skip prompt for subject and recipients
+set confirmappend = no # Don't ask when appending to mailboxes
 set delete = yes # Purge deleted messages without asking
-
-set edit_headers # Include headers when composing
+set edit_headers = yes # Include headers when composing
 set include = yes # Always include messages when replying
+set tilde = yes # Pad blank lines to the bottom of the screen with a tilde
+set use_domain = no # Don't qualify local addresses with hostname
+set implicit_autoview = yes # Pager shows parts having a mailcap viewer
+set rfc2047_parameters = yes # Decode non-stnadard MIME parameters
+set read_inc = 100 # Show progress while reading mailboxes
+set write_inc = 100 # Show progress while writing mailboxes
+set time_inc = 500 # Reduce the frequency of status updates (in ms)
+set send_charset = "us-ascii:utf-8" # Don't use iso-8859-1
 
 set date_format = "!%a, %b %d, %Y at %H:%M" # Mon, Jan 01, 1900 at 15:00
 set forward_format = "Fwd: %s" # Subject to use when forwarding messages
-
 index-format-hook date "~d<1d" "%[%H:%M]"
 index-format-hook date "~d<1w" "%[%a %d]"
 index-format-hook date "~A" "%[%d.%m.%y]"
@@ -64,14 +69,6 @@ set sidebar_format = "%B%*  %?N?(%N)?"
 # TODO
 # set alias_format = "%4n %2f %t %-10a   %r"
 # set query_format = "%4c %t %-25.25a %-25.25n %?e?(%e)?"
-set tilde # Pad blank lines to the bottom of the screen with a tilde
-set nouse_domain # Don't qualify local addresses with hostname
-set implicit_autoview = yes # Pager shows parts having a mailcap viewer
-set rfc2047_parameters = yes # Decode non-stnadard MIME parameters
-
-set read_inc = 100 # Show progress while reading mailboxes
-set write_inc = 100 # Show progress while writing mailboxes
-set time_inc = 500 # Reduce the frequency of status updates (in ms)
 
 # Only display selected header fields
 ignore *
