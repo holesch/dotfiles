@@ -30,6 +30,8 @@
     sort = v:refname
 [log]
     abbrevCommit = true
+[sendemail]
+    smtpserver = /usr/bin/msmtp
 [url "https://"]
     insteadOf = git://
 [include]
