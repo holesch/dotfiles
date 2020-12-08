@@ -40,6 +40,8 @@ alias qr='qrencode --margin 2 --type UTF8'
 alias gdb='gdb -q'
 alias tshark='tshark --color'
 alias m='mutt'
+alias ip='ip -color'
+alias ipa='ip -brief addr show'
 unalias man
 man() {
     local cols=$(tput cols)
