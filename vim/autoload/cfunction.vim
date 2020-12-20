@@ -85,7 +85,7 @@ endfunction
 function! s:jump_to_matching_opening_bracket() abort
     let opening = searchpair('{', '', '}', 'bW',
         \ {-> synIDattr(synID(line('.'), col('.'), 1), 'name') =~?
-        \ 'comment\|string'})
+        \ 'comment\|string\|cCharacter'})
     if opening == 0
         throw "cfunction: no opening bracket found"
     endif
