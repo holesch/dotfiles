@@ -91,3 +91,7 @@ function! maputils#tmux_xrestore() abort
     let $DISPLAY = split(system("tmux show-environment DISPLAY"), "=")[1][:-2]
     execute "xrestore" $DISPLAY
 endfunction
+
+function! maputils#visual_macro()
+    execute ":'<,'>normal @".nr2char(getchar())
+endfunction
