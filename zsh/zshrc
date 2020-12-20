@@ -31,6 +31,7 @@ export GPG_TTY="$(tty)"
 export DOCKER_CONFIG="$HOME"/.config/docker
 export CARGO_HOME="$HOME"/.local/share/cargo
 export RUSTUP_HOME="$HOME"/.local/share/rustup
+export DOCKER_BUILDKIT=1
 
 # === Alias ===
 alias sshi='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR'
@@ -40,6 +41,8 @@ alias qr='qrencode --margin 2 --type UTF8'
 alias gdb='gdb -q'
 alias tshark='tshark --color'
 alias m='mutt'
+alias ip='ip -color'
+alias ipa='ip -brief addr show'
 unalias man
 man() {
     local cols=$(tput cols)
