@@ -95,3 +95,18 @@ endfunction
 function! maputils#visual_macro()
     execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+function! maputils#delete_whitespace()
+    " set search pattern to
+    " - empty lines at the start of the file
+    let @/ = '\v%^%(\s*\n)+'
+    " - empty lines at the end of the file
+    let @/ .= '|\S\zs\s*%(\n\s*)+%$'
+    " - whitespace at the end of the line
+    let @/ .= '|\S\zs\s+$'
+    " - more than one empty line in between paragraphs
+    let @/ .= '|\S\s*\n\zs%(\s*\n)+\s*\ze\n'
+    " - more than one whitespace character in between words
+    let @/ .= '|\S\s\zs\s+\ze\S'
+    return "dgn" " delete next matching pattern, can be repeated with `.`
+endfunction
