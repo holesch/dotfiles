@@ -27,6 +27,7 @@
     ~/.config/mutt/mailcap: mutt/mailcap
     ~/.gdbinit: gdb/init
     ~/.config/gdb/init.py: gdb/init.py
+    ~/.config/pip/pip.conf: pip/pip.conf
 
 - shell:
     - description: Installing submodules
