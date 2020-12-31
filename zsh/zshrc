@@ -43,6 +43,7 @@ alias tshark='tshark --color'
 alias m='mutt'
 alias ip='ip -color'
 alias ipa='ip -brief addr show'
+alias ef='${(z)VISUAL:-${(z)EDITOR}} "$(ag . --silent -l -g "" | fzy)"'
 unalias man
 man() {
     local cols=$(tput cols)
