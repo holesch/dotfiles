@@ -43,6 +43,7 @@ alias tshark='tshark --color'
 alias m='mutt'
 alias ip='ip -color'
 alias ipa='ip -brief addr show'
+alias py=python3
 unalias man
 man() {
     local cols=$(tput cols)
