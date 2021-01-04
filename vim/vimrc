@@ -194,6 +194,12 @@ nnoremap <silent> <leader>l :redraw!<CR>
 " Reconnect to X server, e.g. after reconnecting with SSH into a tmux session
 nnoremap <silent> <leader>X :call maputils#tmux_xrestore()<CR>
 
+" Visual @
+xnoremap @ :<C-u>call maputils#visual_macro()<CR>
+
+" Delete next multiple whitespace characters
+nnoremap <expr> d<Space> maputils#delete_whitespace()
+
 " Fugitive
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
