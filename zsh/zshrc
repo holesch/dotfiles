@@ -60,6 +60,23 @@ cpr() {
 
 # === zsh key bindings ===
 bindkey '^_' undo
+# Run fzy in the current working directory, appending the selected path, if
+# any, to the current command, followed by a space.
+function insert-fzy-path-in-command-line() {
+    local selected_path
+    # Print a newline or we'll clobber the old prompt.
+    echo
+    # Find the path; abort if the user doesn't select anything.
+    selected_path="$(ag . --silent -l -g "" | fzy)" || return
+    # Append the selection to the current command buffer.
+    LBUFFER="$LBUFFER$selected_path "
+    # Redraw the prompt since fzy has drawn several new lines of text.
+    zle reset-prompt
+}
+# Create the zle widget
+zle -N insert-fzy-path-in-command-line
+# Bind the key to the newly created widget
+bindkey "^T" "insert-fzy-path-in-command-line"
 
 # === zsh options ===
 HISTSIZE=10000000 # The maximum number of events to save in the internal history.
