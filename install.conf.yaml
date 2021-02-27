@@ -28,6 +28,7 @@
     ~/.gdbinit: gdb/init
     ~/.config/gdb/init.py: gdb/init.py
     ~/.config/pip/pip.conf: pip/pip.conf
+    ~/.ctags: ctags
 
 - shell:
     - description: Installing submodules
