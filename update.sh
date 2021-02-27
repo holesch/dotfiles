@@ -13,6 +13,7 @@ git subtree pull --prefix vim/pack/user/start/gutentags https://github.com/ludov
 git subtree pull --prefix vim/pack/user/start/jq https://github.com/vito-c/jq.vim master --squash
 # git subtree pull --prefix vim/pack/user/start/lion https://github.com/tommcdo/vim-lion master --squash # current: https://github.com/jonasw234/vim-lion
 git subtree pull --prefix vim/pack/user/start/plantuml https://github.com/aklt/plantuml-syntax master --squash
+git subtree pull --prefix vim/pack/user/start/recover https://github.com/chrisbra/Recover.vim master --squash
 git subtree pull --prefix vim/pack/user/start/repeat https://github.com/tpope/vim-repeat master --squash
 git subtree pull --prefix vim/pack/user/start/sneak https://github.com/justinmk/vim-sneak master --squash
 git subtree pull --prefix vim/pack/user/start/surround https://github.com/tpope/vim-surround master --squash
