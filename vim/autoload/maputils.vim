@@ -53,7 +53,7 @@ function! maputils#get_selection() abort
 endfunction
 
 function! maputils#grep_literal(string) abort
-    return ":\<C-U>Grep --fixed-strings " . a:string
+    return ":\<C-U>Grep --fixed-strings -- " . a:string
                 \ ->shellescape(1)
                 \ ->escape('|')
                 \ ->substitute('\\!', '!', 'g')
