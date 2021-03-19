@@ -29,6 +29,8 @@
     ~/.config/gdb/init.py: gdb/init.py
     ~/.config/pip/pip.conf: pip/pip.conf
     ~/.ctags: ctags
+    ~/.local/bin/mtags: mtags/mtags
+    ~/.local/share/mtags/mtags.mak: mtags/mtags.mak
 
 - shell:
     - description: Installing submodules
