@@ -1,0 +1,25 @@
+#!/bin/sh -e
+
+usage_error() {
+    echo "usage: queue-one [-n NAME] prog [prog ...]"
+    echo "error:" "$@"
+    exit 2
+} >&2
+
+name="default"
+while getopts :n: opt; do
+    case "$opt" in
+    n) name="$OPTARG";;
+    ?) usage_error "unrecognized argument: -$OPTARG"
+    esac
+done
+shift $(($OPTIND - 1))
+[ $# -gt 0 ] || usage_error "the following argument is required: prog"
+
+mkdir -p .q1
+{
+    flock -n 8 || exit 0
+    exec 9>".q1/$name-exec-lock"
+    flock 9
+} 8>".q1/$name-queue-lock"
+exec "$@"

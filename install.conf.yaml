@@ -31,6 +31,7 @@
     ~/.ctags: ctags
     ~/.local/bin/mtags: mtags/mtags
     ~/.local/share/mtags/mtags.mak: mtags/mtags.mak
+    ~/.local/bin/queue-one: queue-one
 
 - shell:
     - description: Installing submodules

@@ -62,7 +62,6 @@ set statusline+=%1*\ %-2.n\ %*\  " Buffer number
 set statusline+=%<%.99f\  " File name
 set statusline+=%h%w%m%r\  " [help][Preview][+][RO]
 set statusline+=%= " Switch to right side
-set statusline+=%-14.{gutentags#statusline('[',']')}
 set statusline+=%-14.y " File type
 set statusline+=%-14.(%l:%c%V%) " Line:Column
 set statusline+=%2*%{WrongEOL()}%*\  " Show EOL if not Unix
@@ -121,6 +120,7 @@ if has("cscope")
         set cscopequickfix+=a-
         nnoremap <leader>ca :cscope find a <C-R>=expand("<cword>")<CR><CR>
     endif
+    cscope add cscope.out
 endif
 
 if has('eval')
@@ -284,6 +284,10 @@ if has('autocmd')
         " Open quickfix window, if the build failed
         autocmd QuickFixCmdPost make,grep if v:shell_error | botright copen
                     \ | else | botright cwindow | endif
+        if isdirectory('.git')
+            autocmd VimEnter,BufWritePost * silent execute
+                    \ "!queue-one -n mtags mtags >.mtags.log 2>&1 &" | redraw!
+        endif
     augroup END
 
     function! s:restore_position() abort

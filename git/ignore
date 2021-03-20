@@ -8,6 +8,9 @@
 /ncscope.out.temp
 .vim-git-root
 /.notags
+.q1/
+.mtags/
+.mtags.log
 
 # Python
 __pycache__/
