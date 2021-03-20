@@ -104,7 +104,6 @@ if executable('ag')
 endif
 
 if has("cscope")
-    set cscopetag " Use cscope with :tag and CTRL-]
     set cscopequickfix=s-,c-,d-,i-,t-,e- " Use quickfix window with cscope
     nnoremap <leader>cs :cscope find s <C-R>=expand("<cword>")<CR><CR>
     nnoremap <leader>cg :cscope find g <C-R>=expand("<cword>")<CR><CR>
