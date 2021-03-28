@@ -1,3 +1,4 @@
-# Copy-paste integration
-bind-key -T copy-mode-vi y send-keys -X copy-pipe "xclip -in -selection clipboard"
-bind-key p run-shell "xclip -out -selection clipboard | tmux load-buffer - ; tmux paste-buffer"
+if-shell '[ -n "$DISPLAY" ]' \
+    "source-file ~/dotfiles/tmux/tmux-linux-x11" \
+    "source-file ~/dotfiles/tmux/tmux-linux-headless"
+# vim: ft=tmux

@@ -1,20 +1,20 @@
-#/usr/bin/env bash
+#!/bin/sh
 set -e
 
-SOURCE_DIR="$HOME/.cache/siho-build/tmux"
-VERSION="2.6"
+src="$HOME/.cache/siho-build/tmux"
+version="3.2-rc"
 
-if [ ! -d $SOURCE_DIR ]; then
-    git clone https://github.com/tmux/tmux $SOURCE_DIR
-    cd $SOURCE_DIR
+if [ ! -d "$src" ]; then
+    git clone https://github.com/tmux/tmux "$src"
+    cd "$src"
 else
-    cd $SOURCE_DIR
+    cd "$src"
     git reset HEAD --hard
-    git checkout master
-    git pull
+    git fetch
 fi
 
-git checkout -q tags/$VERSION
+git checkout -q "tags/$version"
+sed -i '/sys\/queue\.h/d' proc.c
 sh autogen.sh
-./configure --prefix=$HOME/.local
+./configure --prefix="$HOME/.local"
 make install

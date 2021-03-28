@@ -73,16 +73,6 @@ if has('eval')
     endfunction
 endif
 
-if has('clipboard')
-    " Prepend options to clipboard (^=), as the exclude pattern must be the
-    " last entry (see clipboard-exclude)
-    set clipboard^=unnamed " Use system clipboard
-    if has('unnamedplus')
-        " Use CLIPBOARD selection in addition to PRIMARY selection on X11
-        set clipboard^=unnamedplus
-    endif
-endif
-
 if has('mouse')
     set mouse=n " Enable mouse in normal mode
     if &term ==# "screen-256color" " used by tmux

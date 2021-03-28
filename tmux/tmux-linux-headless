@@ -1,0 +1,5 @@
+# Copy-paste integration
+bind-key -T copy-mode-vi y send-keys -X copy-selection
+set-hook -g pane-set-clipboard 'run-shell "rm -f ~/.cache/vim/regtype"'
+bind-key p paste-buffer
+# vim: ft=tmux

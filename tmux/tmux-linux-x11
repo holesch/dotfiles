@@ -1,0 +1,4 @@
+# Copy-paste integration
+bind-key -T copy-mode-vi y send-keys -X copy-pipe "xclip -in -selection clipboard"
+bind-key p run-shell "xclip -out -selection clipboard | tmux load-buffer - ; tmux paste-buffer"
+# vim: ft=tmux
