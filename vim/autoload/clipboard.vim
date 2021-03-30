@@ -55,10 +55,6 @@ function! clipboard#load() abort
     if getfsize(s:type_path) > 0
         " clipboard was saved by another Vim instance, import the regtype
         let type = readfile(s:type_path, "b")[0]
-        if type ==# "V"
-            " remove added trailing new line (see clipboard#save())
-            let contents = contents[:-2]
-        endif
     else
         " Clibpoard wasn't saved by another Vim instance, infer the regtype
         " from the contents: Paste linewise if contents end in a new line,
@@ -72,6 +68,11 @@ function! clipboard#load() abort
         " Save the type to update the timestamp, so the clipboard doesn't have
         " to be loaded again.
         call writefile([type], s:type_path, "b")
+    endif
+
+    if type ==# "V"
+        " remove added trailing new line (see clipboard#save())
+        let contents = contents[:-2]
     endif
 
     " set the default register contents
