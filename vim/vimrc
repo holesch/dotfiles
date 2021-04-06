@@ -273,7 +273,7 @@ if has('autocmd')
         " Open quickfix window, if the build failed
         autocmd QuickFixCmdPost make,grep if v:shell_error | botright copen
                     \ | else | botright cwindow | endif
-        if isdirectory('.git')
+        if isdirectory('.git') || filereadable('.vim-enable-mtags')
             autocmd VimEnter,BufWritePost * silent execute
                     \ "!queue-one -n mtags mtags >.mtags.log 2>&1 &" | redraw!
         endif

@@ -11,6 +11,9 @@
 .q1/
 .mtags/
 .mtags.log
+.vim-enable-mtags
+cscope.out.in
+cscope.out.po
 
 # Python
 __pycache__/
