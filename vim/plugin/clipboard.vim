@@ -16,5 +16,7 @@ else
     for key in ["p", "P", "gp", "gP"]
         execute "nnoremap <silent> " . key .
                     \ " :call clipboard#load()<CR>" . key
+        execute "xnoremap <silent> " . key .
+                    \ " :call clipboard#load()<CR>gv" . key
     endfor
 endif
