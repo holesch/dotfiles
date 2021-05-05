@@ -6,10 +6,10 @@ CSCOPE := cscope
 sources := $(shell \
 	{ git ls-files && git ls-files --others --exclude-standard ; } \
 	| while read -r line; do [ -e "$$line" ] && echo "$$line"; done)
-ctags_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx \
+ctags_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx %.cc \
 	%.py %.sh %.vim %.java %.lua %.rb %.js %.pl %.rs %.tcl %.php, \
 	$(sources))
-cscope_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx,$(ctags_in))
+cscope_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx %.cc,$(ctags_in))
 $(shell mkdir -p .mtags)
 
 .PHONY: all
