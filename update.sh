@@ -14,7 +14,6 @@ git subtree pull --prefix vim/pack/user/start/jq https://github.com/vito-c/jq.vi
 git subtree pull --prefix vim/pack/user/start/plantuml https://github.com/aklt/plantuml-syntax master --squash
 git subtree pull --prefix vim/pack/user/start/recover https://github.com/chrisbra/Recover.vim master --squash
 git subtree pull --prefix vim/pack/user/start/repeat https://github.com/tpope/vim-repeat master --squash
-git subtree pull --prefix vim/pack/user/start/sneak https://github.com/justinmk/vim-sneak master --squash
 git subtree pull --prefix vim/pack/user/start/surround https://github.com/tpope/vim-surround master --squash
 git subtree pull --prefix vim/pack/user/start/targets https://github.com/wellle/targets.vim master --squash
 git subtree pull --prefix vim/pack/user/start/tmux-navigator https://github.com/christoomey/vim-tmux-navigator master --squash
