@@ -1,22 +1,50 @@
-#!/bin/sh
+#!/bin/sh -e
 
-PS4='>>> '
-set -ex
+main() {
+    update tmux/plugins/sensible tmux-plugins/tmux-sensible
 
-git subtree pull --prefix tmux/plugins/sensible https://github.com/tmux-plugins/tmux-sensible master --squash
-git subtree pull --prefix vim/pack/user/start/bitbake https://github.com/siho22/vim-bitbake master --squash
-git subtree pull --prefix vim/pack/user/start/commentary https://github.com/tpope/vim-commentary master --squash
-git subtree pull --prefix vim/pack/user/start/dispatch https://github.com/tpope/vim-dispatch master --squash
-git subtree pull --prefix vim/pack/user/start/eunuch https://github.com/tpope/vim-eunuch master --squash
-git subtree pull --prefix vim/pack/user/start/fugitive https://github.com/tpope/vim-fugitive master --squash
-git subtree pull --prefix vim/pack/user/start/jq https://github.com/vito-c/jq.vim master --squash
-# git subtree pull --prefix vim/pack/user/start/lion https://github.com/tommcdo/vim-lion master --squash # current: https://github.com/jonasw234/vim-lion
-git subtree pull --prefix vim/pack/user/start/plantuml https://github.com/aklt/plantuml-syntax master --squash
-git subtree pull --prefix vim/pack/user/start/recover https://github.com/chrisbra/Recover.vim master --squash
-git subtree pull --prefix vim/pack/user/start/repeat https://github.com/tpope/vim-repeat master --squash
-git subtree pull --prefix vim/pack/user/start/sneak https://github.com/justinmk/vim-sneak master --squash
-git subtree pull --prefix vim/pack/user/start/surround https://github.com/tpope/vim-surround master --squash
-git subtree pull --prefix vim/pack/user/start/targets https://github.com/wellle/targets.vim master --squash
-git subtree pull --prefix vim/pack/user/start/tmux-navigator https://github.com/christoomey/vim-tmux-navigator master --squash
-git subtree pull --prefix vim/pack/user/start/unimpaired https://github.com/tpope/vim-unimpaired master --squash
-git subtree pull --prefix vim/pack/user/start/vinegar https://github.com/tpope/vim-vinegar master --squash
+    update_vim_pack bitbake siho22/vim-bitbake
+    update_vim_pack commentary tpope/vim-commentary
+    update_vim_pack fugitive tpope/vim-fugitive
+    update_vim_pack gnuplot gagbo/vim-gnuplot
+    update_vim_pack jq vito-c/jq.vim
+    # not updating lion (tommcdo/vim-lion): replaced with jonasw234/vim-lion
+    update_vim_pack plantuml aklt/plantuml-syntax
+    update_vim_pack recover chrisbra/Recover.vim
+    update_vim_pack repeat tpope/vim-repeat
+    update_vim_pack dispatch tpope/vim-dispatch
+    update_vim_pack eunuch tpope/vim-eunuch
+    # not updating subversive
+    update_vim_pack surround tpope/vim-surround
+    update_vim_pack targets wellle/targets.vim
+    update_vim_pack tmux-navigator christoomey/vim-tmux-navigator
+    update_vim_pack toml cespare/vim-toml
+    update_vim_pack unimpaired tpope/vim-unimpaired
+    update_vim_pack vinegar tpope/vim-vinegar
+}
+
+update() {
+    path="$1"
+    url="$2"
+    branch="${3:-master}"
+
+    case "$url" in
+    *://*) break;;
+    *) url="https://github.com/$url"
+    esac
+
+    verbose git subtree pull --prefix "$path" "$url" "$branch" --squash
+}
+
+update_vim_pack() {
+    path="vim/pack/user/start/$1"
+    shift 1
+    update "$path" "$@"
+}
+
+verbose() {
+    echo ">>> $*"
+    "$@"
+}
+
+main "$@"

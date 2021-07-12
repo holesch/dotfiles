@@ -30,6 +30,10 @@
     sort = v:refname
 [log]
     abbrevCommit = true
+[pull]
+    rebase = false
+[init]
+    defaultBranch = master
 [sendemail]
     smtpserver = /usr/bin/msmtp
 [url "https://"]
