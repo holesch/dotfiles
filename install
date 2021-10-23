@@ -1,14 +1,110 @@
-#!/usr/bin/env bash
+#!/bin/sh -e
 
-set -e
+main() {
+    clean ~/*
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+    link ~/.vim vim
+    link ~/.tmux.conf tmux/tmux.conf
+    link ~/.zprezto zsh/zprezto
+    link ~/.zshenv zsh/zshenv
+    link ~/.zprofile zsh/zprofile
+    link ~/.zshrc zsh/zshrc
+    link ~/.zpreztorc zsh/zpreztorc
+    link ~/.zlogin zsh/zlogin
+    link ~/.Xresources Xresources
+    link ~/.inputrc inputrc
+    link ~/.gnupg/gpg.conf gnupg/gpg.conf
+    link ~/.config/git/config git/config
+    link ~/.config/git/ignore git/ignore
+    link ~/.config/user-dirs.dirs xdg/user-dirs.dirs
+    link ~/.config/mutt/muttrc mutt/muttrc
+    link ~/.config/mutt/colors-base16-monokai mutt/colors-base16-monokai
+    link ~/.config/mutt/colors-base16-google-light mutt/colors-base16-google-light
+    link ~/.config/mutt/mailcap mutt/mailcap
+    link ~/.gdbinit gdb/init
+    link ~/.config/gdb/init.py gdb/init.py
+    link ~/.config/pip/pip.conf pip/pip.conf
+    link ~/.ctags ctags
+    link ~/.local/bin/mtags mtags/mtags
+    link ~/.local/share/mtags/mtags.mak mtags/mtags.mak
+    link ~/.local/bin/queue-one queue-one
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    echo "Installing submodules"
+    git submodule update --init --recursive
 
-cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
+    mkdir_p \
+        ~/.cache/mutt/headers/ \
+        ~/.cache/vim/undodir/ \
+        ~/.local/share/gdb/ \
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+}
+
+link() {
+    source="$1"
+    target=~/dotfiles/"$2"
+
+    if [ -L "$source" ]; then
+        old_target="$(readlink "$source")"
+
+        if [ "$target" = "$old_target" ]; then
+            printf_paths "Link exists: %s -> %s" "$source" "$target"
+        elif is_in_dotfiles "$old_target" || [ ! -e "$source" ]; then
+            printf_paths "Replacing link: %s -> %s (was -> %s)" "$source" "$target" "$old_target"
+            rm "$source"
+            ln -s "$target" "$source"
+        else
+            printf_paths "Link exists: %s -> %s (should be -> %s)" "$source" "$old_target" "$target"
+            return 1
+        fi
+    elif [ -e "$source" ]; then
+        printf_paths "%s already exists but is a regular file or directory" "$source"
+        return 1
+    else
+        printf_paths "Creating link: %s -> %s" "$source" "$target"
+        mkdir_p "$(dirname "$source")"
+        ln -s "$target" "$source"
+    fi
+}
+
+is_in_dotfiles() {
+    case "$1" in ~/dotfiles/?*) return 0; esac
+    return 1
+}
+
+clean() {
+    for path in "$@"; do
+        [ -L "$path" ] || continue
+        if [ ! -e "$path" ]; then
+            target="$(readlink "$path")"
+            printf_paths "Removing dead link: %s -> %s" "$path" "$target"
+            rm "$path"
+        fi
+    done
+}
+
+printf_paths() {
+    format="$1"
+    shift
+
+    for arg in "$@"; do
+        case "$arg" in
+            "$HOME"*) arg="~${arg#$HOME}"
+        esac
+        set -- "$@" "$arg"
+        shift
+    done
+
+    # shellcheck disable=SC2059
+    printf "$format\n" "$@"
+}
+
+mkdir_p() {
+    for dir in "$@"; do
+        if ! [ -d "$dir" ]; then
+            mkdir -p "$@" || return
+            break
+        fi
+    done
+}
+
+main "$@"
