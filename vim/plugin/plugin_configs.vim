@@ -37,3 +37,6 @@ let g:subversiveCurrentTextRegister = 'r'
 
 " === TermDebug ===
 let g:termdebug_wide = 1
+
+" === Recover ===
+let g:RecoverPlugin_Prompt_Verbose = 1
