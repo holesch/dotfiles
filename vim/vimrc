@@ -192,11 +192,11 @@ xnoremap @ :<C-u>call maputils#visual_macro()<CR>
 nnoremap <expr> d<Space> maputils#delete_whitespace()
 
 " Fugitive
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gs :Git<CR>
+nnoremap <silent> <leader>gb :Git blame<CR>
 nnoremap <silent> <leader>gd :Gvdiff<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
-nnoremap <silent> <leader>gp :Gpush<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
 
 " Subversive
 nmap cr <Plug>(SubversiveSubstituteRange)
