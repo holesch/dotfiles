@@ -215,7 +215,7 @@ omap [[ <Plug>(CFunctionPrev)
 nnoremap zS :call maputils#show_highlight_groups()<CR>
 
 " Double click to go to tag, right click to go back
-nnoremap <2-LeftMouse> <C-]>
+nnoremap <expr> <2-LeftMouse> maputils#double_click()
 nnoremap <RightMouse> <C-T>
 
 if has("terminal")

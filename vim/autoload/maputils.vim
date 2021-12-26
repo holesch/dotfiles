@@ -110,3 +110,12 @@ function! maputils#delete_whitespace()
     let @/ .= '|\S\s\zs\s+\ze\S'
     return "dgn" " delete next matching pattern, can be repeated with `.`
 endfunction
+
+function! maputils#double_click() abort
+    let type = win_gettype()
+    if type ==# "quickfix" || type == "loclist"
+        return "\<CR>"
+    else
+        return "\<C-]>"
+    endif
+endfunction
