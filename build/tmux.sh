@@ -2,7 +2,7 @@
 set -e
 
 src="$HOME/.cache/siho-build/tmux"
-version="3.2-rc"
+version="3.2"
 
 if [ ! -d "$src" ]; then
     git clone https://github.com/tmux/tmux "$src"
