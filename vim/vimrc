@@ -110,7 +110,9 @@ if has("cscope")
         set cscopequickfix+=a-
         nnoremap <leader>ca :cscope find a <C-R>=expand("<cword>")<CR><CR>
     endif
-    cscope add cscope.out
+    if executable('cscope')
+        cscope add cscope.out
+    endif
 endif
 
 if has('eval')
