@@ -28,6 +28,7 @@ main() {
     link ~/.local/bin/mtags mtags/mtags
     link ~/.local/share/mtags/mtags.mak mtags/mtags.mak
     link ~/.local/bin/queue-one queue-one
+    link ~/.agignore agignore
 
     echo "Installing submodules"
     git submodule update --init --recursive
