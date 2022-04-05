@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Lists files passed as arguments in vim,
+# so you can edit it and save to rename them.
+# Uses files in current directory if none passed.
+#
+# USAGE: vimv [FILE]...
+
+if [ $# = 0 ]; then
+    set -- *
+fi
+
+tmpfile="$(mktemp)"
+
+printf "%s\n" "$@" >"$tmpfile"
+
+${EDITOR:-vi} "$tmpfile"
+
+while IFS= read -r dest; do
+    if [ "$dest" != "$1" ]; then
+        mv -- "$1" "$dest"
+    fi
+    shift
+done <"$tmpfile"
+
+rm "$tmpfile"

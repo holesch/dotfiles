@@ -29,6 +29,7 @@ main() {
     link ~/.local/share/mtags/mtags.mak mtags/mtags.mak
     link ~/.local/bin/queue-one queue-one
     link ~/.agignore agignore
+    link ~/.local/bin/vimv bin/vimv
 
     echo "Installing submodules"
     git submodule update --init --recursive
