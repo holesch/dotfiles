@@ -91,7 +91,7 @@ if has('patch-8.1.0360')
 endif
 
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor\ --hidden " Use ag over grep
 endif
 
 if has("cscope")
@@ -110,7 +110,9 @@ if has("cscope")
         set cscopequickfix+=a-
         nnoremap <leader>ca :cscope find a <C-R>=expand("<cword>")<CR><CR>
     endif
-    cscope add cscope.out
+    if executable('cscope')
+        cscope add cscope.out
+    endif
 endif
 
 if has('eval')
@@ -252,7 +254,7 @@ omap if <Plug>(CFunctionTextObjI)
 
 if executable('fzy') && executable('ag')
     " Fuzzy finder
-    nnoremap <C-P> :call maputils#fzy("ag . --silent -l -g ''", ":e")<CR>
+    nnoremap <C-P> :call maputils#fzy("ag . --silent --hidden -l -g ''", ":e")<CR>
 endif
 
 if has('user_commands')

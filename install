@@ -27,6 +27,8 @@ main() {
     link ~/.local/bin/mtags mtags/mtags
     link ~/.local/share/mtags/mtags.mak mtags/mtags.mak
     link ~/.local/bin/queue-one queue-one
+    link ~/.agignore agignore
+    link ~/.local/bin/vimv bin/vimv
 
     if [ -e ~/.config/user-dirs.dirs ]; then
         mkdir_p \

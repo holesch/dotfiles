@@ -7,3 +7,4 @@ apt-get install -y \
     autotools-dev \
     automake \
     pkg-config \
+    bison \

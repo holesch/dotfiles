@@ -45,6 +45,10 @@ alias ip='ip -color'
 alias ipa='ip -brief addr show'
 alias py=python3
 alias ef='${(z)VISUAL:-${(z)EDITOR}} "$(ag . --silent -l -g "" | fzy)"'
+if [ -n "$SSH_TTY" ] && [ -z "$DISPLAY" ] && [ -n "$TMUX" ]; then
+    alias pbc='{ tmux load-buffer -w - && : >! ~/.cache/vim/regtype; }'
+    alias pbp='tmux save-buffer -'
+fi
 unalias man
 man() {
     local cols=$(tput cols)
@@ -56,6 +60,9 @@ gpg-agent-setup() {
 }
 cpr() {
     time rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
+}
+unzipd() {
+    unzip "$1" -d "${1%.zip}"
 }
 
 # === zsh key bindings ===
