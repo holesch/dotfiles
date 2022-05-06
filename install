@@ -16,7 +16,6 @@ main() {
     link ~/.gnupg/gpg.conf gnupg/gpg.conf
     link ~/.config/git/config git/config
     link ~/.config/git/ignore git/ignore
-    link ~/.config/user-dirs.dirs xdg/user-dirs.dirs
     link ~/.config/mutt/muttrc mutt/muttrc
     link ~/.config/mutt/colors-base16-monokai mutt/colors-base16-monokai
     link ~/.config/mutt/colors-base16-google-light mutt/colors-base16-google-light
@@ -28,6 +27,22 @@ main() {
     link ~/.local/bin/mtags mtags/mtags
     link ~/.local/share/mtags/mtags.mak mtags/mtags.mak
     link ~/.local/bin/queue-one queue-one
+
+    if [ -e ~/.config/user-dirs.dirs ]; then
+        mkdir_p \
+            ~/.local/share/Desktop/ \
+            ~/.local/share/Downloads/ \
+            ~/.local/share/Templates/ \
+            ~/.local/share/Public/ \
+            ~/.local/share/Documents/ \
+            ~/.local/share/Music/ \
+            ~/.local/share/Pictures/ \
+            ~/.local/share/Videos/ \
+
+        rm ~/.config/user-dirs.dirs
+        link ~/.config/user-dirs.dirs xdg/user-dirs.dirs
+        xdg-user-dirs-update
+    fi
 
     echo "Installing submodules"
     git submodule update --init --recursive
