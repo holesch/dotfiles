@@ -55,7 +55,7 @@ set viewoptions-=options " Don't save options and mappings with :mkview
 set confirm " Raise dialog when there are unsaved changes (e.g. with ":q")
 set foldlevel=99 " Open all folds by default
 set cpoptions-=C " Allow line concatenation with backslash
-set foldmethod=marker
+set foldmethod=marker " Use manually set markers for folding
 set nostartofline " Keep the same column when jumping around
 
 set statusline=
