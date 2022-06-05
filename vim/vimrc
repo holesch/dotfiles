@@ -58,6 +58,11 @@ set cpoptions-=C " Allow line concatenation with backslash
 set foldmethod=marker " Use manually set markers for folding
 set nostartofline " Keep the same column when jumping around
 
+set cinoptions= " Set C indentation options
+set cinoptions+=:0 " Don't indent case label
+set cinoptions+=l1 " Align with case label, not with statement after case label
+set cinoptions+=+2s " Indent continuation line twice
+
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number
 set statusline+=%<%.99f\  " File name
