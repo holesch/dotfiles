@@ -112,9 +112,13 @@ function! maputils#delete_whitespace()
 endfunction
 
 function! maputils#double_click() abort
-    let type = win_gettype()
-    if type ==# "quickfix" || type == "loclist"
-        return "\<CR>"
+    if has('patch-8.2.3254') " win_gettype() supports quickfix and loclist
+        let type = win_gettype()
+        if type ==# "quickfix" || type == "loclist"
+            return "\<CR>"
+        else
+            return "\<C-]>"
+        endif
     else
         return "\<C-]>"
     endif
