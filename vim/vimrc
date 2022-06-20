@@ -55,8 +55,13 @@ set viewoptions-=options " Don't save options and mappings with :mkview
 set confirm " Raise dialog when there are unsaved changes (e.g. with ":q")
 set foldlevel=99 " Open all folds by default
 set cpoptions-=C " Allow line concatenation with backslash
-set foldmethod=marker
+set foldmethod=marker " Use manually set markers for folding
 set nostartofline " Keep the same column when jumping around
+
+set cinoptions= " Set C indentation options
+set cinoptions+=:0 " Don't indent case label
+set cinoptions+=l1 " Align with case label, not with statement after case label
+set cinoptions+=+2s " Indent continuation line twice
 
 set statusline=
 set statusline+=%1*\ %-2.n\ %*\  " Buffer number

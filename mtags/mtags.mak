@@ -57,3 +57,6 @@ cscope.out: $(cscope_in)
 	@# -f: output database
 	@$(CSCOPE) -b -q -k -i .mtags/cscope.in -f .mtags/cscope.out
 	@cp .mtags/cscope.out .mtags/cscope.out.in .mtags/cscope.out.po .
+
+# disable implicit rules
+.SUFFIXES:
