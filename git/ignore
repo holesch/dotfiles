@@ -14,6 +14,7 @@
 .vim-enable-mtags
 cscope.out.in
 cscope.out.po
+.ctags
 
 # Python
 __pycache__/
