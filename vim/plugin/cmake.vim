@@ -19,7 +19,7 @@ function s:cmake_dir(...) abort
     if a:0 == 0
         echo resolve("build")
     else
-        silent call system("rm build && ln -s " . a:1 . " build")
+        silent call system("rm -f build && ln -s " . a:1 . " build")
         if v:shell_error != 0
             echoerr "Changing build dir to " . a:1 . " failed"
         endif
