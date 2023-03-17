@@ -3,7 +3,7 @@
 main() {
     update tmux/plugins/sensible tmux-plugins/tmux-sensible
 
-    update_vim_pack bitbake siho22/vim-bitbake
+    update_vim_pack bitbake kergoth/vim-bitbake
     update_vim_pack commentary tpope/vim-commentary
     update_vim_pack fugitive tpope/vim-fugitive
     update_vim_pack gnuplot gagbo/vim-gnuplot
