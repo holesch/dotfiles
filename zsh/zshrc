@@ -31,6 +31,7 @@ export GPG_TTY="$(tty)"
 export DOCKER_CONFIG="$HOME"/.config/docker
 export CARGO_HOME="$HOME"/.local/share/cargo
 export RUSTUP_HOME="$HOME"/.local/share/rustup
+export RLWRAP_HOME="$HOME"/.local/share/rlwrap
 export DOCKER_BUILDKIT=1
 
 # === Alias ===
