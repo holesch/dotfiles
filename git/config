@@ -5,6 +5,7 @@
     helper = store
 [push]
     default = simple
+	autoSetupRemote = true
 [core]
     editor = vim
 [color]
