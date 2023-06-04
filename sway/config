@@ -43,6 +43,10 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 # Brightness
 bindsym XF86MonBrightnessUP exec brightnessctl set --exponent=2 '+5%'
 bindsym XF86MonBrightnessDown exec brightnessctl set --exponent=2 '5%-'
+# Volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume '@DEFAULT_SINK@' '+5%'
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume '@DEFAULT_SINK@' '-5%'
+bindsym XF86AudioMute exec pactl set-sink-mute '@DEFAULT_SINK@' toggle
 
 # Change focus
 bindsym $mod+$left focus left
