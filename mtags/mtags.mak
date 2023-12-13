@@ -6,7 +6,7 @@ CSCOPE := cscope
 sources := $(shell \
 	{ git ls-files && git ls-files --others --exclude-standard ; } \
 	| while IFS=" " read -r line _; do [ -f "$$line" ] && echo "$$line"; done)
-ctags_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx %.cc \
+ctags_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx %.cc %.go \
 	%.py %.sh %.vim %.java %.lua %.rb %.js %.pl %.rs %.tcl %.php, \
 	$(sources))
 cscope_in := $(filter %.c %.h %.cpp %.hpp %.cxx %.hxx %.cc,$(ctags_in))
