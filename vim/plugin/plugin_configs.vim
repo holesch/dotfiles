@@ -40,3 +40,9 @@ let g:termdebug_wide = 1
 
 " === Recover ===
 let g:RecoverPlugin_Prompt_Verbose = 1
+
+" === zip ===
+augroup plugin_config
+    autocmd!
+    autocmd BufReadCmd *.whl call zip#Browse(expand("<amatch>"))
+augroup END

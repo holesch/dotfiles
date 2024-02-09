@@ -25,6 +25,7 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'git' \
   'tmux' \
+  'pacman' \
   'utility' \
   'completion' \
   'fasd' \

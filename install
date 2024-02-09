@@ -29,6 +29,7 @@ main() {
     link ~/.local/bin/queue-one queue-one
     link ~/.agignore agignore
     link ~/.local/bin/vimv bin/vimv
+    link ~/.config/sway/config sway/config
 
     if [ -e ~/.config/user-dirs.dirs ]; then
         mkdir_p \
