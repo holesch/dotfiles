@@ -1,6 +1,7 @@
 /vim/.netrwhist
 /vim/viminfo
 /vim/spell/*.spl
+/vim/spell/*.sug
 /vim/pack/local/
 /vim/after/plugin/local.vim
 
