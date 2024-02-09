@@ -44,7 +44,7 @@ tags: .mtags/header $(ctags_in:%=.mtags/tags/%.tags)
 	$(info tagging $<)
 	@mkdir -p $(@D)
 	@# writing to stdout disables header generation
-	@$(CTAGS) -f - "$<" > "$@"
+	@$(CTAGS) -f - '$<' > '$@'
 
 cscope.out: $(cscope_in)
 	$(info cscope $@)
