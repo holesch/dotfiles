@@ -11,7 +11,7 @@ function! clipboard#save(reginfo) abort
     if type ==# "V"
         " When the content is copied linewise (e.g. yy), Vim doesn't include a
         " trailing new line. Add it here, so external programs paste
-        " correctly, remove it again in clipboard#load().
+        " correctly, remove it again in clipboard#paste().
         let contents = a:reginfo["regcontents"] + [""]
     else
         let contents = a:reginfo["regcontents"]
@@ -33,16 +33,16 @@ function! clipboard#save(reginfo) abort
     let s:clipboard_time = localtime()
 endfunction
 
-function! clipboard#load() abort
+function! clipboard#paste(how) abort
     " Only load when pasting from the default register
     if v:register !=# '"'
-        return
+        return '"' . v:register . a:how
     endif
 
     " Only load when the clipboard was updated externally
     let ftime = getftime(s:type_path)
     if ftime != -1 && ftime <= s:clipboard_time
-        return
+        return a:how
     endif
 
     " The system() call messes with new lines in stdout, so to load even
@@ -80,4 +80,6 @@ function! clipboard#load() abort
 
     " save the timestamp to avoid loading the clipboard unnecessarily
     let s:clipboard_time = localtime()
+
+    return a:how
 endfunction

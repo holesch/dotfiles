@@ -14,9 +14,9 @@ if has('clipboard') && (empty($SSH_TTY) || !empty($DISPLAY) || empty($TMUX))
 else
     autocmd TextYankPost * call clipboard#save(v:event)
     for key in ["p", "P", "gp", "gP"]
-        execute "nnoremap <silent> " . key .
-                    \ " :call clipboard#load()<CR>" . key
-        execute "xnoremap <silent> " . key .
-                    \ " :call clipboard#load()<CR>gv" . key
+        execute "nnoremap <expr> <silent> " . key .
+                    \ " clipboard#paste('" . key . "')"
+        execute "xnoremap <expr> <silent> " . key .
+                    \ " clipboard#paste('" . key . "')"
     endfor
 endif
