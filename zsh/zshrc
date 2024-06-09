@@ -10,7 +10,7 @@ if [[ -s "$HOME/dotfiles/base16-$BASE16_SCHEME.sh" && -z "$VIM_TERMINAL" ]]; the
 fi
 
 # === Key remaps ===
-if [[ `uname` == "Linux" && -n "$DISPLAY" ]] && type setxkbmap > /dev/null; then
+if [[ `uname` == "Linux" && -n "$DISPLAY" && -z "$WAYLAND_DISPLAY" ]] && type setxkbmap > /dev/null; then
     # remap capslock to CTRL
     setxkbmap -layout us -option ctrl:nocaps
 elif [[ `uname` == "Darwin" ]] && type hidutil > /dev/null; then
