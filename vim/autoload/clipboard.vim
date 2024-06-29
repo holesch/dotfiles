@@ -17,17 +17,29 @@ function! clipboard#save(reginfo) abort
         let contents = a:reginfo["regcontents"]
     endif
 
+    call s:save(type, contents)
+endfunction
+
+function! clipboard#save_str(string) abort
+    call setreg(v:register, a:string)
+
+    if v:register ==# '"'
+        call s:save("v", [a:string])
+    endif
+endfunction
+
+function! s:save(type, contents) abort
     " Passing the content as {input} with system() removes the trailing new
     " line, so write it into a tmpfile and read it from there.
     let tmpfile = tempname()
-    call writefile(contents, tmpfile, "b")
+    call writefile(a:contents, tmpfile, "b")
     " The -w option was added in tmux 3.2: also sets the system clipboard
     " using an xterm escape sequence.
     silent call system("tmux load-buffer -w " . tmpfile)
     call delete(tmpfile)
 
     " share the regtype in a separate file
-    call writefile([type], s:type_path, "b")
+    call writefile([a:type], s:type_path, "b")
 
     " save the timestamp to avoid loading the clipboard unnecessarily
     let s:clipboard_time = localtime()

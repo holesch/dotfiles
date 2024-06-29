@@ -19,4 +19,6 @@ else
         execute "xnoremap <expr> <silent> " . key .
                     \ " clipboard#paste('" . key . "')"
     endfor
+
+    nnoremap <silent> y<C-G> :<C-U>call clipboard#save_str(fugitive#Object(@%))<CR>
 endif
