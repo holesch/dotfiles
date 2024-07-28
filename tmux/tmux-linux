@@ -1,4 +1,4 @@
-if-shell '[ -n "$DISPLAY" ]' \
+if-shell '[ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]' \
     "source-file ~/dotfiles/tmux/tmux-linux-x11" \
     "source-file ~/dotfiles/tmux/tmux-linux-headless"
 # vim: ft=tmux
