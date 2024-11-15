@@ -75,6 +75,44 @@ dmesg() {
     command dmesg "$@"
 }
 
+# fuzzy checkout
+fco() {
+    local refs
+    refs="$(git for-each-ref \
+            --sort=-creatordate \
+            --sort=-HEAD \
+            --format='%(refname:lstrip=1)%09%(upstream:lstrip=1)' \
+            'refs/heads/*' \
+            'refs/remotes/**' \
+            'refs/tags/*' \
+        )" || return
+
+    local branch
+    branch="$(awk '
+            /^heads\// {
+                tracked[$2]++
+                print $1
+            }
+            /^remotes\// && !tracked[$1] || /^tags\// {
+                print $1
+            }
+        ' << EOF | fzy
+$refs
+EOF
+        )" || return
+
+    case "$branch" in
+        "heads/"*)
+            git checkout "${branch#*/}"
+            ;;
+        "remotes/"*)
+            git checkout --track "${branch#*/}"
+            ;;
+        *)
+            git checkout "$branch"
+    esac
+}
+
 # === zsh key bindings ===
 bindkey '^_' undo
 # Run fzy in the current working directory, appending the selected path, if
