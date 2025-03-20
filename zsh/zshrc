@@ -82,9 +82,9 @@ fco() {
             --sort=-creatordate \
             --sort=-HEAD \
             --format='%(refname:lstrip=1)%09%(upstream:lstrip=1)' \
-            'refs/heads/*' \
+            'refs/heads/**' \
             'refs/remotes/**' \
-            'refs/tags/*' \
+            'refs/tags/**' \
         )" || return
 
     local branch
