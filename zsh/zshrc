@@ -96,7 +96,7 @@ fco() {
             /^remotes\// && !tracked[$1] || /^tags\// {
                 print $1
             }
-        ' << EOF | fzy
+        ' << EOF | fzy ${=*:+--query "$*"}
 $refs
 EOF
         )" || return
