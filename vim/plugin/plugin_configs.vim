@@ -46,3 +46,6 @@ augroup plugin_config
     autocmd!
     autocmd BufReadCmd *.whl call zip#Browse(expand("<amatch>"))
 augroup END
+
+" === matchparen ===
+let g:matchparen_disable_cursor_hl = 1
