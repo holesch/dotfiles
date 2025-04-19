@@ -48,6 +48,11 @@ alias ipa='ip -brief addr show'
 alias py=python3
 alias ef='${(z)VISUAL:-${(z)EDITOR}} "$(ag . --silent -l -g "" | fzy)"'
 alias hd='hexdump -C'
+alias ba='not-my-board attach'
+alias bd='not-my-board detach'
+alias bl='not-my-board list'
+alias bs='not-my-board status'
+alias be='not-my-board edit'
 if [ -n "$SSH_TTY" ] && [ -z "$DISPLAY" ] && [ -n "$TMUX" ]; then
     alias pbc='{ tmux load-buffer -w - && : >! ~/.cache/vim/regtype; }'
     alias pbp='tmux save-buffer -'
