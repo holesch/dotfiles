@@ -173,6 +173,9 @@ inoremap <F1> <nop>
 " Toggle between Tabs and Spaces for indentation, use count to set width
 nnoremap <silent> g<Tab> :<C-U>call tabset#set(v:count)<CR>
 
+" Enable Copilot
+nnoremap <silent> gC :packadd copilot<CR>:Copilot status<CR>
+
 " Open / Close folds recursively
 nnoremap <Space> zA
 
